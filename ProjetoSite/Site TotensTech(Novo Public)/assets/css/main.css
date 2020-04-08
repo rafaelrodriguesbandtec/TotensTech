@@ -53,6 +53,7 @@ table {
 
 body {
 	-webkit-text-size-adjust: none;
+	overflow-x: hidden;
 }
 
 mark {
@@ -4108,4 +4109,11 @@ input, select, textarea {
 						padding: 0;
 					}
 
+	}
+
+	#carrossel {
+		width: 100vw;
+		height: 94vh;
+		background-color: #272833;
+		margin-top: 50px;
 	}
