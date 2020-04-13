@@ -248,3 +248,13 @@
 			._parallax();
 
 })(jQuery);
+
+function validarSenha(){
+	senha1 = document.getElementsByName(senha).value
+	senha2 = document.getElementsByName(csenha).value
+ 
+	if (senha1 == senha2)
+		alert("SENHAS IGUAIS")
+	else
+		alert("SENHAS DIFERENTES")
+}

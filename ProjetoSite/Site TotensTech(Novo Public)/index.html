@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<link rel="stylesheet" href="assets/css/gallery.theme.css">
 	<link rel="stylesheet" href="assets/css/gallery.min.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" href="assets/css/slider.css">
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
@@ -31,39 +33,43 @@
 
 						</ul>
 					</li>
-					<li><a href="./erro.html">Login</a></li>
-					<li><a href="./erro.html" class="button primary">Cadastro</a></li>
+					<li><a href="./Login.html">Login</a></li>
+					<li><a href="./Cadastro.html" class="button primary">Cadastro</a></li>
 				</ul>
 			</nav>
 		</header>
 
 		<!-- Banner -->
-		<section id="carrossel">
-			<div class="gallery autoplay items-3">
-				<div id="item-1" class="control-operator"></div>
-				<div id="item-2" class="control-operator"></div>
-				<div id="item-3" class="control-operator"></div>
+		<div class="container">
+		<section class="slider">
+			<div class="slider_box">
+				<article class="slider_item active" data-slider-bg="images/slide1.png">
+					<div class="slider_content">
+						<h2>TotensTech</h2>
+						<p>Monitore seus totens com segurança e praticidade com a nossa ferramenta.</p>
+						</div>
+				</article>
 
-				<figure class="item">
-					<h1><img src="./images/imagem1.jpg" alt=""></h1>
-					
-				</figure>
+				<article class="slider_item" data-slider-bg="images/slide2.png">
+					<div class="slider_content">
+						<h2>Evite filas</h2>
+						<p>Mantendo seus totens sempre em bom estado, voçê evita fila e transtorno.</p>
+					</div>
+				</article>
 
-				<figure class="item">
-					<h1><img src="./images/pic04.jpg" alt=""></h1>
-				</figure>
+				<article class="slider_item" data-slider-bg="images/slide3.png">
+					<div class="slider_content">
+						<h2>Com um ótimo suporte</h2>
+						<!-- <p>Somos apaixonados pelo que fazemos, vamos introduzir e fixar a imagem de sua empresa destacando seus produtos e serviços na Internet, com muito talento, tecnologia e comprometimento.</p> -->
+					</div>
+				</article>
 
-				<figure class="item">
-					<h1><img src="./images/imagem5.png" alt=""></h1>
-				</figure>
-
-				<div class="controls">
-					<a href="#item-1" class="control-button">•</a>
-					<a href="#item-2" class="control-button">•</a>
-					<a href="#item-3" class="control-button">•</a>
-				  </div>
 			</div>
+			<div class="slider-prev">&lt;</div>
+			<div class="slider-next">&gt;</div>
 		</section>
+		</div>
+		<section id="carrossel"></section>
 
 		<!-- One -->
 		<section id="one" class="spotlight style1 bottom">
@@ -212,6 +218,8 @@
 	</div>
 
 	<!-- Scripts -->
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/slider.js"></script>
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery.scrolly.min.js"></script>
 	<script src="assets/js/jquery.dropotron.min.js"></script>

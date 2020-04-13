@@ -26,6 +26,23 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<script type="text/javascript">
+	function fMasc(objeto,mascara) {
+		obj=objeto
+		masc=mascara
+		setTimeout("fMascEx()",1)
+	}
+	function fMascEx() {
+		obj.value=masc(obj.value)
+	}
+	function mCPF(cpf){
+				cpf=cpf.replace(/\D/g,"")
+				cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+				cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+				cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+				return cpf
+			}
+</script>
 </head>
 <body>
 	
@@ -47,12 +64,20 @@
 						<input class="input100" type="text" name="nome" placeholder="Nome Completo">
 						<span class="focus-input100"></span>
 					</div>
+
+					<div class="labels-form">
+						<p>CPF</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "campo cpf é obrigatorio">
+						<input class="input100" type="text" name="cpf" onkeydown="javascript: fMasc( this, mCPF );" placeholder="000.000.000.00" maxlength="14">
+						<span class="focus-input100"></span>
+					</div>
 					
 					<div class="labels-form">
 						<p>E-MAIL</p>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Preencha o email">
-						<input class="input100" type="password" name="email" placeholder="E-mail">
+						<input class="input100" type="email" name="email" placeholder="E-mail">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -68,10 +93,24 @@
 						<p>CONFIRMAR SENHA</p>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Digite uma senha">
-						<input class="input100" type="password" name="csenha" placeholder="Confirmar senha">
+						<input class="input100" type="password" name="csenha" onchange="validarSenha()"  placeholder="Confirmar senha">
 						<span class="focus-input100"></span>
 					</div>
 					
+					<div class="flex-sb-m w-full p-t-3 p-b-24">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								li e aceito os <a href="./erro.html" class="txt1">termos</a>.
+							</label>
+					</div> 
+
+						<div>
+							<a href="#" class="txt1">
+								ja tem login? clique aqui.
+							</a>
+						</div>
+					</div>
 					
 
 					<div class="container-login100-form-btn m-t-17">

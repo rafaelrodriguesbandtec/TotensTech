@@ -3108,7 +3108,7 @@ input, select, textarea {
 
 		.spotlight.top .content, .spotlight.bottom .content {
 			left: 0;
-			padding: 5.1em 0 3.1em 0;
+			padding: 5.1em 0 3.1em 34px;
 			width: 100%;
 		}
 
@@ -4116,4 +4116,9 @@ input, select, textarea {
 		height: 94vh;
 		background-color: #272833;
 		margin-top: 50px;
+	}
+
+	.item h1 {
+		margin-top: 100px;
+		margin-bottom: 50px;
 	}
