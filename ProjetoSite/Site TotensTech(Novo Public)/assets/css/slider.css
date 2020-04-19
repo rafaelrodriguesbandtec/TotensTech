@@ -165,6 +165,10 @@
   .slider .slider_content p{
       font-size: 1.3em;
   }
+
+  #carrossel {
+      height: 65vh;
+  }
 }
 @media all and (max-width: 667px){
    .slider-next,

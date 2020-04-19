@@ -76,6 +76,7 @@ input {
 	border: none;
 }
 
+
 textarea {
   outline: none;
   border: none;
@@ -136,7 +137,7 @@ iframe {
 }
 
 .container-login100 {
-  background-color: #595959;
+  background-color: #272833;
   width: 100%;  
   min-height: 100vh;
   display: -webkit-box;
@@ -157,17 +158,17 @@ iframe {
 
 .wrap-login100 {
   width: 390px;
-  background: #595959;
+  background: #272833;
   border-radius: 10px;
   position: relative;
   margin-left: -61vw;
 }
 
 .img-logo {
-  margin-top: 13vw;
-  width: 49vw;
+  margin-top: 17vw;
+  width: 46vw;
   position: absolute;
-  margin-left: 35vw;
+  margin-left: 39vw;
 }
 
 
@@ -197,6 +198,8 @@ iframe {
 .labels-form p {
   color: #ffffff;
   font-family: Ubuntu-Bold;
+  width: 168px;
+  margin: 0 0 1em 0;
 }
 
 
