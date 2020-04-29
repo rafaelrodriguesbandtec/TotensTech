@@ -33,7 +33,9 @@ public class MostrarTudo {
         //Informações placa de rede e sistema (Ip etc)
        
         
-        private String memoriaDisponivel = "", memoriaTotal = "", memoriaFisica = "";
+       // private String    memoriaTotal , memoriaFisica ;
+        
+        private Double memoriaDisponivel;
                 
         private Double temperaturaCpu;
         
@@ -42,7 +44,7 @@ public class MostrarTudo {
          
     
         public void verificarMemoriaDisponivel(){
-        memoriaDisponivel = String.format("Memória disponivel: %.2f", Double.valueOf(GM.getAvailable()));    
+        memoriaDisponivel = Double.valueOf(GM.getAvailable()/1000000000);    
         
               //double recebelonge = (double) variavelLong
         
@@ -62,15 +64,15 @@ public class MostrarTudo {
         return temperaturaCpu;
     }
 
-    public String getMemoriaTotal() {
+   /* public String getMemoriaTotal() {
         return memoriaTotal;
-    }
+    }*/
 
-    public String getMemoriaFisica() {
+    /*public String getMemoriaFisica() {
         return memoriaFisica;
-    }
+    }*/
         
-    public String getMemoriaDisponivel() {
+    public Double getMemoriaDisponivel() {
         return memoriaDisponivel;   
     }
     
