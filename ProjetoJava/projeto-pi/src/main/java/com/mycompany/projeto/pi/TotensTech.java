@@ -125,7 +125,7 @@ public class TotensTech extends javax.swing.JFrame {
        
        leitura.verificarMemoriaDisponivel();
        
-       lblMemoriaDisponivel.setText(leitura.getMemoriaDisponivel());
+       //lblMemoriaDisponivel.setText(leitura.getMemoriaDisponivel());
        
        lblTempCpu.setText(String.format("Temperatura CPU:  %.2f", leitura.getTemperaturaCpu()));
        
