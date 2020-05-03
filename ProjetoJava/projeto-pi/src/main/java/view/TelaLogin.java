@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.Color;
 import java.awt.Desktop;
 import java.net.URI;
 
@@ -19,6 +20,7 @@ public class TelaLogin extends javax.swing.JFrame {
      */
     public TelaLogin() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -49,6 +51,14 @@ public class TelaLogin extends javax.swing.JFrame {
         lblHome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblHome.setForeground(new java.awt.Color(255, 255, 255));
         lblHome.setText("TotensTech");
+        lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblHomeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblHomeMouseExited(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(28, 29, 38));
 
@@ -205,7 +215,9 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txbEmailActionPerformed
 
     private void btnAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessoActionPerformed
-        // TODO add your handling code here:
+        Monitoramento a = new Monitoramento();
+        a.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnAcessoActionPerformed
 
     private void lblCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCadastroMouseClicked
@@ -216,6 +228,14 @@ public class TelaLogin extends javax.swing.JFrame {
             System.out.println(erro);
         }
     }//GEN-LAST:event_lblCadastroMouseClicked
+
+    private void lblHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseEntered
+        lblHome.setForeground(new Color(228,76,101));
+    }//GEN-LAST:event_lblHomeMouseEntered
+
+    private void lblHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseExited
+        lblHome.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_lblHomeMouseExited
 
     /**
      * @param args the command line arguments

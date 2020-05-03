@@ -11,8 +11,10 @@ import oshi.hardware.Sensors;
 
 public class MostrarTudo {
    
-    SystemInfo systemInfo = new SystemInfo();
-    //Interface com informações sobre o sistema
+    
+    
+        SystemInfo systemInfo = new SystemInfo();
+        //Interface com informações sobre o sistema
         
         HardwareAbstractionLayer hardwareInfo = systemInfo.getHardware();
         //Interface com informações sobre os componentes apartir dessa interface vamos 
@@ -23,50 +25,45 @@ public class MostrarTudo {
         
         Sensors sensor = hardwareInfo.getSensors();
         //Informações dos sensores (Usaremos a temperatura)
-
-   
         
+       
         GlobalMemory GM = hardwareInfo.getMemory();
         //Informações da memória
-       
-        //NetworkParams net = systemInfo.getOperatingSystem().getNetworkParams();
-        //Informações placa de rede e sistema (Ip etc)
-       
         
-       // private String    memoriaTotal , memoriaFisica ;
-        
-        private Double memoriaDisponivel;
+       
+              
+        //Atributos
+        private Double memoriaDisponivel, memoriaFisica, memoriaTotal;
                 
         private Double temperaturaCpu;
         
         private List freqCpu = new ArrayList<>(); 
 
-         
-    
-        public void verificarMemoriaDisponivel(){
-        memoriaDisponivel = Double.valueOf(GM.getAvailable()/1000000000);    
         
-              //double recebelonge = (double) variavelLong
-        
-          
-        freqCpu.add(cpu.getCurrentFreq());
-           
+        public void registrarInfoCpu(){
+          freqCpu.add(cpu.getCurrentFreq());
                   
+          temperaturaCpu =  sensor.getCpuTemperature();
+        }         
+    
+        public void registrarInfoMemoria(){
+            
+        memoriaDisponivel = Double.valueOf(GM.getAvailable()/1000000000);    
+                  
+        memoriaTotal = Double.valueOf(GM.getTotal()/1000000000);   
+               
+        //memoriaFisica = Double.valueOf(GM.getPhysicalMemory());          
+        }      
         
-        temperaturaCpu =  sensor.getCpuTemperature();
-               
-        //memoriaTotal = String.format("Memória total: %.2f", Double.valueOf(GM.getTotal()));   
-               
-        //memoriaFisica = String.format("Memória fisica: %.2f", Double.valueOf(GM.getPhysicalMemory()));          
-        }
-
+        
+    /* Getter e Setters */                       
     public Double getTemperaturaCpu() {
         return temperaturaCpu;
     }
 
-   /* public String getMemoriaTotal() {
+    public Double getMemoriaTotal() {
         return memoriaTotal;
-    }*/
+    }
 
     /*public String getMemoriaFisica() {
         return memoriaFisica;
@@ -80,5 +77,3 @@ public class MostrarTudo {
         return freqCpu;
     }
 }
-
-

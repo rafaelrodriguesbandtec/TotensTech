@@ -2,16 +2,46 @@
 package view;
 
 import com.mycompany.projeto.pi.MostrarTudo;
+import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 
 public class Monitoramento extends javax.swing.JFrame {
+   MostrarTudo leitura = new MostrarTudo();
 
-    /**
-     * Creates new form Monitoramento
-     */
     public Monitoramento() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        long TEMPO = (1000 * 1);
+        
+        Timer timer = null;
+        
+        if(timer == null){
+            timer = new Timer();
+            
+            TimerTask tarefa = new TimerTask(){
+                public void run(){
+                   exibirRAM();
+                }
+            };
+                    
+           timer.scheduleAtFixedRate(tarefa, TEMPO, TEMPO);
+        }
+        
     }
+    
+    public void exibirRAM(){
+    leitura.registrarInfoCpu();
+    leitura.registrarInfoMemoria();
+    
+           
+    lblValorMemoria.setText(String.format("%.2f GB", leitura.getMemoriaDisponivel()));
+    lblMemoriaTotal.setText(String.format("%.2f GB", leitura.getMemoriaTotal()));
+    lblCpuTemp.setText(String.format("%.2f °C", leitura.getTemperaturaCpu()));
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -32,11 +62,11 @@ public class Monitoramento extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         lblCpuTemp = new javax.swing.JLabel();
         lblCpuTempTexto = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblMemoriaTotal = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        btnAtualizar = new javax.swing.JButton();
+        btnFechar = new javax.swing.JButton();
         lblTotensTech = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,7 +90,7 @@ public class Monitoramento extends javax.swing.JFrame {
 
         lblValorCpu.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         lblValorCpu.setForeground(new java.awt.Color(255, 255, 255));
-        lblValorCpu.setText("0,00 GB");
+        lblValorCpu.setText("0,00 %");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,7 +118,7 @@ public class Monitoramento extends javax.swing.JFrame {
 
         lblMemoria.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         lblMemoria.setForeground(new java.awt.Color(255, 255, 255));
-        lblMemoria.setText("MEMÓRIA");
+        lblMemoria.setText("MEMÓRIA DISPONÍVEL:");
 
         lblValorMemoria.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         lblValorMemoria.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,7 +131,7 @@ public class Monitoramento extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(lblMemoria)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblValorMemoria)
                 .addGap(23, 23, 23))
         );
@@ -120,7 +150,7 @@ public class Monitoramento extends javax.swing.JFrame {
 
         lblValorDisco.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         lblValorDisco.setForeground(new java.awt.Color(255, 255, 255));
-        lblValorDisco.setText("0,00 GB");
+        lblValorDisco.setText("0,00 %");
 
         lblDisco.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         lblDisco.setForeground(new java.awt.Color(255, 255, 255));
@@ -158,12 +188,13 @@ public class Monitoramento extends javax.swing.JFrame {
         lblCpuTempTexto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-temperatura-16.png"))); // NOI18N
         lblCpuTempTexto.setText("CPU");
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("0,00GB");
+        lblMemoriaTotal.setForeground(new java.awt.Color(255, 255, 255));
+        lblMemoriaTotal.setText("0,00GB");
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-ram-de-smartphone-16.png"))); // NOI18N
+        jLabel1.setText("Ram:");
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("0,00GB");
@@ -178,21 +209,24 @@ public class Monitoramento extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(lblCpuTempTexto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblCpuTemp))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)))
+                        .addGap(54, 54, 54))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(lblCpuTempTexto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblCpuTemp)))
-                .addGap(20, 20, 20))
+                        .addComponent(lblMemoriaTotal)
+                        .addGap(48, 48, 48))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,12 +238,12 @@ public class Monitoramento extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                    .addComponent(lblMemoriaTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(58, 58, 58)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
-                .addGap(15, 15, 15))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout fundo02Layout = new javax.swing.GroupLayout(fundo02);
@@ -217,25 +251,25 @@ public class Monitoramento extends javax.swing.JFrame {
         fundo02Layout.setHorizontalGroup(
             fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundo02Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fundo02Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTitulo)
-                .addGap(134, 134, 134))
+                .addGap(161, 161, 161))
         );
         fundo02Layout.setVerticalGroup(
             fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundo02Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(26, 26, 26)
                 .addComponent(lblTitulo)
-                .addGap(28, 28, 28)
+                .addGap(31, 31, 31)
                 .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(fundo02Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -243,54 +277,66 @@ public class Monitoramento extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        btnAtualizar.setBackground(new java.awt.Color(228, 76, 101));
-        btnAtualizar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btnAtualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAtualizar.setText("X");
-        btnAtualizar.setAlignmentY(0.0F);
-        btnAtualizar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnAtualizar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        btnFechar.setBackground(new java.awt.Color(228, 76, 101));
+        btnFechar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnFechar.setForeground(new java.awt.Color(255, 255, 255));
+        btnFechar.setText("X");
+        btnFechar.setAlignmentY(0.0F);
+        btnFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnFechar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnFechar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                btnAtualizarMouseMoved(evt);
+                btnFecharMouseMoved(evt);
             }
         });
-        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+        btnFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtualizarActionPerformed(evt);
+                btnFecharActionPerformed(evt);
             }
         });
 
         lblTotensTech.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblTotensTech.setForeground(new java.awt.Color(255, 255, 255));
         lblTotensTech.setText("TotensTech");
+        lblTotensTech.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblTotensTechMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblTotensTechMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblTotensTechMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout fundo01Layout = new javax.swing.GroupLayout(fundo01);
         fundo01.setLayout(fundo01Layout);
         fundo01Layout.setHorizontalGroup(
             fundo01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundo01Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(lblTotensTech)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAtualizar)
-                .addContainerGap())
-            .addGroup(fundo01Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(fundo02, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(fundo01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fundo01Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(lblTotensTech)
+                        .addGap(359, 359, 359)
+                        .addComponent(btnFechar))
+                    .addComponent(fundo02, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         fundo01Layout.setVerticalGroup(
             fundo01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundo01Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(fundo01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTotensTech, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(fundo01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTotensTech, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addComponent(fundo02, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -309,19 +355,30 @@ public class Monitoramento extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAtualizarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtualizarMouseMoved
+    private void btnFecharMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharMouseMoved
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAtualizarMouseMoved
+    }//GEN-LAST:event_btnFecharMouseMoved
 
-    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-       MostrarTudo leitura = new MostrarTudo();
-       leitura.verificarMemoriaDisponivel();
+    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnFecharActionPerformed
+
+    private void lblTotensTechMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTotensTechMouseClicked
+       InfoSistema infoSystem = new InfoSistema();
        
        
-       lblValorMemoria.setText(String.format("%.2f GB", leitura.getMemoriaDisponivel()));
+       infoSystem.setVisible(true);
+       this.setVisible(false);
        
-       lblCpuTemp.setText(String.format("%.2f °C", leitura.getTemperaturaCpu()));
-    }//GEN-LAST:event_btnAtualizarActionPerformed
+    }//GEN-LAST:event_lblTotensTechMouseClicked
+
+    private void lblTotensTechMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTotensTechMouseEntered
+         lblTotensTech.setForeground(new Color(228,76,101));
+    }//GEN-LAST:event_lblTotensTechMouseEntered
+
+    private void lblTotensTechMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTotensTechMouseExited
+         lblTotensTech.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_lblTotensTechMouseExited
 
     /**
      * @param args the command line arguments
@@ -361,11 +418,10 @@ public class Monitoramento extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAtualizar;
+    private javax.swing.JButton btnFechar;
     private javax.swing.JPanel fundo01;
     private javax.swing.JPanel fundo02;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -377,6 +433,7 @@ public class Monitoramento extends javax.swing.JFrame {
     private javax.swing.JLabel lblCpuTempTexto;
     private javax.swing.JLabel lblDisco;
     private javax.swing.JLabel lblMemoria;
+    private javax.swing.JLabel lblMemoriaTotal;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTotensTech;
     private javax.swing.JLabel lblValorCpu;
