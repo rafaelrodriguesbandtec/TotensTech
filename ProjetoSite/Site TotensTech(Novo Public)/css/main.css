@@ -281,7 +281,7 @@ iframe {
 .labels-form p {
   color: #ffffff;
   font-family: Ubuntu-Bold;
-  width: 168px;
+  width: 100%;
   margin: 0 0 1em 0;
 }
 
