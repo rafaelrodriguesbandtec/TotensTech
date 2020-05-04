@@ -36,11 +36,11 @@ public class Monitoramento extends javax.swing.JFrame {
     leitura.registrarInfoCpu();
     leitura.registrarInfoMemoria();
     
-    System.out.println(leitura.getFreqCpu());
+    //System.out.println(leitura.getFreqCpu());
     lblValorMemoria.setText(String.format("%.2f GB", leitura.getMemoriaDisponivel()));
     lblMemoriaTotal.setText(String.format("%.2f GB", leitura.getMemoriaTotal()));
     lblCpuTemp.setText(String.format("%.2f °C", leitura.getTemperaturaCpu()));
-    lblValorCpu.setText(String.format("%.2f ", leitura.getFreqCpu()) + "%");
+    //lblValorCpu.setText(String.format("%.2f ", leitura.getFreqCpu()) + "%");
     }
     
 
@@ -95,7 +95,7 @@ public class Monitoramento extends javax.swing.JFrame {
 
         lblValorCpu.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         lblValorCpu.setForeground(new java.awt.Color(255, 255, 255));
-        lblValorCpu.setText("0,00 %");
+        lblValorCpu.setText("50,00 %");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -155,7 +155,7 @@ public class Monitoramento extends javax.swing.JFrame {
 
         lblValorDisco.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         lblValorDisco.setForeground(new java.awt.Color(255, 255, 255));
-        lblValorDisco.setText("0,00 %");
+        lblValorDisco.setText("10,00 %");
 
         lblDisco.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         lblDisco.setForeground(new java.awt.Color(255, 255, 255));
@@ -202,7 +202,7 @@ public class Monitoramento extends javax.swing.JFrame {
         jLabel1.setText("Ram:");
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("0,00GB");
+        jLabel3.setText("900GB");
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -296,7 +296,7 @@ public class Monitoramento extends javax.swing.JFrame {
                 .addComponent(lblTitulo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fundo02Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap(49, Short.MAX_VALUE)
                 .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblTotensTech)
                     .addGroup(fundo02Layout.createSequentialGroup()

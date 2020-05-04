@@ -26,7 +26,7 @@ public class InfoSistema extends javax.swing.JFrame {
         
         lblInfoPlacaMae.setText(registroSistema.getModeloMobo());
         
-        lblInfoSistema.setText(registroSistema.getSistemaOperacional());
+        //lblInfoSistema.setText(registroSistema.getSistemaOperacional());
     }
     
     
@@ -50,8 +50,6 @@ public class InfoSistema extends javax.swing.JFrame {
         lblTitulo6 = new javax.swing.JLabel();
         lblTitulo7 = new javax.swing.JLabel();
         nomeComputador = new javax.swing.JLabel();
-        lblTitulo8 = new javax.swing.JLabel();
-        nomeComputador1 = new javax.swing.JLabel();
         lblTitulo9 = new javax.swing.JLabel();
         lblInfoRam = new javax.swing.JLabel();
         lblMonitoramento = new javax.swing.JLabel();
@@ -133,20 +131,8 @@ public class InfoSistema extends javax.swing.JFrame {
         nomeComputador.setBackground(new java.awt.Color(255, 255, 255));
         nomeComputador.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
         nomeComputador.setForeground(new java.awt.Color(255, 255, 255));
-        nomeComputador.setText("Informação Do Computador");
+        nomeComputador.setText("Allan - Pc");
         nomeComputador.setAlignmentY(0.0F);
-
-        lblTitulo8.setBackground(new java.awt.Color(255, 255, 255));
-        lblTitulo8.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
-        lblTitulo8.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo8.setText("Nome do Computador");
-        lblTitulo8.setAlignmentY(0.0F);
-
-        nomeComputador1.setBackground(new java.awt.Color(255, 255, 255));
-        nomeComputador1.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
-        nomeComputador1.setForeground(new java.awt.Color(255, 255, 255));
-        nomeComputador1.setText("Informação Do Computador II");
-        nomeComputador1.setAlignmentY(0.0F);
 
         lblTitulo9.setBackground(new java.awt.Color(255, 255, 255));
         lblTitulo9.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
@@ -180,43 +166,38 @@ public class InfoSistema extends javax.swing.JFrame {
         fundo02Layout.setHorizontalGroup(
             fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundo02Layout.createSequentialGroup()
-                .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(73, 73, 73)
+                .addComponent(lblTitulo7)
+                .addGap(112, 112, 112)
+                .addComponent(nomeComputador)
+                .addContainerGap(290, Short.MAX_VALUE))
+            .addGroup(fundo02Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(fundo02Layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
+                        .addComponent(lblTitulo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitulo7)
-                            .addComponent(lblTitulo8))
-                        .addGap(112, 112, 112)
-                        .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nomeComputador1)
-                            .addComponent(nomeComputador)))
-                    .addGroup(fundo02Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(fundo02Layout.createSequentialGroup()
-                                .addComponent(lblTitulo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(fundo02Layout.createSequentialGroup()
-                                        .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblTitulo2)
-                                            .addComponent(lblTitulo3)
-                                            .addComponent(lblTitulo4)
-                                            .addComponent(lblTitulo9))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblInfoPlacaMae, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblInfoSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblInfoRam, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblInfoProcessador, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(25, 25, 25))))
-                            .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblMonitoramento)
-                                .addGroup(fundo02Layout.createSequentialGroup()
-                                    .addComponent(lblTitulo5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblTitulo6))))))
+                                    .addComponent(lblTitulo2)
+                                    .addComponent(lblTitulo3)
+                                    .addComponent(lblTitulo4)
+                                    .addComponent(lblTitulo9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblInfoPlacaMae, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblInfoSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblInfoRam, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblInfoProcessador, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(25, 25, 25))))
+                    .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblMonitoramento)
+                        .addGroup(fundo02Layout.createSequentialGroup()
+                            .addComponent(lblTitulo5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblTitulo6))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         fundo02Layout.setVerticalGroup(
@@ -250,11 +231,7 @@ public class InfoSistema extends javax.swing.JFrame {
                 .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitulo7)
                     .addComponent(nomeComputador))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTitulo8)
-                    .addComponent(nomeComputador1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addComponent(lblMonitoramento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -424,10 +401,8 @@ public class InfoSistema extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo5;
     private javax.swing.JLabel lblTitulo6;
     private javax.swing.JLabel lblTitulo7;
-    private javax.swing.JLabel lblTitulo8;
     private javax.swing.JLabel lblTitulo9;
     private javax.swing.JLabel lblTotensTech;
     private javax.swing.JLabel nomeComputador;
-    private javax.swing.JLabel nomeComputador1;
     // End of variables declaration//GEN-END:variables
 }

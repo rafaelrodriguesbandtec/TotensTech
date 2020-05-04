@@ -46,11 +46,11 @@ public class MostrarTudo {
         //Capturar frequencia do CPU
         public void registrarInfoCpu(){
  
-            for(int i = 0; i < freqs.length;i++){
+            /*for(int i = 0; i < freqs.length;i++){
       
                 freqs[i] = freqs[i] + freqs[i]+ freqs[i] + freqs[i];
                 freqCpu = Double.valueOf(freqs[i]/1000000000); 
-            } 
+            } */
        
               
           temperaturaCpu =  sensor.getCpuTemperature();

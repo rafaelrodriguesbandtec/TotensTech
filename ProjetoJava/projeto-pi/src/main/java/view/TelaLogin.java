@@ -248,8 +248,8 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void lblCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCadastroMouseClicked
         try{
-            URI link = new URI("https://www.youtube.com/watch?v=bCkCWnmAD-o");
-            Desktop.getDesktop().browse(link);
+            //URI link = new URI("https://www.youtube.com/watch?v=bCkCWnmAD-o");
+            //Desktop.getDesktop().browse(link);
         }catch(Exception erro){
             System.out.println(erro);
         }
