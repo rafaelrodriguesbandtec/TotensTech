@@ -10,13 +10,16 @@ view\Monitoramento$5.class
 TesteAPI\SystemInfoTest.class
 view\TelaLogin.class
 view\InfoSistema$2.class
+view\InfoSistema$4.class
 view\InfoSistema.class
 view\Monitoramento$2.class
 view\TelaLogin$4.class
+view\Monitoramento$6.class
 view\Monitoramento$1.class
 view\Monitoramento.class
 view\TelaLogin$1.class
 Conexao\ConexaoDados.class
 com\mycompany\projeto\pi\MostrarTudo.class
 view\Monitoramento$4.class
+view\InfoSistema$5.class
 view\TelaLogin$6.class

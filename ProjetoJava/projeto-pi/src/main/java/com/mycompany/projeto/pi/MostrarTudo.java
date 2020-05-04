@@ -33,10 +33,12 @@ public class MostrarTudo {
         
        
               
-        //Atributos e variaveis
+      //Atributos e variaveis
         private Double memoriaDisponivel, memoriaTotal;
                    
         private Double temperaturaCpu, freqCpu;
+        
+        private String modeloCpu, quantMemoria, sistemaOperacional, modeloMobo;
         
         long[] freqs = cpu.getCurrentFreq();
         
@@ -47,7 +49,7 @@ public class MostrarTudo {
             for(int i = 0; i < freqs.length;i++){
       
                 freqs[i] = freqs[i] + freqs[i]+ freqs[i] + freqs[i];
-                freqCpu = Double.valueOf(freqs[i]); 
+                freqCpu = Double.valueOf(freqs[i]/1000000000); 
             } 
        
               
@@ -66,13 +68,38 @@ public class MostrarTudo {
         
         
         public void infoHardware(){
-        
+   
+            modeloCpu = cpu.getName();
+                       
+            quantMemoria = String.valueOf(GM.getTotal()/1000000000);
+            
+            modeloMobo = hardwareInfo.getComputerSystem().getManufacturer() + " | " + hardwareInfo.getComputerSystem().getModel();
+                     
+            //printOperatingSystem(os);
         }
         
         
+        
     /* Getter e Setters */                       
+      /* Getter e Setters */                       
     public Double getTemperaturaCpu() {
         return temperaturaCpu;
+    }
+    
+    public String getSistemaOperacional() {
+        return sistemaOperacional;
+    }
+
+    public String getModeloMobo() {
+        return modeloMobo;
+    }
+    
+    public String getQuantMemoria(){
+        return quantMemoria;
+    }
+    
+    public String getModeloCpu() {
+        return modeloCpu;
     }
 
     public Double getMemoriaTotal() {

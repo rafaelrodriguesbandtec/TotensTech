@@ -1,12 +1,12 @@
 package view;
 
+import com.mycompany.projeto.pi.MostrarTudo;
 import java.awt.Color;
 
 public class InfoSistema extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InfoSistema
-     */
+    MostrarTudo registroSistema = new MostrarTudo();
+    
     public InfoSistema() {
         initComponents();
         exibirInfoSistema();
@@ -14,9 +14,21 @@ public class InfoSistema extends javax.swing.JFrame {
         
     }
     
-    public void exibirInfoSistema(){
+      public void exibirInfoSistema(){
+        registroSistema.infoHardware();
+        //registroSistema.prin
         
+        //System.out.println(registroSistema.getSistemaOperacional());
+        
+        lblInfoProcessador.setText(registroSistema.getModeloCpu());
+      
+        lblInfoRam.setText(registroSistema.getQuantMemoria() + " Gb Ram");
+        
+        lblInfoPlacaMae.setText(registroSistema.getModeloMobo());
+        
+        lblInfoSistema.setText(registroSistema.getSistemaOperacional());
     }
+    
     
     
     
@@ -29,17 +41,20 @@ public class InfoSistema extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         lblTitulo1 = new javax.swing.JLabel();
         lblTitulo2 = new javax.swing.JLabel();
-        infoProcessador = new javax.swing.JLabel();
+        lblInfoProcessador = new javax.swing.JLabel();
         lblTitulo3 = new javax.swing.JLabel();
-        infoRam = new javax.swing.JLabel();
+        lblInfoPlacaMae = new javax.swing.JLabel();
         lblTitulo4 = new javax.swing.JLabel();
-        infoSistema = new javax.swing.JLabel();
+        lblInfoSistema = new javax.swing.JLabel();
         lblTitulo5 = new javax.swing.JLabel();
         lblTitulo6 = new javax.swing.JLabel();
         lblTitulo7 = new javax.swing.JLabel();
         nomeComputador = new javax.swing.JLabel();
         lblTitulo8 = new javax.swing.JLabel();
         nomeComputador1 = new javax.swing.JLabel();
+        lblTitulo9 = new javax.swing.JLabel();
+        lblInfoRam = new javax.swing.JLabel();
+        lblMonitoramento = new javax.swing.JLabel();
         btnFechar = new javax.swing.JButton();
         lblTotensTech = new javax.swing.JLabel();
 
@@ -67,23 +82,23 @@ public class InfoSistema extends javax.swing.JFrame {
         lblTitulo2.setText("Processador:");
         lblTitulo2.setAlignmentY(0.0F);
 
-        infoProcessador.setBackground(new java.awt.Color(255, 255, 255));
-        infoProcessador.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
-        infoProcessador.setForeground(new java.awt.Color(255, 255, 255));
-        infoProcessador.setText("Informação sobre o processador.");
-        infoProcessador.setAlignmentY(0.0F);
+        lblInfoProcessador.setBackground(new java.awt.Color(255, 255, 255));
+        lblInfoProcessador.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
+        lblInfoProcessador.setForeground(new java.awt.Color(255, 255, 255));
+        lblInfoProcessador.setText("Informação sobre o processador.");
+        lblInfoProcessador.setAlignmentY(0.0F);
 
         lblTitulo3.setBackground(new java.awt.Color(255, 255, 255));
         lblTitulo3.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
         lblTitulo3.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo3.setText("Memória (RAM)");
+        lblTitulo3.setText("Memória (RAM):");
         lblTitulo3.setAlignmentY(0.0F);
 
-        infoRam.setBackground(new java.awt.Color(255, 255, 255));
-        infoRam.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
-        infoRam.setForeground(new java.awt.Color(255, 255, 255));
-        infoRam.setText("Informação sobre a RAM.");
-        infoRam.setAlignmentY(0.0F);
+        lblInfoPlacaMae.setBackground(new java.awt.Color(255, 255, 255));
+        lblInfoPlacaMae.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
+        lblInfoPlacaMae.setForeground(new java.awt.Color(255, 255, 255));
+        lblInfoPlacaMae.setText("Informação sobre placa mãe.");
+        lblInfoPlacaMae.setAlignmentY(0.0F);
 
         lblTitulo4.setBackground(new java.awt.Color(255, 255, 255));
         lblTitulo4.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
@@ -91,11 +106,11 @@ public class InfoSistema extends javax.swing.JFrame {
         lblTitulo4.setText("Tipo de Sistema");
         lblTitulo4.setAlignmentY(0.0F);
 
-        infoSistema.setBackground(new java.awt.Color(255, 255, 255));
-        infoSistema.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
-        infoSistema.setForeground(new java.awt.Color(255, 255, 255));
-        infoSistema.setText("Informação sobre o Sistema.");
-        infoSistema.setAlignmentY(0.0F);
+        lblInfoSistema.setBackground(new java.awt.Color(255, 255, 255));
+        lblInfoSistema.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
+        lblInfoSistema.setForeground(new java.awt.Color(255, 255, 255));
+        lblInfoSistema.setText("Windows 10");
+        lblInfoSistema.setAlignmentY(0.0F);
 
         lblTitulo5.setBackground(new java.awt.Color(255, 255, 255));
         lblTitulo5.setFont(new java.awt.Font("Microsoft Tai Le", 0, 18)); // NOI18N
@@ -133,6 +148,33 @@ public class InfoSistema extends javax.swing.JFrame {
         nomeComputador1.setText("Informação Do Computador II");
         nomeComputador1.setAlignmentY(0.0F);
 
+        lblTitulo9.setBackground(new java.awt.Color(255, 255, 255));
+        lblTitulo9.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
+        lblTitulo9.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo9.setText("Modelo placa mãe:");
+        lblTitulo9.setAlignmentY(0.0F);
+
+        lblInfoRam.setBackground(new java.awt.Color(255, 255, 255));
+        lblInfoRam.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
+        lblInfoRam.setForeground(new java.awt.Color(255, 255, 255));
+        lblInfoRam.setText("Informação sobre a RAM.");
+        lblInfoRam.setAlignmentY(0.0F);
+
+        lblMonitoramento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblMonitoramento.setForeground(new java.awt.Color(255, 255, 255));
+        lblMonitoramento.setText("Voltar ao monitoramento");
+        lblMonitoramento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMonitoramentoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblMonitoramentoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblMonitoramentoMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout fundo02Layout = new javax.swing.GroupLayout(fundo02);
         fundo02.setLayout(fundo02Layout);
         fundo02Layout.setHorizontalGroup(
@@ -152,10 +194,6 @@ public class InfoSistema extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(fundo02Layout.createSequentialGroup()
-                                .addComponent(lblTitulo5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblTitulo6))
-                            .addGroup(fundo02Layout.createSequentialGroup()
                                 .addComponent(lblTitulo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,13 +202,21 @@ public class InfoSistema extends javax.swing.JFrame {
                                         .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lblTitulo2)
                                             .addComponent(lblTitulo3)
-                                            .addComponent(lblTitulo4))
+                                            .addComponent(lblTitulo4)
+                                            .addComponent(lblTitulo9))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(infoSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(infoRam, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(infoProcessador, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(114, 114, 114)))))))
+                                            .addComponent(lblInfoPlacaMae, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblInfoSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblInfoRam, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblInfoProcessador, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(25, 25, 25))))
+                            .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblMonitoramento)
+                                .addGroup(fundo02Layout.createSequentialGroup()
+                                    .addComponent(lblTitulo5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblTitulo6))))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         fundo02Layout.setVerticalGroup(
@@ -183,16 +229,20 @@ public class InfoSistema extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitulo2)
-                    .addComponent(infoProcessador))
+                    .addComponent(lblInfoProcessador))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitulo3)
-                    .addComponent(infoRam))
+                    .addComponent(lblInfoRam))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitulo9)
+                    .addComponent(lblInfoPlacaMae))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitulo4)
-                    .addComponent(infoSistema))
-                .addGap(62, 62, 62)
+                    .addComponent(lblInfoSistema))
+                .addGap(40, 40, 40)
                 .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitulo5)
                     .addComponent(lblTitulo6))
@@ -204,7 +254,9 @@ public class InfoSistema extends javax.swing.JFrame {
                 .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitulo8)
                     .addComponent(nomeComputador1))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addComponent(lblMonitoramento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         btnFechar.setBackground(new java.awt.Color(228, 76, 101));
@@ -212,11 +264,16 @@ public class InfoSistema extends javax.swing.JFrame {
         btnFechar.setForeground(new java.awt.Color(255, 255, 255));
         btnFechar.setText("X");
         btnFechar.setAlignmentY(0.0F);
-        btnFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnFechar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnFechar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 btnFecharMouseMoved(evt);
+            }
+        });
+        btnFechar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFecharMouseClicked(evt);
             }
         });
 
@@ -296,6 +353,25 @@ public class InfoSistema extends javax.swing.JFrame {
         lblTotensTech.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_lblTotensTechMouseExited
 
+    private void btnFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharMouseClicked
+         System.exit(0);
+    }//GEN-LAST:event_btnFecharMouseClicked
+
+    private void lblMonitoramentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMonitoramentoMouseClicked
+        Monitoramento mo = new Monitoramento();
+        
+        mo.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_lblMonitoramentoMouseClicked
+
+    private void lblMonitoramentoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMonitoramentoMouseEntered
+        lblMonitoramento.setForeground(new Color(228,76,101));
+    }//GEN-LAST:event_lblMonitoramentoMouseEntered
+
+    private void lblMonitoramentoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMonitoramentoMouseExited
+        lblMonitoramento.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_lblMonitoramentoMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -335,9 +411,11 @@ public class InfoSistema extends javax.swing.JFrame {
     private javax.swing.JButton btnFechar;
     private javax.swing.JPanel fundo01;
     private javax.swing.JPanel fundo02;
-    private javax.swing.JLabel infoProcessador;
-    private javax.swing.JLabel infoRam;
-    private javax.swing.JLabel infoSistema;
+    private javax.swing.JLabel lblInfoPlacaMae;
+    private javax.swing.JLabel lblInfoProcessador;
+    private javax.swing.JLabel lblInfoRam;
+    private javax.swing.JLabel lblInfoSistema;
+    private javax.swing.JLabel lblMonitoramento;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTitulo1;
     private javax.swing.JLabel lblTitulo2;
@@ -347,6 +425,7 @@ public class InfoSistema extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo6;
     private javax.swing.JLabel lblTitulo7;
     private javax.swing.JLabel lblTitulo8;
+    private javax.swing.JLabel lblTitulo9;
     private javax.swing.JLabel lblTotensTech;
     private javax.swing.JLabel nomeComputador;
     private javax.swing.JLabel nomeComputador1;
