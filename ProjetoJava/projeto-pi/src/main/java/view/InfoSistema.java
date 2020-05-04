@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Color;
+
 public class InfoSistema extends javax.swing.JFrame {
 
     /**
@@ -217,11 +219,6 @@ public class InfoSistema extends javax.swing.JFrame {
                 btnFecharMouseMoved(evt);
             }
         });
-        btnFechar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFecharActionPerformed(evt);
-            }
-        });
 
         lblTotensTech.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblTotensTech.setForeground(new java.awt.Color(255, 255, 255));
@@ -282,10 +279,6 @@ public class InfoSistema extends javax.swing.JFrame {
     private void btnFecharMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharMouseMoved
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFecharMouseMoved
-
-    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btnFecharActionPerformed
 
     private void lblTotensTechMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTotensTechMouseClicked
         InfoSistema infoSystem = new InfoSistema();

@@ -14,7 +14,7 @@ public class Monitoramento extends javax.swing.JFrame {
     public Monitoramento() {
         initComponents();
         this.setLocationRelativeTo(null);
-        long TEMPO = (1000 * 1);
+        long TEMPO = (2000 * 1);
         
         Timer timer = null;
         
@@ -36,10 +36,11 @@ public class Monitoramento extends javax.swing.JFrame {
     leitura.registrarInfoCpu();
     leitura.registrarInfoMemoria();
     
-           
+    System.out.println(leitura.getFreqCpu());
     lblValorMemoria.setText(String.format("%.2f GB", leitura.getMemoriaDisponivel()));
     lblMemoriaTotal.setText(String.format("%.2f GB", leitura.getMemoriaTotal()));
     lblCpuTemp.setText(String.format("%.2f °C", leitura.getTemperaturaCpu()));
+    lblValorCpu.setText(String.format(".2f ", leitura.getFreqCpu()) + "%");
     }
     
 

@@ -7,6 +7,7 @@ import oshi.hardware.CentralProcessor;
 import oshi.hardware.GlobalMemory;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.hardware.Sensors;
+import oshi.util.FormatUtil;
 //import oshi.software.os.NetworkParams;
 
 public class MostrarTudo {
@@ -32,20 +33,28 @@ public class MostrarTudo {
         
        
               
-        //Atributos
-        private Double memoriaDisponivel, memoriaFisica, memoriaTotal;
-                
-        private Double temperaturaCpu;
+        //Atributos e variaveis
+        private Double memoriaDisponivel, memoriaTotal;
+                   
+        private Double temperaturaCpu, freqCpu;
         
-        private List freqCpu = new ArrayList<>(); 
-
+        long[] freqs = cpu.getCurrentFreq();
         
+        //Registrar informações da CPU
+        //Capturar frequencia do CPU
         public void registrarInfoCpu(){
-          freqCpu.add(cpu.getCurrentFreq());
-                  
+ 
+            for(int i = 0; i < freqs.length;i++){
+      
+                freqs[i] = freqs[i] + freqs[i]+ freqs[i] + freqs[i];
+                freqCpu = Double.valueOf(freqs[i]); 
+            } 
+       
+              
           temperaturaCpu =  sensor.getCpuTemperature();
-        }         
-    
+        }       
+               
+        //Regristrar Memória
         public void registrarInfoMemoria(){
             
         memoriaDisponivel = Double.valueOf(GM.getAvailable()/1000000000);    
@@ -53,7 +62,12 @@ public class MostrarTudo {
         memoriaTotal = Double.valueOf(GM.getTotal()/1000000000);   
                
         //memoriaFisica = Double.valueOf(GM.getPhysicalMemory());          
-        }      
+        }
+        
+        
+        public void infoHardware(){
+        
+        }
         
         
     /* Getter e Setters */                       
@@ -73,7 +87,7 @@ public class MostrarTudo {
         return memoriaDisponivel;   
     }
     
-    public List getFreqCpu() {
+    public Double getFreqCpu() {
         return freqCpu;
     }
 }
