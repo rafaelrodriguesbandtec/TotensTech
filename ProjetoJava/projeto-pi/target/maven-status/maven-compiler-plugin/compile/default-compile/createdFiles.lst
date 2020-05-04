@@ -1,11 +1,15 @@
 view\Monitoramento$3.class
 view\TelaLogin$3.class
 view\TelaLogin$5.class
+view\TelaLogin$8.class
+view\InfoSistema$3.class
+view\TelaLogin$7.class
 view\InfoSistema$1.class
 view\TelaLogin$2.class
 view\Monitoramento$5.class
 TesteAPI\SystemInfoTest.class
 view\TelaLogin.class
+view\InfoSistema$2.class
 view\InfoSistema.class
 view\Monitoramento$2.class
 view\TelaLogin$4.class

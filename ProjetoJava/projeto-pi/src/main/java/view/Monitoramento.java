@@ -40,7 +40,7 @@ public class Monitoramento extends javax.swing.JFrame {
     lblValorMemoria.setText(String.format("%.2f GB", leitura.getMemoriaDisponivel()));
     lblMemoriaTotal.setText(String.format("%.2f GB", leitura.getMemoriaTotal()));
     lblCpuTemp.setText(String.format("%.2f °C", leitura.getTemperaturaCpu()));
-    lblValorCpu.setText(String.format(".2f ", leitura.getFreqCpu()) + "%");
+    lblValorCpu.setText(String.format("%.2f ", leitura.getFreqCpu()) + "%");
     }
     
 
