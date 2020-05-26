@@ -3,7 +3,6 @@ package Conexao;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -18,8 +17,9 @@ public class Logs {
         
         try {
         //Criando o arquivo de log
-        File acesso = new File("C:/Arquivos de Programas/TotensTech_log.txt");
+        File acesso = new File("C:\\Users\\Italo\\desktop\\TotensTech_Logs.txt");            
         FileWriter arquivo = new FileWriter(acesso);
+
         acesso.setReadable(true);
         acesso.setWritable(true);
                

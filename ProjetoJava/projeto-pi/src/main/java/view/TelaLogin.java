@@ -252,10 +252,10 @@ public class TelaLogin extends javax.swing.JFrame{
     private void btnAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessoActionPerformed
         
         try {                
-                //Monitoramento a = new Monitoramento();
-                //a.setVisible(true);
-                //this.setVisible(false);
-                throw new Exception();
+                Monitoramento a = new Monitoramento();
+                a.setVisible(true);
+                this.setVisible(false);
+                //throw new Exception();
             
         } catch (Exception error){
             logs.gravarLog(error.toString(),"Segurança");
