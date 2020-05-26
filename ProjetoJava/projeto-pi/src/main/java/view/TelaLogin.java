@@ -4,21 +4,25 @@
  * and open the template in the editor.
  */
 package view;
-
+import Conexao.Logs;
 import java.awt.Color;
 import java.awt.Desktop;
+import java.io.IOException;
 import java.net.URI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author tosil
  */
-public class TelaLogin extends javax.swing.JFrame {
+public class TelaLogin extends javax.swing.JFrame{
 
+    Logs logs = new Logs();
     /**
      * Creates new form TelaLogin
      */
-    public TelaLogin() {
+    public TelaLogin(){
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -93,6 +97,11 @@ public class TelaLogin extends javax.swing.JFrame {
         txbSenha.setForeground(new java.awt.Color(51, 51, 51));
         txbSenha.setAlignmentX(0.0F);
         txbSenha.setAlignmentY(0.0F);
+        txbSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txbSenhaActionPerformed(evt);
+            }
+        });
 
         lblLogin.setBackground(new java.awt.Color(255, 255, 255));
         lblLogin.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
@@ -241,9 +250,18 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txbEmailActionPerformed
 
     private void btnAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessoActionPerformed
-        Monitoramento a = new Monitoramento();
-        a.setVisible(true);
-        this.setVisible(false);
+        
+        try {                
+                //Monitoramento a = new Monitoramento();
+                //a.setVisible(true);
+                //this.setVisible(false);
+                throw new Exception();
+            
+        } catch (Exception error){
+            logs.gravarLog(error.toString(),"Segurança");
+        }
+
+            
     }//GEN-LAST:event_btnAcessoActionPerformed
 
     private void lblCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCadastroMouseClicked
@@ -270,6 +288,10 @@ public class TelaLogin extends javax.swing.JFrame {
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnFecharActionPerformed
+
+    private void txbSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txbSenhaActionPerformed
+        
+    }//GEN-LAST:event_txbSenhaActionPerformed
 
     /**
      * @param args the command line arguments
