@@ -1,0 +1,7 @@
+26/05/2020 21:32:28  ||  Segurança  ||  java.lang.Exception 
+26/05/2020 21:32:29  ||  Segurança  ||  java.lang.Exception 
+26/05/2020 21:32:29  ||  Segurança  ||  java.lang.Exception 
+26/05/2020 21:32:38  ||  Segurança  ||  java.lang.Exception 
+26/05/2020 21:32:39  ||  Segurança  ||  java.lang.Exception 
+26/05/2020 21:32:40  ||  Segurança  ||  java.lang.Exception 
+26/05/2020 21:32:41  ||  Segurança  ||  java.lang.Exception 
