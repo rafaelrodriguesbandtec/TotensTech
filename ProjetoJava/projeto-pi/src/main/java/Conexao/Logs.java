@@ -28,13 +28,11 @@ public class Logs {
         
         acesso.setReadable(true);
         acesso.setWritable(true);
-               
-       
         
         registro.add(String.format("%s  ||  %s  ||  %s \n", dataAtual.format(date), sistema, error));
         
         for(String contador : registro){
-            System.out.println(contador);
+            //System.out.println(contador);
             arquivo.append(contador);
         }
         

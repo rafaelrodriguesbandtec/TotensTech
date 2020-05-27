@@ -18,6 +18,7 @@ public class Leitura extends Totens{
     //Métodos da classe
     public void lerDados(){
         //Metodo de leitura de dados, discutir em reunião dados relevantes
+        
     }    
     
     public String exibirDados(){
