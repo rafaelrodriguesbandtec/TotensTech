@@ -5,8 +5,8 @@ package Model;
  */
 public class Totens extends Empresa{
     //Atributos do totem
-    private Integer codigoTotem;
-    private String fabricante, modelo;
+    protected Integer codigoTotem;
+    protected String fabricante, modelo;
 
     //Construtor dfa classe totens
     public Totens(Integer codigoTotem, String fabricante, String modelo, Integer codigoEmpresa, String razaoSocial, String cnpj, String cep, String rua, String numero, String bairro, String cidade, String estado, String complemento) {

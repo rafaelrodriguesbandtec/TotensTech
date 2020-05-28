@@ -5,8 +5,8 @@ package Model;
  */
 public class Usuario extends Empresa{
     //Atributos da classe Usuario 
-    private Integer codigoUsuario, nivelAcesso;
-    private String nome, cpf, login, senha;
+    protected Integer codigoUsuario, nivelAcesso;
+    protected String nome, cpf, login, senha;
 
     //Construtor da classe Usuario
     public Usuario(Integer codigoUsuario, Integer nivelAcesso, String nome, String cpf, String login, String senha, Integer codigoEmpresa, String razaoSocial, String cnpj, String cep, String rua, String numero, String bairro, String cidade, String estado, String complemento) {

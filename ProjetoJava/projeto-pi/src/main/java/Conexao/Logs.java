@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author Italo
  */
 public class Logs {
-    private ArrayList <String> registro = new ArrayList();
+    protected ArrayList <String> registro = new ArrayList();
     public void gravarLog(String error, String sistema){
         
         //Data atual do computador
@@ -23,8 +23,12 @@ public class Logs {
         
         try {
         //Criando o arquivo de log
-        File acesso = new File("C:\\Users\\Italo\\desktop\\"+nomearArquivo.format(date)+"_TotensTech_Logs.txt");
-        FileWriter arquivo = new FileWriter(acesso);
+        String home = System.getProperty("user.home");
+        File acesso = new File(home + File.separator + "Desktop" + File.separator + "Logs" + File.separator + " ").getCanonicalFile();
+        String caminho = acesso + nomearArquivo.format(date)+"TotensTech_Logs.txt";
+        acesso.mkdir();
+        
+        FileWriter arquivo = new FileWriter(caminho);
         
         acesso.setReadable(true);
         acesso.setWritable(true);
