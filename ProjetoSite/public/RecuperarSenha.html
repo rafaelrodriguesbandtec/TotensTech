@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Recuperação de Senha V10</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" href="assets/css/main.css" />
+	
+</head>
+<body>
+	<header id="header"   style="position: fixed; background-color:#272833;">
+		<h1 id="logo"><a href="index.html">TotensTech</a></h1>
+		<nav id="nav">
+			<ul>
+				<li><a class='inicio' href="index.html">Inicio</a></li>
+				<li>
+					<a href="">Painel</a>
+					<ul>
+						<li><a href="#two">Sobre nós</a></li>
+						<li><a href="#three">Nosso Produto</a></li>
+						<li><a href="#footer">Contato</a></li>
+
+					</ul>
+				</li>
+				
+				<li><a href="./Cadastro.html" class="button primary">Cadastro</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-t-50 p-b-90">
+				<form id='recuperacao' class="login100-form validate-form flex-sb flex-w"method="post" onsubmit="return recuperarF()">
+					<img src="./images/logos.png" class="img-logo" alt="">
+					<span class="login100-form-title p-b-51" style='margin-top:5%'>
+						Recuperação de Senha
+					</span>
+
+					<div class="labels-form">
+						<p>E-MAIL</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "E-mail é obrigatório">
+						<input class="input100" type="text" name="login" placeholder="Email">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="labels-form">
+						<p>Token</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Senha é obrigatório">
+						<input class="input100" type="password" name="senha" placeholder="Token">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="labels-form">
+						<p>Nova senha</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Senha é obrigatório">
+						<input class="input100" type="password" name="confirmarSenha" placeholder="Nova senha">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="flex-sb-m w-full p-t-3 p-b-24">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								Lembrar senha
+							</label>
+						</div>
+
+						
+					</div>
+
+					<div class="container-login100-form-btn m-t-17">
+						<button class="login100-form-btn">
+							Login
+						</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+<!--===============================================================================================-->
+	<script src="./js/funcoes.js"></script>
+
+</body>
+</html>
+<script>
+	function recuperarF() {
+        
+        var formulario = new URLSearchParams(new FormData(recuperacao));
+        fetch("/usuarios/recuperacao", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+            
+            if (resposta.ok) {
+
+               
+                    alert("senha alterada com sucesso");
+                    window.location.href = './Login.html';
+                
+
+            } else {
+				alert('Informações incompativeis para fazer a alteração de senha');
+            }
+        });
+
+        return false;
+    }
+</script>

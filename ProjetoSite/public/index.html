@@ -1,12 +1,254 @@
+<!DOCTYPE HTML>
 <html>
 
 <head>
-  <title>Express</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+	<title>TotensTech The Revolution</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="assets/css/gallery.theme.css">
+	<link rel="stylesheet" href="assets/css/gallery.min.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" href="assets/css/slider.css">
+	<link rel="stylesheet" href="<link rel="stylesheet" 
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+	crossorigin="anonymous">">
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
 </head>
 
-<body>
-  HTML funcionando! te juro!
+<body class="is-preload landing">
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		
+		<header id="header"   style="position: fixed; background-color:#272833;">
+			<h1 id="logo"><a href="index.html">TotensTech</a></h1>
+			<nav id="nav">
+				<ul>
+					<li><a href="index.html">Inicio</a></li>
+					<li>
+						<a href="">Painel</a>
+						<ul>
+							<li><a href="#two">Sobre nós</a></li>
+							<li><a href="#three">Nosso Produto</a></li>
+							<li><a href="#footer">Contato</a></li>
+
+						</ul>
+					</li>
+					<li><a href="./Login.html">Login</a></li>
+					<li><a href="./Cadastro.html" class="button primary">Cadastro</a></li>
+				</ul>
+			</nav>
+		</header>
+		</div>
+
+		<!-- Banner -->
+		<div class="container" style="margin-top: 8vh; height:20vh;;">
+		<section class="slider">
+			<div class="slider_box">
+				<article class="slider_item active" data-slider-bg="images/slide1.png">
+					<div class="slider_content">
+						<h2>TotensTech</h2>
+						<p>Monitore seus totens com segurança e praticidade com a nossa ferramenta.</p>
+						</div>
+				</article>
+
+				<article class="slider_item" data-slider-bg="images/slide2.png">
+					<div class="slider_content">
+						<h2>Evite filas</h2>
+						<p>Mantendo seus totens sempre em bom estado, voçê evita fila e transtorno.</p>
+					</div>
+				</article>
+
+				<article class="slider_item" data-slider-bg="images/slide3.png">
+					<div class="slider_content">
+						<h2>Com um ótimo suporte</h2>
+						<!-- <p>Somos apaixonados pelo que fazemos, vamos introduzir e fixar a imagem de sua empresa destacando seus produtos e serviços na Internet, com muito talento, tecnologia e comprometimento.</p> -->
+					</div>
+				</article>
+
+				<div class="slider-prev" style="background-color: rgba(137, 43, 226, 0);">&lt;</div>
+				<div class="slider-next" style="background-color: rgba(137, 43, 226, 0);">&gt;</div>
+			</div>
+			<!-- <div class="slider-prev">&lt;</div>
+			<div class="slider-next">&gt;</div> -->
+
+
+			
+		</section>
+		</div>
+		<section id="carrossel"></section>
+
+		<!-- One -->
+		<section id="one" class="spotlight style1 bottom">
+			<span class="image fit main"><img src="images/pic02.jpg" alt="" /></span>
+			<div class="content">
+				<div class="container">
+					<div class="row">
+						<div class="col-4 col-12-medium">
+							<header>
+								<h2>Por que monitorar os totens?</h2>
+								<p>Para que empresas ofereçam seus produtos com menos riscos de falhas.</p>
+							</header>
+						</div>
+						<div class="col-4 col-12-medium">
+							<p>Um grande problema enfrentado pelo brasileiro no cotidiano em hospitais são as enormes
+								filas de atendimento, normalmente isso pode ser revertido com terminais de
+								autoatendimento (Totens).
+						</div>
+						<div class="col-4 col-12-medium">
+							<p>Porém ao decorrer do tempo os Totens apresentam falhas ou grande demora no processo de
+								preenchimento
+								dos prontuários tornando o processo de atendimento e consultas de um clinico geral,
+								muito mais demorado.
+						</div>
+					</div>
+				</div>
+			</div>
+			<a href="#two" class="goto-next scrolly">Próximo</a>
+		</section>
+
+		<!-- Two -->
+		<section id="two" class="spotlight style2 right">
+			<span class="image fit main"><img src="images/pic03.jpg" alt="" /></span> <!-- Aqui entra nossa fotos-->
+			<div class="content">
+				<header>
+					<h2>Sobre nós</h2>
+					<p>Somos uma empresa de monitoramento de Totens</p>
+				</header>
+				<p>"Nosso principal objetivo é monitorar os totens dos hospitais para avisar de forma preventiva caso
+					possa ocorrer alguma falha de desempenho."</p>
+
+			</div>
+			<a href="#three" class="goto-next scrolly">Next</a>
+		</section>
+
+		<!-- Three -->
+		<section id="three" class="spotlight style3 left">
+			<span class="image fit main bottom"><img src="images/pic04.jpg" alt="" /></span>
+			<div class="content">
+				<header>
+					<h2>Nosso produto</h2>
+					<p>Um sistema de monitoramento de totens que tem a principal função deixar o usuário ciente das
+						falhas e da produtividade dos totens.
+					</p>
+				</header>
+				<p>Nosso produto vem acompanhado com um ótimo atendimento suporte para tirar suas dúvidas sobre o
+					funcionamento do software, trazendo mais segurança para o nosso cliente.
+			</div>
+			<a href="#four" class="goto-next scrolly">Próximo</a>
+		</section>
+
+		<!-- Four -->
+		<!-- <section id="four" class="wrapper style1 special fade-up">
+					<div class="container">
+						<header class="major">
+							<h2>Accumsan sed tempus adipiscing blandit</h2>
+							<p>Iaculis ac volutpat vis non enim gravida nisi faucibus posuere arcu consequat</p>
+						</header>
+						<div class="box alt">
+							<div class="row gtr-uniform">
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<span class="icon solid alt major fa-chart-area"></span>
+									<h3>Ipsum sed commodo</h3>
+									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
+								</section>
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<span class="icon solid alt major fa-comment"></span>
+									<h3>Eleifend lorem ornare</h3>
+									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
+								</section>
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<span class="icon solid alt major fa-flask"></span>
+									<h3>Cubilia cep lobortis</h3>
+									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
+								</section>
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<span class="icon solid alt major fa-paper-plane"></span>
+									<h3>Non semper interdum</h3>
+									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
+								</section>
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<span class="icon solid alt major fa-file"></span>
+									<h3>Odio laoreet accumsan</h3>
+									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
+								</section>
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<span class="icon solid alt major fa-lock"></span>
+									<h3>Massa arcu accumsan</h3>
+									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
+								</section>
+							</div>
+						</div>
+						<footer class="major">
+							<ul class="actions special">
+								<li><a href="#" class="button">Magna sed feugiat</a></li>
+							</ul>
+						</footer>
+					</div>
+				</section> -->
+
+		<!-- Five -->
+		<!-- <section id="five" class="wrapper style2 special fade">
+					<div class="container">
+						<header>
+							<h2>Magna faucibus lorem diam</h2>
+							<p>Ante metus praesent faucibus ante integer id accumsan eleifend</p>
+						</header>
+						<form method="post" action="#" class="cta">
+							<div class="row gtr-uniform gtr-50">
+								<div class="col-8 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Your Email Address" /></div>
+								<div class="col-4 col-12-xsmall"><input type="submit" value="Get Started" class="fit primary" /></div>
+							</div>
+						</form>
+					</div>
+				</section> -->
+
+		<!-- Footer -->
+		<footer id="footer">
+			<p>Entre em contato conosco pelas redes sociais</p>
+			<ul class="icons">
+				<li><a href="http://www.twitter.com/" class="icon brands alt fa-twitter"><span
+							class="label">Twitter</span></a></li>
+				<li><a href="http://www.facebook.com/" class="icon brands alt fa-facebook-f"><span
+							class="label">Facebook</span></a></li>
+				<li><a href="https://br.linkedin.com/" class="icon brands alt fa-linkedin-in"><span
+							class="label">LinkedIn</span></a></li>
+				<li><a href="https://github.com/BandTec/TotensTech" class="icon brands alt fa-github"><span
+							class="label">GitHub</span></a></li>
+
+			</ul>
+			<ul class="copyright">
+				<li>&copy; TotensTech. Todos os direitos reservados.</li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/slider.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.dropotron.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+
 </body>
 
 </html>

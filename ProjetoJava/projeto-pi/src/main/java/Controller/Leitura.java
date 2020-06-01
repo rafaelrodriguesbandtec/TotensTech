@@ -1,19 +1,21 @@
 package Controller;
+import Model.Empresa;
 import Model.Totens;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
  * @author Italo
  */
-public class Leitura extends Totens{
+public class Leitura{
     //Atributos da classe leitura
-    private Double leituraMemoria, leituraDisco, leituraCpu, temperaturaCpu, data;
-
-    //Construtor 
-    public Leitura(Integer codigoTotem, String fabricante, String modelo, Integer codigoEmpresa, String razaoSocial, String cnpj, String cep, String rua, String numero, String bairro, String cidade, String estado, String complemento) {
-        super(codigoTotem, fabricante, modelo, codigoEmpresa, razaoSocial, cnpj, cep, rua, numero, bairro, cidade, estado, complemento);
-    }
-        
+    private Double leituraMemoria, leituraDisco, leituraCpu, temperaturaCpu;
+    
+    //Data atual do computador
+    DateFormat dataAtual = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    Date date = new Date();
     
     //Métodos da classe
     public void lerDados(){
@@ -21,10 +23,10 @@ public class Leitura extends Totens{
         
     }    
     
-    public String exibirDados(){
-        String dadosDoTotem = String.format("Codigo do totem: %s \nModelo do Totem: %s \nFabricante do totem: %s", getCodigoTotem(), getModelo(), getFabricante());
-        String dadosDaEmpresa = String.format("Codigo da empresa: %s \nCNPJ: %s \nRazão social: %s", getCodigoEmpresa(), getCnpj(), getRazaoSocial());
-        String dadosDeLocalizacao = String.format("Cep: %s \nRua: %s \nNúmero: %s \nBairro: %s \nCidade: %s \nEstado: %s \nComplemento: %s", getCep(), getRua(), getNumero(), getBairro(), getCidade(), getEstado(), getComplemento());
+    public String exibirDados(Totens totem, Empresa empresa){
+        String dadosDoTotem = String.format("Codigo do totem: %s \nModelo do Totem: %s \nFabricante do totem: %s", totem.getCodigoTotem(), totem.getModelo(), totem.getFabricante());
+        String dadosDaEmpresa = String.format("Codigo da empresa: %s \nCNPJ: %s \nRazão social: %s", empresa.getCodigoEmpresa(), empresa.getCnpj(), empresa.getRazaoSocial());
+        String dadosDeLocalizacao = String.format("Cep: %s \nRua: %s \nNúmero: %s \nBairro: %s \nCidade: %s \nEstado: %s \nComplemento: %s", empresa.getCep(), empresa.getRua(), empresa.getNumero(), empresa.getBairro(), empresa.getCidade(), empresa.getEstado(), empresa.getComplemento());
         
         return "\nDados da empresa \n"+dadosDaEmpresa+"\nDados do totem \n"+dadosDoTotem+"\nLocalização\n"+dadosDeLocalizacao;
     }
@@ -61,92 +63,4 @@ public class Leitura extends Totens{
     public void setTemperaturaCpu(Double temperaturaCpu) {
         this.temperaturaCpu = temperaturaCpu;
     }
-
-    public Double getData() {
-        return data;
-    }
-
-    public void setData(Double data) {
-        this.data = data;
-    }
-
-    public Integer getCodigoEmpresa() {
-        return codigoEmpresa;
-    }
-
-    public void setCodigoEmpresa(Integer codigoEmpresa) {
-        this.codigoEmpresa = codigoEmpresa;
-    }
-
-    public String getRazaoSocial() {
-        return razaoSocial;
-    }
-
-    public void setRazaoSocial(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public String getRua() {
-        return rua;
-    }
-
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }   
 }

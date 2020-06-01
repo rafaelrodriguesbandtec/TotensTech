@@ -12,11 +12,15 @@ router.get('/ultimas', function(req, res, next) {
 	console.log(`Recuperando as últimas ${limite_linhas} leituras`);
 	
 	const instrucaoSql = `select top ${limite_linhas} 
-						temperatura, 
-						umidade, 
-						momento,
+						LeituraMemoria, 
+						LeituraDisco, 
+						LeituraCpu,
+						UsoDaMemoria,
+						UsoDeDisco,
+						TemperaturaCpu,
+						DataHora,
 						FORMAT(momento,'HH:mm:ss') as momento_grafico 
-						from leitura order by id desc`;
+						from Leitura order by id desc`;
 
 	sequelize.query(instrucaoSql, {
 		model: Leitura,
@@ -32,47 +36,30 @@ router.get('/ultimas', function(req, res, next) {
 });
 
 
-// tempo real (último valor de cada leitura)
-router.get('/tempo-real', function (req, res, next) {
-	
-	console.log(`Recuperando as últimas leituras`);
-
-	const instrucaoSql = `select top 1 temperatura, umidade from leitura order by id desc`;
-
-	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
-		.then(resultado => {
-			res.json(resultado[0]);
-		}).catch(erro => {
-			console.error(erro);
-			res.status(500).send(erro.message);
-		});
-  
-});
-
 
 // estatísticas (max, min, média, mediana, quartis etc)
-router.get('/estatisticas', function (req, res, next) {
+// router.get('/estatisticas', function (req, res, next) {
 	
-	console.log(`Recuperando as estatísticas atuais`);
+// 	console.log(`Recuperando as estatísticas atuais`);
 
-	const instrucaoSql = `select 
-							max(temperatura) as temp_maxima, 
-							min(temperatura) as temp_minima, 
-							avg(temperatura) as temp_media,
-							max(umidade) as umidade_maxima, 
-							min(umidade) as umidade_minima, 
-							avg(umidade) as umidade_media 
-						from leitura`;
+// 	const instrucaoSql = `select 
+// 							max(temperatura) as temp_maxima, 
+// 							min(temperatura) as temp_minima, 
+// 							avg(temperatura) as temp_media,
+// 							max(umidade) as umidade_maxima, 
+// 							min(umidade) as umidade_minima, 
+// 							avg(umidade) as umidade_media 
+// 						from leitura`;
 
-	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
-		.then(resultado => {
-			res.json(resultado[0]);
-		}).catch(erro => {
-			console.error(erro);
-			res.status(500).send(erro.message);
-		});
+// 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
+// 		.then(resultado => {
+// 			res.json(resultado[0]);
+// 		}).catch(erro => {
+// 			console.error(erro);
+// 			res.status(500).send(erro.message);
+// 		});
   
-});
+// });
 
 
 module.exports = router;

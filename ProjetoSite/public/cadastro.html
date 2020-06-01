@@ -1,40 +1,160 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Página com exemplo de Cadastro de usuário</title>
+	<title>Cadastro V10</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" href="assets/css/main.css" />
 
+	<script type="text/javascript">
+		function fMasc(objeto, mascara) {
+			obj = objeto
+			masc = mascara
+			setTimeout("fMascEx()", 1)
+		}
+		function fMascEx() {
+			obj.value = masc(obj.value)
+		}
+		function mCPF(cpf) {
+			cpf = cpf.replace(/\D/g, "")
+			cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
+			cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
+			cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+			return cpf
+		}
+	</script>
 </head>
 
 <body>
+	<header id="header" style="position: fixed; background-color:#272833;">
+		<h1 id="logo"><a href="index.html">TotensTech</a></h1>
+		<nav id="nav">
+			<ul>
+				<li><a class='inicio'href="index.html">Inicio</a></li>
+				<li>
+					<a href="">Painel</a>
+					<ul>
+						<li><a href="#two">Sobre nós</a></li>
+						<li><a href="#three">Nosso Produto</a></li>
+						<li><a href="#footer">Contato</a></li>
 
-    <form id="form_cadastro" method="post" onsubmit="return cadastrar()">
-        Nome: <input type="text" name="nome" required minlength="4">
-        <br>
-        Usuário: <input type="text" name="login" required minlength="4">
-        <br>
-        Senha: <input type="password" name="senha" required minlength="4">
-        <br>
-        <button id="btn_entrar">Cadastrar</button>
-    </form>
-    
-    <img src="aguarde2.gif" id="img_aguarde" style="display: none;" width="100px">
-    
-    <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
-        Erro no cadastro
-    </div>
+					</ul>
+				</li>
+				
+				<li><a href="./login.html" class="button primary">Login</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-t-50 p-b-90">
+
+				<img src="./images/logos.png" class="img-logo" alt="">
+
+				<form id='cadastro'class="login100-form validate-form flex-sb flex-w" method="POST" onsubmit="return cadastrar()">
+					<span class="login100-form-title p-b-51">
+						Cadastro
+					</span>
+
+					<div class="labels-form">
+						<p>NOME COMPLETO</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Não pode faltar o nome">
+						<input class="input100" type="text" name="nome" placeholder="Nome Completo">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="labels-form">
+						<p>CPF</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate="campo cpf é obrigatorio">
+						<input class="input100" type="text" name="cpf" onkeydown="javascript: fMasc( this, mCPF );"
+							placeholder="000.000.000.00" maxlength="14">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="labels-form">
+						<p>E-MAIL</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Preencha o email">
+						<input class="input100" type="email" name="email" placeholder="E-mail">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="labels-form">
+						<p>SENHA</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Digite uma senha">
+						<input class="input100" type="password" name="senha" placeholder="Senha">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="labels-form">
+						<p>CONFIRMAR SENHA</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Digite uma senha">
+						<input class="input100" type="password" name="csenha" onchange="validarSenha()"
+							placeholder="Confirmar senha">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="flex-sb-m w-full p-t-3 p-b-24">
+						
+
+						<div>
+							<a href="#" class="txt1">
+								Já tem Cadastro? clique aqui.
+							</a>
+						</div>
+					</div>
+
+
+					<div class="container-login100-form-btn m-t-17">
+						<button class="login100-form-btn">
+							Cadastrar
+						</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/select2/select2.min.js"></script>
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+	<script src="js/main.js"></script>
+	<script src="./js/funcoes.js"></script>
 
 </body>
 
 </html>
 <script>
 
-    function cadastrar() {
-        aguardar();
-        var formulario = new URLSearchParams(new FormData(form_cadastro));
+function cadastrar() {
+       
+        var formulario = new URLSearchParams(new FormData(cadastro));
         fetch("/usuarios/cadastrar", {
             method: "POST",
             body: formulario
@@ -42,31 +162,20 @@
             
             if (response.ok) {
 
-                window.location.href='login.html';
+                window.location.href='./Login.html';
 
             } else {
 
                 console.log('Erro de cadastro!');
                 response.text().then(function (resposta) {
-                    div_erro.innerHTML = resposta;
+                    alert("Não foi possivel cadastrar");
                 });
-                finalizar_aguardar();
+                
             }
         });
 
         return false;
     }
 
-    function aguardar() {
-        btn_entrar.disabled = true;
-        img_aguarde.style.display='block';
-        div_erro.style.display='none';
-    }
-
-    function finalizar_aguardar() {
-        btn_entrar.disabled = false;
-        img_aguarde.style.display='none';
-        div_erro.style.display='block';
-    }
 
 </script>

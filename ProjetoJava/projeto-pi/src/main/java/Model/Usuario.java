@@ -9,8 +9,9 @@ public class Usuario extends Empresa{
     protected String nome, cpf, login, senha;
 
     //Construtor da classe Usuario
-    public Usuario(Integer codigoUsuario, Integer nivelAcesso, String nome, String cpf, String login, String senha, Integer codigoEmpresa, String razaoSocial, String cnpj, String cep, String rua, String numero, String bairro, String cidade, String estado, String complemento) {
-        super(codigoEmpresa, razaoSocial, cnpj, cep, rua, numero, bairro, cidade, estado, complemento);
+
+    public Usuario(Integer codigoUsuario, Integer nivelAcesso, String nome, String cpf, String login, String senha, Integer codigoEmpresa, String nomeEmpresa, String razaoSocial, String cnpj, String cep, String rua, String numero, String bairro, String cidade, String estado, String complemento) {
+        super(codigoEmpresa, nomeEmpresa, razaoSocial, cnpj, cep, rua, numero, bairro, cidade, estado, complemento);
         this.codigoUsuario = codigoUsuario;
         this.nivelAcesso = nivelAcesso;
         this.nome = nome;
@@ -19,14 +20,16 @@ public class Usuario extends Empresa{
         this.senha = senha;
     }
     
+    
 
     //Getters e Setters da Empresa
+
     public Integer getCodigoUsuario() {
         return codigoUsuario;
     }
 
-    public void setCodigoUsuario(Integer codigo) {
-        this.codigoUsuario = codigo;
+    public void setCodigoUsuario(Integer codigoUsuario) {
+        this.codigoUsuario = codigoUsuario;
     }
 
     public Integer getNivelAcesso() {
@@ -35,14 +38,6 @@ public class Usuario extends Empresa{
 
     public void setNivelAcesso(Integer nivelAcesso) {
         this.nivelAcesso = nivelAcesso;
-    }
-
-    public Integer getCodigoEmpresa() {
-        return codigoEmpresa;
-    }
-
-    public void setCodigoEmpresa(Integer codigoEmpresa) {
-        this.codigoEmpresa = codigoEmpresa;
     }
 
     public String getNome() {
@@ -76,6 +71,7 @@ public class Usuario extends Empresa{
     public void setSenha(String senha) {
         this.senha = senha;
     }
+    
     
     
     
