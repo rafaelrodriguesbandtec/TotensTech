@@ -23,8 +23,6 @@
  */
 package TesteAPI;
 
-
-
 import oshi.SystemInfo;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.software.os.NetworkParams;
@@ -39,78 +37,67 @@ import oshi.hardware.HWDiskStore;
 import oshi.util.FormatUtil;
 import oshi.util.Util;
 
-public class SystemInfoTest{
+public class SystemInfoTest {
+
     private SystemInfo informacaoSistema = new SystemInfo();
     private OperatingSystem opSystem = informacaoSistema.getOperatingSystem();
     private HardwareAbstractionLayer abstraHard = informacaoSistema.getHardware();
-    
-   
-   
 
- 
-
-    
-    public Double getDisco() {
-        HWDiskStore[] diskHw = abstraHard.getDiskStores();
-        
-        Double discoU = 0.0;
-        for (HWDiskStore disco : diskHw) {
-            discoU = 100d * (disco.getReadBytes() + disco.getWriteBytes()) / 
-                    disco.getSize();
-            
-        }
-        
-        return discoU;
-    }
-	
     public Double getCpu() {
         CentralProcessor processo = abstraHard.getProcessor();
         long[] tiks = processo.getSystemCpuLoadTicks();
         Util.sleep(1000);
-        System.out.println(processo.getProcessorCpuLoadTicks());
-        return processo.getSystemCpuLoadBetweenTicks(tiks) * 100d;
-    }
-	
-    public String discoModelo(){
-        HWDiskStore[] ds = abstraHard.getDiskStores();
-         String discoU="";
-        for (HWDiskStore disco : ds) {
-            discoU = disco.getModel();
-            
-        }
-        return discoU;
-        
+        Double cpu=processo.getSystemCpuLoadBetweenTicks(tiks) * 100d;
+        return cpu;
     }
 
-    public Double getMemoria() {
-        return (100d * (this.memoriaTot() - this.memoriaDisp()))
-                / this.memoriaTot();
+    public String discoModelo() {
+        HWDiskStore[] ds = abstraHard.getDiskStores();
+        String discoU = "";
+        for (HWDiskStore disco : ds) {
+            discoU = disco.getModel();
+
+        }
+        return discoU;
+
     }
-	   public String memoriaDisponivelS() {
-        return FormatUtil.formatBytes(abstraHard.getMemory().getAvailable());
+
+
+
+    public Double getMemoria() {
+         Double memoriaUsada=(100d * (this.memoriaTot() - this.memoriaDisp()));
+        return memoriaUsada/ this.memoriaTot();
+    }
+
+    public String memoriaDisponivelS() {
+        long memoria=abstraHard.getMemory().getAvailable();
+        return FormatUtil.formatBytes(memoria);
     }
 
     private long memoriaDisp() {
-        return abstraHard.getMemory().getAvailable();
+        long memoria=abstraHard.getMemory().getAvailable();
+        return memoria;
     }
 
     public String memoriaTotalS() {
-        return FormatUtil.formatBytes(abstraHard.getMemory().getTotal());
+        long memoria=abstraHard.getMemory().getTotal();
+        return FormatUtil.formatBytes(memoria);
     }
 
     private long memoriaTot() {
-        return abstraHard.getMemory().getTotal();
+        long memoria=abstraHard.getMemory().getTotal();
+        return memoria;
     }
-   
+
     public static void main(String[] args) {
-       SystemInfoTest test = new SystemInfoTest();
-        System.out.println("Uso cpu: "+test.getCpu().intValue()+"%");
-        System.out.println("total de memoria: "+test.memoriaTotalS());
-        
-        System.out.println("uso memoria:"+test.getMemoria().intValue()+"%");
-        System.out.println("resto de memoria:"+test.memoriaDisponivelS());
+        SystemInfoTest test = new SystemInfoTest();
+        System.out.println("Uso cpu: " + test.getCpu().intValue() + "%");
+        System.out.println("total de memoria: " + test.memoriaTotalS());
+
+        System.out.println("uso memoria:" + test.getMemoria().intValue() + "%");
+        System.out.println("resto de memoria:" + test.memoriaDisponivelS());
         System.out.println(test.discoModelo());
-     
-         }
+
+    }
 
 }
