@@ -123,7 +123,7 @@
 
 
 	function entrar_() {
-		aguardar();
+		//aguardar();
 		var formulario = new URLSearchParams(new FormData(login));
 		fetch("/usuarios/autenticar", {
 			method: "POST",
@@ -135,7 +135,7 @@
 				resposta.json().then(json => {
 
 					sessionStorage.login_usuario_meuapp = json.login;
-					sessionStorage.nome_usuario_meuapp = json.nome;
+					sessionStorage.nome_usuario_meuapp = json.Nome;
 
 					window.location.href = '././dashboardcomsophie/dashboard.html';
 				});

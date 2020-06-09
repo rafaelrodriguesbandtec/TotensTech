@@ -1,8 +1,8 @@
 let login_usuario;
 let nome_usuario;
 
-function redirecionar_login() {
-    window.location.href = 'login.html';
+function redirecionar_home() {
+    window.location.href = '../index.html';
 }
 
 function verificar_autenticacao() {
@@ -10,18 +10,18 @@ function verificar_autenticacao() {
     nome_usuario = sessionStorage.nome_usuario_meuapp;
     
     if (login_usuario == undefined)  {
-        redirecionar_login();
+        redirecionar_home();
     } else {
-        b_usuario.innerHTML = nome_usuario;
+        NomeUsuario.innerHTML = Amanda;
         validar_sessao();
     }
     
 }
 
-function logoff() {
+function sair() {
     finalizar_sessao();
     sessionStorage.clear();
-    redirecionar_login();
+    redirecionar_home();
 }
 
 function validar_sessao() {
@@ -33,7 +33,7 @@ function validar_sessao() {
             });
         } else {
             console.error('Sessão :.( ');
-            logoff();
+            sair();
         } 
     });    
 }

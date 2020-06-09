@@ -8,11 +8,11 @@ module.exports = {
     storage: ":memory:"
   },
   production: {
-    username: 'adminbandtec',
-    password: 'b@ndtec2018',
-    database: 'gf2018',
-    host: 'testexyzwtrtwr.database.windows.net',
-    dialect: 'mssql',
+    username: 'root',
+    password: 'bandtec',
+    database: 'TotensTech',
+    host: '0.0.0.0',
+    dialect: 'mysql',
     xuse_env_variable: 'DATABASE_URL',
     dialectOptions: {
       options: {
