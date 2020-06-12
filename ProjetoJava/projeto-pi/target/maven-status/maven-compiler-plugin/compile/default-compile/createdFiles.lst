@@ -1,5 +1,8 @@
 Controller\Leitura.class
 Model\Endereco.class
+Model\InformacaoTotem.class
+Model\Telegram.class
+DAO\UsuarioDAO.class
 Model\Totens.class
 view\Monitoramento$3.class
 view\TelaLogin$3.class
@@ -14,7 +17,6 @@ view\TelaLogin$2.class
 view\Monitoramento$5.class
 TesteAPI\SystemInfoTest.class
 view\TelaLogin.class
-view\TelaLogin$9.class
 Model\Usuario.class
 view\InfoSistema$2.class
 view\InfoSistema$4.class

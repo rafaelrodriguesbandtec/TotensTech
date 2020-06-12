@@ -71,8 +71,5 @@ public class Usuario extends Empresa{
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    
-    
-    
+       
 }

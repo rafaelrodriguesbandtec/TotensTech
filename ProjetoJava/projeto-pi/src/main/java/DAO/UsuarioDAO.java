@@ -35,7 +35,9 @@ public class UsuarioDAO {
             //E por esse if é onde a validação aconteçe já que o resultado da query esta dentro do rs e ele percorre
             //todo banco procurando os dois dados apresentado login e senha
             if(rs.next()){
+                
                 checar = true;
+    
             }
             
         } catch (SQLException ex) {

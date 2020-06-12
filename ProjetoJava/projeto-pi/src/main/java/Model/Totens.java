@@ -7,14 +7,15 @@ public class Totens{
     
     //Atributos do totem
     protected Integer codigoTotem;
-    protected String fabricante, modelo;
-
+    protected String fabricante, modelo, sistemaOperacional;
+    
+    
+    
+    
+    InformacaoTotem i = new InformacaoTotem();
+    
     //Construtor dfa classe totens
-    public Totens(Integer codigoTotem, String fabricante, String modelo) {
-        this.codigoTotem = codigoTotem;
-        this.fabricante = fabricante;
-        this.modelo = modelo;
-    }
+    
     
     //Getters e Setters da classe totens
     public Integer getCodigoTotem() {
@@ -39,5 +40,19 @@ public class Totens{
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
-    }    
+    }
+    
+    public String getSistemaOperacional() {
+        return sistemaOperacional;
+    }
+
+    public void setSistemaOperacional(String sistemaOperacional) {
+        this.sistemaOperacional = sistemaOperacional;
+    }
+    
+   
+   
+
+    
+    
 }
