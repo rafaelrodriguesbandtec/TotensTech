@@ -1,0 +1,217 @@
+
+<head>
+	<title>Cadastro V10</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://www.geradorcnpj.com/assets/js/jquery-1.2.6.pack.js" type="text/javascript"></script>
+	<script src="https://www.geradorcnpj.com/assets/js/jquery.maskedinput-1.1.4.pack.js" type="text/javascript"></script>
+
+
+	<script type="text/javascript">
+		$( document ).ready(function() {
+		$("#cnpj").mask("99.999.999/9999-99");
+		$("#cep").mask("99999-999");
+		});
+
+
+
+	</script>
+</head>
+
+<body>
+	<header id="header" style="position: fixed; background-color:#272833;">
+		<h1 id="logo"><a href="index.html">TotensTech</a></h1>
+		<nav id="nav">
+			<ul>
+				<li><a class='inicio'href="index.html">Inicio</a></li>
+				<li>
+					<a href="">Painel</a>
+					<ul>
+						<li><a href="#two">Sobre nós</a></li>
+						<li><a href="#three">Nosso Produto</a></li>
+						<li><a href="#footer">Contato</a></li>
+
+					</ul>
+				</li>
+				
+				<li><a href="./login.html" class="button primary">Login</a></li>
+			</ul>
+		</nav>
+    </header>
+    
+
+    <div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-t-50 p-b-90">
+
+				<img src="./images/logos.png" class="img-logo" alt="">
+
+                
+				<form id='cadastro'class="login100-form validate-form flex-sb flex-w" method="POST" onsubmit="return cadastrar()">
+					<span class="login100-form-title p-b-51">
+						Cadastro empresa
+                    </span>
+                    
+                    <div class="labels-form">
+						<p>Razão Social</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Razão social é necessária">
+						<input class="input100" type="text" name="razaoSocial">
+						<span class="focus-input100"></span>
+					</div>
+					<small class="form-text text-muted" style="font-weight: bold;">BandTec Geração Futura</small>
+                    
+                    <div class="labels-form">
+						<p>CNPJ</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate="campo cpf é obrigatorio">
+						<input class="input100" id="cnpj" type="text" name="cnpj" placeholder="000.000.000.00" maxlength="18">
+						<span class="focus-input100"></span>
+                    </div>
+
+                    <div class="labels-form">
+						<p>CEP</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate="CEP é necessário">
+						<input class="input100" id="cep" type="text" name="cepEmpresa" placeholder="00000-000" maxlength="18">
+						<span class="focus-input100"></span>
+                    </div>
+
+                    <div class="labels-form">
+						<p>Rua</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Rua é necessária">
+						<input class="input100" type="text" name="cepEmpresa" placeholder="Nome da rua">
+						<span class="focus-input100"></span>
+                    </div>
+
+                    <div class="labels-form">
+						<p>Número</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Número é necessário">
+						<input class="input100" type="text" name="numeroEmpresa" placeholder="Número">
+						<span class="focus-input100"></span>
+                    </div>
+
+                    <div class="labels-form">
+						<p>Bairro</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Bairro é necessário">
+						<input class="input100" type="text" name="bairroEmpresa" placeholder="Bairro" >
+						<span class="focus-input100"></span>
+                    </div>
+
+                    <div class="labels-form">
+						<p>Cidade</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Cidade é necessária">
+						<input class="input100" type="text" name="cepEmpresa" placeholder="Cidade">
+                        <span class="focus-input100"></span>
+                    </div>    
+                        
+                    <div class="labels-form">
+                        <p>Estado</p>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="Estado é necessário">
+                        <!-- <input class="input100" type="text" name="estadoEmpresa"> -->
+                        <select style="font-weight: bolder; font-family: Ubuntu-Bold;" class="custom-select" name="estadoEmpresa">
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                        <span class="focus-input100"></span>
+                    </div>
+                      
+                    
+                    <div class="labels-form">
+						<p>Complemento</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16">
+						<input class="input100" type="text" name="complementoEmpresa" placeholder="Complemento">
+                        <span class="focus-input100"></span>
+                    </div>   
+                    
+                    
+                        
+                        <div class="labels-form">
+                            <p>SENHA</p>
+                        </div>
+                        <div class="wrap-input100 validate-input m-b-16" data-validate="Digite uma senha">
+                            <input class="input100" type="password" name="senhaEmpresa" placeholder="Senha">
+                            <span class="focus-input100"></span>
+                        </div>
+                        
+    
+                        <div class="labels-form">
+                            <p>CONFIRMAR SENHA</p>
+                        </div>
+                        <div class="wrap-input100 validate-input m-b-16" data-validate="Digite uma senha">
+                            <input class="input100" type="password" name="cSenhaEmpresa" onchange="validarSenha()"
+                            placeholder="Confirma senha" >
+                            <span class="focus-input100"></span>
+                        </div>
+
+
+
+                        <div class="flex-sb-m w-full p-t-3 p-b-24">
+						
+
+                            <div><span style="color: white;"> Já tem Cadastro?  <a href="#" class="txt1">
+                                      Clique aqui.
+                                </a>
+                                
+                            </div>
+                        </div>
+    
+    
+                        <div class="container-login100-form-btn m-t-17">
+                            <button class="login100-form-btn button primary">
+                                Cadastrar
+                            </button>
+                        </div>
+    
+                    </form>
+                </div>
+            </div>
+        </div>
+                        
+                    
+                    
+
