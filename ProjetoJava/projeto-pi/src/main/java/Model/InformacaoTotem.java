@@ -11,12 +11,12 @@ import oshi.hardware.HardwareAbstractionLayer;
 import oshi.software.os.OperatingSystem;
 import oshi.hardware.CentralProcessor;
 import oshi.software.os.OSProcess;
-import oshi.hardware.GlobalMemory;
+
 
 import oshi.hardware.HWDiskStore;
 import oshi.software.os.FileSystem;
 import oshi.software.os.OSFileStore;
-import oshi.software.os.windows.WindowsFileSystem;
+
 import oshi.util.FormatUtil;
 import oshi.util.Util;
 
@@ -55,6 +55,15 @@ public class InformacaoTotem {
         }
         return FormatUtil.formatBytesDecimal(discoLivre);
     }
+     public String getDiscoEspacoUsado() {
+
+        FileSystem file = informacaoSistema.getOperatingSystem().getFileSystem();
+        long discoLivre = 0;
+        for (OSFileStore s : file.getFileStores()) {
+            discoLivre = s.getTotalSpace()-s.getFreeSpace();
+        }
+        return FormatUtil.formatBytesDecimal(discoLivre);
+    }
     
     public String getTipoDeDisco(){
          FileSystem file = informacaoSistema.getOperatingSystem().getFileSystem();
@@ -67,12 +76,31 @@ public class InformacaoTotem {
 
     public String getDiscoEspacoTotal() {
         FileSystem file = informacaoSistema.getOperatingSystem().getFileSystem();
+        long discoTotal = 0;
+        for (OSFileStore s : file.getFileStores()) {
+            discoTotal = (s.getTotalSpace());
+        }
+        return FormatUtil.formatBytesDecimal(discoTotal);
+    }
+     public Integer getPorcentagemDisponivelDisco() {
+        FileSystem file = informacaoSistema.getOperatingSystem().getFileSystem();
         String discoTotal = "";
         for (OSFileStore s : file.getFileStores()) {
-
-            discoTotal = String.valueOf(s.getTotalSpace());
+            
+            long calc=((s.getFreeSpace()*100)/s.getTotalSpace());
+            discoTotal = String.valueOf(calc);
         }
-        return discoTotal;
+        return Integer.valueOf(discoTotal);
+    }
+    public Integer getPorcentagemUsadaDisco() {
+        FileSystem file = informacaoSistema.getOperatingSystem().getFileSystem();
+        String discoTotal = "";
+        for (OSFileStore s : file.getFileStores()) {
+            
+            long calc=100-((s.getFreeSpace()*100)/s.getTotalSpace());
+            discoTotal = String.valueOf(calc);
+        }
+        return Integer.valueOf(discoTotal);
     }
 
     public String getProprietario() {
@@ -126,19 +154,23 @@ public class InformacaoTotem {
         InformacaoTotem totem = new InformacaoTotem();
         System.out.println("Uso cpu: " + totem.getCpu().intValue() + "%");
         System.out.println("total de memoria: " + totem.memoriaTotalS());
-        System.out.println("uso memoria:" + totem.getMemoria().intValue() + "%");
-        System.out.println("resto de memoria:" + totem.memoriaDisponivelS());
+        System.out.println("uso memoria: " + totem.getMemoria().intValue() + "%");
+        System.out.println("resto de memoria: " + totem.memoriaDisponivelS());
         System.out.println("Modelo do HD: "+totem.getDiscoModelo());
         System.out.println("Nome pc: " + totem.getProprietario());
         System.out.println("Sistema operacional: " + totem.getSistemaOperacional());
         
 
-        System.out.println("Marca do totem: "+totem.getMarcaTotem());
+        System.out.println("Fabricante do totem: "+totem.getMarcaTotem());
         System.out.println("Modelo do totem: "+totem.getModeloTotem());
         System.out.println("Espaço livre no disco: "+totem.getDiscoEspacoLivre());
         System.out.println("Espaço total no disco: "+totem.getDiscoEspacoTotal());
+        System.out.println("Espaço usado no disco: "+totem.getDiscoEspacoUsado());
         System.out.println("Tipo do formato do disco: "+totem.getTipoDeDisco());
+        System.out.println("Porcentagem usada no disco: "+totem.getPorcentagemUsadaDisco()+"%");
+        System.out.println("Porcentagem livre no disco: "+totem.getPorcentagemDisponivelDisco()+"%");
         // System.out.println(totem.getTemperatura().toString());
+        
 
     }
 
