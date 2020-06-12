@@ -66,7 +66,8 @@ router.post('/cadastrar', function (req, res, next) {
 
 /* Recuperação de senha */
 router.get('/recuperacao', function (req, res, next) {
-	var sqlTroca = `select*from cliente where email='${req.body.email}' and token='${req.body.token}'`;
+	var sqlTroca = `select*from Usuario
+	 where email='${req.body.email}' and token='${req.body.token}'`;
 	sequelize.query(sqlTroca, { model: Usuario }).then((resultado) => {
 		console.log("results", resultado.length);
 		if (resultado.length == 1) {
