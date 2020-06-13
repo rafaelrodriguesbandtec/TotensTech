@@ -38,21 +38,44 @@
     </build>
 
     <dependencies>
+  
+        <dependency>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>1.18.4</version>
+              <scope>provided</scope>
+        </dependency>
+ 
+        <dependency>
+              <groupId>org.apache.httpcomponents</groupId>
+              <artifactId>httpclient</artifactId>
+              <version>4.5.6</version>
+        </dependency>
+ 
+        <dependency>
+             <groupId>com.fasterxml.jackson.core</groupId>
+             <artifactId>jackson-databind</artifactId>
+             <version>2.11.0</version>
+        </dependency>
+  
         <dependency>
             <groupId>com.github.oshi</groupId>
             <artifactId>oshi-core</artifactId>
             <version>4.6.0</version>
         </dependency>
+        
         <dependency>
             <groupId>net.java.dev.jna</groupId>
             <artifactId>jna</artifactId>
             <version>5.1.0</version>
         </dependency>
+        
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.25</version>
         </dependency>
+        
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
@@ -72,11 +95,13 @@
             <artifactId>commons-dbcp2</artifactId>
             <version>2.5.0</version>
         </dependency>
+        
         <dependency>
 	<groupId>com.github.pengrad</groupId>
 	<artifactId>java-telegram-bot-api</artifactId>
 	<version>4.9.0</version>
         </dependency>
+        
         <dependency>
             <groupId>net.gpedro.integrations.slack</groupId>
             <artifactId>slack-webhook</artifactId>
