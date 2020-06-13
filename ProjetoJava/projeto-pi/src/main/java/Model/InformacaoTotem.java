@@ -45,6 +45,16 @@ public class InformacaoTotem {
         return discoModelo;
 
     }
+    //teste Linux
+    public String getDiscoLinux(){
+        HWDiskStore[] ds=abstraHard.getDiskStores();
+        long discoLinux=0;
+        for(HWDiskStore d: ds){
+            discoLinux=d.getSize();
+        }
+        return FormatUtil.formatBytesDecimal(discoLinux);
+    }
+    // fim teste linux
 
     public Double getDiscoEspacoLivre() {
 
@@ -179,6 +189,7 @@ public class InformacaoTotem {
         System.out.println("Porcentagem usada no disco: "+totem.getPorcentagemUsadaDisco()+"%");
         System.out.println("Porcentagem livre no disco: "+totem.getPorcentagemDisponivelDisco()+"%");
         // System.out.println(totem.getTemperatura().toString());
+        System.out.println("Teste disco total linux: "+totem.getDiscoLinux());
         
 
     }
