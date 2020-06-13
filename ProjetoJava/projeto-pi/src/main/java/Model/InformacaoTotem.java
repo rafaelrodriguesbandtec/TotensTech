@@ -46,21 +46,31 @@ public class InformacaoTotem {
 
     }
 
-    public String getDiscoEspacoLivre() {
+    public Double getDiscoEspacoLivre() {
+
+        FileSystem file = informacaoSistema.getOperatingSystem().getFileSystem();
+        Double discoLivre = 0.0;
+        for (OSFileStore s : file.getFileStores()) {
+            discoLivre += s.getFreeSpace();
+        }
+        return discoLivre;
+    }
+     public String getDiscoEspacoLivreString() {
 
         FileSystem file = informacaoSistema.getOperatingSystem().getFileSystem();
         long discoLivre = 0;
         for (OSFileStore s : file.getFileStores()) {
-            discoLivre = s.getFreeSpace();
+            discoLivre += s.getFreeSpace();
         }
         return FormatUtil.formatBytesDecimal(discoLivre);
     }
+    
      public String getDiscoEspacoUsado() {
 
         FileSystem file = informacaoSistema.getOperatingSystem().getFileSystem();
         long discoLivre = 0;
         for (OSFileStore s : file.getFileStores()) {
-            discoLivre = s.getTotalSpace()-s.getFreeSpace();
+            discoLivre += s.getTotalSpace()-s.getFreeSpace();
         }
         return FormatUtil.formatBytesDecimal(discoLivre);
     }
@@ -74,33 +84,32 @@ public class InformacaoTotem {
         return tipoDisco;
     }
 
-    public String getDiscoEspacoTotal() {
+    public Double getDiscoEspacoTotal() {
+        FileSystem file = informacaoSistema.getOperatingSystem().getFileSystem();
+        Double discoTotal = 0.0;
+        for (OSFileStore s : file.getFileStores()) {
+            discoTotal += Double.valueOf(s.getTotalSpace());
+        }
+        return discoTotal;
+    }
+      public String getDiscoEspacoTotalString() {
         FileSystem file = informacaoSistema.getOperatingSystem().getFileSystem();
         long discoTotal = 0;
         for (OSFileStore s : file.getFileStores()) {
-            discoTotal = (s.getTotalSpace());
+            discoTotal += s.getTotalSpace();
         }
         return FormatUtil.formatBytesDecimal(discoTotal);
     }
-     public Integer getPorcentagemDisponivelDisco() {
-        FileSystem file = informacaoSistema.getOperatingSystem().getFileSystem();
-        String discoTotal = "";
-        for (OSFileStore s : file.getFileStores()) {
-            
-            long calc=((s.getFreeSpace()*100)/s.getTotalSpace());
-            discoTotal = String.valueOf(calc);
-        }
-        return Integer.valueOf(discoTotal);
+     public Double getPorcentagemDisponivelDisco() {
+       
+        Double discoTotal= (this.getDiscoEspacoLivre()*100d)/this.getDiscoEspacoTotal();
+        return discoTotal;
     }
-    public Integer getPorcentagemUsadaDisco() {
-        FileSystem file = informacaoSistema.getOperatingSystem().getFileSystem();
-        String discoTotal = "";
-        for (OSFileStore s : file.getFileStores()) {
-            
-            long calc=100-((s.getFreeSpace()*100)/s.getTotalSpace());
-            discoTotal = String.valueOf(calc);
-        }
-        return Integer.valueOf(discoTotal);
+    public Double getPorcentagemUsadaDisco() {
+      
+        Double discoTotal= 100-((this.getDiscoEspacoLivre()*100d)/this.getDiscoEspacoTotal());
+     
+        return discoTotal;
     }
 
     public String getProprietario() {
@@ -163,8 +172,8 @@ public class InformacaoTotem {
 
         System.out.println("Fabricante do totem: "+totem.getMarcaTotem());
         System.out.println("Modelo do totem: "+totem.getModeloTotem());
-        System.out.println("Espaço livre no disco: "+totem.getDiscoEspacoLivre());
-        System.out.println("Espaço total no disco: "+totem.getDiscoEspacoTotal());
+        System.out.println("Espaço livre no disco: "+totem.getDiscoEspacoLivreString());
+        System.out.println("Espaço total no disco: "+totem.getDiscoEspacoTotalString());
         System.out.println("Espaço usado no disco: "+totem.getDiscoEspacoUsado());
         System.out.println("Tipo do formato do disco: "+totem.getTipoDeDisco());
         System.out.println("Porcentagem usada no disco: "+totem.getPorcentagemUsadaDisco()+"%");
