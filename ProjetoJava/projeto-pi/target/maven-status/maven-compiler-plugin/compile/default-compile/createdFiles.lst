@@ -7,7 +7,6 @@ view\Monitoramento$3.class
 view\TelaLogin$3.class
 view\TelaLogin$5.class
 view\TelaLogin$8.class
-Model\Slack.class
 Model\Empresa.class
 Slack\SlackMessagem.class
 view\InfoSistema$3.class
@@ -27,6 +26,7 @@ view\InfoSistema.class
 view\Monitoramento$2.class
 view\TelaLogin$4.class
 view\Monitoramento$6.class
+Slack\SlackMessagem$Builder.class
 view\Monitoramento$1.class
 view\Monitoramento.class
 view\TelaLogin$1.class
@@ -35,3 +35,4 @@ com\mycompany\projeto\pi\MostrarTudo.class
 view\Monitoramento$4.class
 view\InfoSistema$5.class
 view\TelaLogin$6.class
+Slack\SlackMain.class

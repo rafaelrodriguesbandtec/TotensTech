@@ -24,8 +24,8 @@ public class Logs {
         try {
         //Criando o arquivo de log
         String home = System.getProperty("user.home");
-        File acesso = new File(home + File.separator + "Desktop" + File.separator + "Logs" + File.separator + " ").getCanonicalFile();
-        String caminho = acesso + nomearArquivo.format(date)+"TotensTech_Logs.txt";
+        File acesso = new File(home + File.separator + "Desktop" + File.separator + "Logs" + File.separator).getCanonicalFile();
+        String caminho = acesso + File.separator + nomearArquivo.format(date)+"TotensTech_Logs.txt";
         acesso.mkdir();
         
         FileWriter arquivo = new FileWriter(caminho);
