@@ -5,7 +5,8 @@
  */
 package Model;
 
-import java.util.List;
+
+
 import oshi.SystemInfo;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.software.os.OperatingSystem;
@@ -29,10 +30,12 @@ public class InformacaoTotem {
     private final SystemInfo informacaoSistema = new SystemInfo();
     private final OperatingSystem opSystem = informacaoSistema.getOperatingSystem();
     private final HardwareAbstractionLayer abstraHard = informacaoSistema.getHardware();
-
+    
+    
     public Double getCpu() {
         CentralProcessor processoCpu = abstraHard.getProcessor();
         long[] cpu = processoCpu.getSystemCpuLoadTicks();
+        Util.sleep(5000);
         return (processoCpu.getSystemCpuLoadBetweenTicks(cpu) * 100d);
     }
 
@@ -45,16 +48,7 @@ public class InformacaoTotem {
         return discoModelo;
 
     }
-    //teste Linux
-    public String getDiscoLinux(){
-        HWDiskStore[] ds=abstraHard.getDiskStores();
-        long discoLinux=0;
-        for(HWDiskStore d: ds){
-            discoLinux=d.getSize();
-        }
-        return FormatUtil.formatBytesDecimal(discoLinux);
-    }
-    // fim teste linux
+  
 
     public Double getDiscoEspacoLivre() {
 
@@ -62,6 +56,7 @@ public class InformacaoTotem {
         Double discoLivre = 0.0;
         for (OSFileStore s : file.getFileStores()) {
             discoLivre += s.getFreeSpace();
+            
         }
         return discoLivre;
     }
@@ -99,6 +94,7 @@ public class InformacaoTotem {
         Double discoTotal = 0.0;
         for (OSFileStore s : file.getFileStores()) {
             discoTotal += Double.valueOf(s.getTotalSpace());
+           
         }
         return discoTotal;
     }
@@ -107,6 +103,7 @@ public class InformacaoTotem {
         long discoTotal = 0;
         for (OSFileStore s : file.getFileStores()) {
             discoTotal += s.getTotalSpace();
+
         }
         return FormatUtil.formatBytesDecimal(discoTotal);
     }
@@ -165,9 +162,16 @@ public class InformacaoTotem {
     public String getModeloTotem() {
         return String.format("%s", abstraHard.getComputerSystem().getModel());
     }
-    // public String getTemperatura(){
-    //    return String.valueOf(abstraHard.getSensors().getCpuTemperature());
-    // }
+    public String getNomeCpu() {
+        return String.format("%s",abstraHard.getProcessor().getProcessorIdentifier().getName());
+    }
+   
+   
+     public Integer getTemperatura(){
+         Double td= abstraHard.getSensors().getCpuTemperature();
+         Integer temperatura=td.intValue();
+        return temperatura;
+     }
 
     public static void main(String[] args) {
         InformacaoTotem totem = new InformacaoTotem();
@@ -188,8 +192,11 @@ public class InformacaoTotem {
         System.out.println("Tipo do formato do disco: "+totem.getTipoDeDisco());
         System.out.println("Porcentagem usada no disco: "+totem.getPorcentagemUsadaDisco()+"%");
         System.out.println("Porcentagem livre no disco: "+totem.getPorcentagemDisponivelDisco()+"%");
-        // System.out.println(totem.getTemperatura().toString());
-        System.out.println("Teste disco total linux: "+totem.getDiscoLinux());
+         System.out.println("Temperatura cpu: "+totem.getTemperatura());
+         System.out.println("Nome da cpu: "+totem.getNomeCpu());
+        
+
+  
         
 
     }
