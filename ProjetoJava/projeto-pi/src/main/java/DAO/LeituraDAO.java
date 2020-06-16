@@ -23,8 +23,8 @@ public class LeituraDAO {
         try {
             
             stmt = con.prepareStatement("INSERT INTO Leitura"
-                    + "(DataHora,LeituraMemoria,LeituraDisco,LeituraCpu,fkToten)"
-                    + "VALUES(?,?,?,?,?)");
+                    + "(DataHora,LeituraMemoria,LeituraDisco,LeituraCpu,TemperaturaCpu,fkToten)"
+                    + "VALUES(?,?,?,?,?,?)");
             
             stmt.setString(1,dataFormatada);
             
@@ -34,9 +34,9 @@ public class LeituraDAO {
             
             stmt.setDouble(4,t.getCpu());
             
-            //stmt.setInt(5,t.getTemperatura());
+            stmt.setInt(5,t.getTemperatura());
             
-            stmt.setString(5,null);
+            stmt.setInt(6,2);
            
             stmt.executeUpdate();
             

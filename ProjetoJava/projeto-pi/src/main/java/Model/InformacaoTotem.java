@@ -172,9 +172,10 @@ public class InformacaoTotem {
         return String.format("%s",abstraHard.getComputerSystem().getSerialNumber());
     }
     
-     public Double getTemperatura(){
+     public Integer getTemperatura(){
          Double td= abstraHard.getSensors().getCpuTemperature();
-         return td;
+         Integer i=td.intValue();
+         return i;
      }
      
      
