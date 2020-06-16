@@ -2,6 +2,7 @@
 
 module.exports = (sequelize, DataTypes) => {
     let Empresa = sequelize.define('Empresa',{
+       
         IdEmpresa: {
             field: 'IdEmpresa',
             type: DataTypes.INTEGER,
@@ -18,6 +19,19 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+
+        Email:{
+            field: 'Email',
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+
+        SenhaEmpresa: {
+            field: 'Senha',
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+
         FkEndereco:{
             field: 'FkEndereco',
             type: DataTypes.INTEGER,

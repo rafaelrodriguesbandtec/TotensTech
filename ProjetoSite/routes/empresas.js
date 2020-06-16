@@ -2,17 +2,19 @@ var express = require('express');
 var router = express.Router();
 var sequelize = require('../models').sequelize;
 var Empresa = require('../models').Empresa;
+var Endereco = require('../models').Endereco;
+
 let sessoes = [];
 
 // Recuperar usuário por login e senha
 router.post('/autenticar', function(req, res, next){
-            console.log('Recuperando usuário por email e senha');
+            console.log('Recuperando empresa por email e senha');
 
-            var email = req.body.cnpj;
-            var senha = req.body.senhaEmpresa;
+            var email = req.body.email;
+            var senhaEmpresa = req.body.senha;
 
-            let instrucaoSql = `select * from Empresa where Cnpj='${cnpj}' and senhaEmpresa='${senhaEmpresa}'`;
-            console.log(ibstrucaoSql);
+            var  instrucaoSql = `select * from Empresa where Email='${email}' and Senha='${senhaEmpresa}'`;
+            console.log(instrucaoSql);
 
             sequelize.query(instrucaoSql,{
                 model: Empresa
@@ -20,7 +22,7 @@ router.post('/autenticar', function(req, res, next){
                 console.log(`Encontrados: ${resultado.length}`);
 
                 if (resultado.length == 1){
-                    sessoes.push(resultado[0]..dataValues.loggin);
+                    sessoes.push(resultado[0].dataValues.loggin);
                     console.log('sessoes: ', sessoes);;
                     res.json(resultado[0]);                    
                 } else if (resultado.length == 0){
@@ -37,7 +39,9 @@ router.post('/autenticar', function(req, res, next){
         /*Cadastrar Empresa*/
 
         router.post('/cadastrar' , function (req, res, next){
+
             console.log('Cadastrando empresa');
+
             if (req.body.razaoSocial == '' || req.body.razaoSocial.length == 0 ||
                 req.body.cnpj == '' || req.body.cnpj.length < 14 ||
                 req.body.cepEmpresa == '' || req.body.cepEmpresa.length < 8 ||
@@ -45,32 +49,46 @@ router.post('/autenticar', function(req, res, next){
                 req.body.numeroEmpresa == '' || 
                 req.body.bairroEmpresa == '' || req.body.bairroEmpresa.length < 5 || 
                 req.body.cidadeEmpresa == '' || req.body.cidadeEmpresa.length < 5 ||
-                req.body.estadoEmpresa == '' || req.body.estadoEmpresa.length < 2 ||
+                req.body.estadoEmpresa == '' || req.body.estadoEmpresa.length < 1 ||
                 req.body.senhaEmpresa == '' || req.body.senhaEmpresa.length < 8) {
                     console.log("Erro");
                 }else {
-                    Empresa.create({
 
-                        RazaoSocia: req.body.razaoSocial,
-                        Cnpj: req.body.cnpj,
+                    Endereco.create({
+                        //Informações de cadastro da tabela Endereco
                         Cep: req.body.cepEmpresa,
                         Rua: req.body.ruaEmpresa, 
                         Numero: req.body.numeroEmpresa,
                         Bairro: req.body.bairroEmpresa,
                         Cidade: req.body.cidadeEmpresa,
                         Estado: req.body.estadoEmpresa,
-                        Complemento: req.body.complementoEmpresa, 
-                        Senha: req.body.senhaEmpresa,
-                        FkEndereco:2
+                        Complemento: req.body.complementoEmpresa
 
-                    }).then(resultado => {
-                        console.log(`Registro criado:  ${resultado}`)
+                    })/*.then(resultado => {
+                        console.log(`Endereço registrado:  ${resultado}`)
                         res.send(resultado);
                     }).cath(erro => {
                         console.error(erro);
                         res.status(500).send(erro.message);
 
-                    });
+                    });*/
+
+                    Empresa.create({
+                        //Informações de cadastro da tabela Empresa
+                        RazaoSocial: req.body.razaoSocial,
+                        Cnpj: req.body.cnpj,
+                        Email: req.body.email,
+                        SenhaEmpresa: req.body.senhaEmpresa,
+                        FkEndereco: 1
+                        
+                    })/*.then(resultado => {
+                        console.log(`Empresa criada:  ${resultado}`)
+                        res.send(resultado);
+                    }).cath(erro => {
+                        console.error(erro);
+                        res.status(500).send(erro.message);
+
+                    });*/
                 }              
         })
 
@@ -89,4 +107,6 @@ router.post('/autenticar', function(req, res, next){
         })
 
             
+
+module.exports = router;
 

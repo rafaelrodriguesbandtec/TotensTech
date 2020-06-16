@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
 <head>
 	<title>Cadastro V10</title>
@@ -18,22 +18,15 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" href="assets/css/main.css" />
 
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://www.geradorcnpj.com/assets/js/jquery-1.2.6.pack.js" type="text/javascript"></script>
+	<script src="https://www.geradorcnpj.com/assets/js/jquery.maskedinput-1.1.4.pack.js" type="text/javascript"></script>
+
+
 	<script type="text/javascript">
-		function fMasc(objeto, mascara) {
-			obj = objeto
-			masc = mascara
-			setTimeout("fMascEx()", 1)
-		}
-		function fMascEx() {
-			obj.value = masc(obj.value)
-		}
-		function mCPF(cpf) {
-			cpf = cpf.replace(/\D/g, "")
-			cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
-			cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
-			cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
-			return cpf
-		}
+		$( document ).ready(function() {
+		$("#cpf").mask("999.999.999-99");
+		});
 	</script>
 </head>
 
@@ -53,7 +46,7 @@
 					</ul>
 				</li>
 				
-				<li><a href="./login.html" class="button primary">Login</a></li>
+				<li><a href="./loginUsuario.html" class="button primary">Login</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -81,10 +74,24 @@
 						<p>CPF</p>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16" data-validate="campo cpf é obrigatorio">
-						<input class="input100" type="text" name="cpf" onkeydown="javascript: fMasc( this, mCPF );"
-							placeholder="000.000.000.00" maxlength="14">
+						<input class="input100" id="cpf" type="text" name="cpf"	placeholder="000.000.000.00" maxlength="14">
 						<span class="focus-input100"></span>
 					</div>
+
+					<div class="labels-form">
+                        <p>Nível de acesso</p>
+					</div>
+					
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="Nivel de acesso é necessário">
+                        <!-- <input class="input100" type="text" name="estadoEmpresa"> -->
+                        <select style="font-family: Ubuntu-Bold; font-size: 18px; color: black; height: 3em; background-color: rgba(0, 0, 0, 0);" class="custom-select" name="nivelAcesso">
+							<option>Selecione uma opção</option>
+							<option value="1">Administrador</option>
+                            <option value="2">Técnico</option>
+                        </select>
+                        <span class="focus-input100"></span>
+					</div>
+					<small>Defina o acesso de seus usuários.</small>
 
 					<div class="labels-form">
 						<p>E-MAIL</p>
@@ -111,19 +118,25 @@
 						<span class="focus-input100"></span>
 					</div>
 
+
+					<input type="text" name="fkEmpresa" id="fkEmpresa" style="display: none;">
+
 					<div class="flex-sb-m w-full p-t-3 p-b-24">
 						
 
 						<div>
+
+						 <span class="txt1">Já tem Cadastro?</span>
+
 							<a href="#" class="txt1">
-								Já tem Cadastro? clique aqui.
+								Clique aqui.
 							</a>
 						</div>
 					</div>
 
 
 					<div class="container-login100-form-btn m-t-17">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn button primary">
 							Cadastrar
 						</button>
 					</div>
@@ -136,7 +149,7 @@
 
 	<div id="dropDownSelect1"></div>
 
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!-- <script src="vendor/jquery/jquery-3.2.1.min.js"></script> -->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
 	<script src="vendor/bootstrap/js/popper.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -147,12 +160,25 @@
 	<script src="js/main.js"></script>
 	<script src="./js/funcoes.js"></script>
 
+	<script>verificarAutenticacaoUsuario()</script>
+
 </body>
 
 </html>
 <script>
 
+function tirarMascara(){
+	
+	var cpfTeste = cpf.value;
+	
+	var cpfConcreto = cpfTeste.replace(/[^\d]+/g,'');
+	
+	cpf.value = cpfConcreto;
+}
+
 function cadastrar() {
+
+		tirarMascara();
        
         var formulario = new URLSearchParams(new FormData(cadastro));
         fetch("/usuarios/cadastrar", {
@@ -162,7 +188,7 @@ function cadastrar() {
             
             if (response.ok) {
 
-                window.location.href='./Login.html';
+                window.location.href='./LoginUsuario.html';
 
             } else {
 

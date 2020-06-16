@@ -1,12 +1,13 @@
-'use stript'
+'use strict';
 
 module.exports = (sequelize ,DataType) => {
     let Endereco = sequelize.define('Endereco',{
+        
         IdEndereco:{
             field:'IdEndereco',
             type: DataType.INTEGER,
             primaryKey: true,
-            allowNull: false
+            autoIncrement: true  
         },
 
         Cep:{

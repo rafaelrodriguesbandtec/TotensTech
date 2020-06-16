@@ -20,11 +20,11 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		Cpf:{
 			field: 'Cpf',
-			type:DataTypes.STRING,
+			type:DataTypes.INTEGER,
 			allowNull:false
 		},
 		LoginUsuario: {
-			field: 'LoginUsuario',
+			field: 'Email',
 			type: DataTypes.STRING,
 			allowNull: false
 		},
@@ -39,6 +39,13 @@ module.exports = (sequelize, DataTypes) => {
 			type:DataTypes.INTEGER,
 			allowNull:false
 		},
+
+		Token: {
+			field: 'Token',
+			type:DataTypes.STRING,
+			allowNull: true
+		},
+
 		FkEmpresa:{
 			field: 'FkEmpresa',
 			type:DataTypes.INTEGER,

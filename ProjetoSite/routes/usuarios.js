@@ -12,7 +12,7 @@ router.post('/autenticar', function (req, res, next) {
 	var email = req.body.email; // depois de .body, use o nome (name) do campo em seu formulário de login
 	var senha = req.body.senha; // depois de .body, use o nome (name) do campo em seu formulário de login	
 
-	let instrucaoSql = `select * from usuario where LoginUsuario='${email}' and Senha='${senha}'`;
+	var instrucaoSql = `select * from usuario where Email='${email}' and Senha='${senha}'`;
 	console.log(instrucaoSql);
 
 	sequelize.query(instrucaoSql, {
@@ -38,6 +38,7 @@ router.post('/autenticar', function (req, res, next) {
 
 /* Cadastrar usuário */
 router.post('/cadastrar', function (req, res, next) {
+
 	console.log('Criando um usuário');
 	if (req.body.nome.length < 5 || req.body.nome == '' || req.body.login == '' || req.body.senha == '' || req.body.senha.length < 8
 		|| req.body.email == '' || req.body.email.length < 8 || req.body.cpf == '' || req.body.cpf.length < 11) {
@@ -50,8 +51,8 @@ router.post('/cadastrar', function (req, res, next) {
 			Cpf: req.body.cpf,
 			LoginUsuario: req.body.email,
 			Senha: req.body.senha,
-			NivelAcesso:1, 
-			FkEmpresa:2			
+			NivelAcesso:  req.body.nivelAcesso,
+			FkEmpresa: req.body.fkEmpresa	
 
 		}).then(resultado => {
 			console.log(`Registro criado: ${resultado}`)

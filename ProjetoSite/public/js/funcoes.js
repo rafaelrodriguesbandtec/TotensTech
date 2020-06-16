@@ -1,20 +1,53 @@
-let login_usuario;
-let nome_usuario;
+let razaoSocial;
+let IdEmpresa;
+let nivelAcesso;
+
 
 function redirecionar_home() {
     window.location.href = '../index.html';
 }
-
-function verificar_autenticacao() {
-    login_usuario = sessionStorage.login_usuario_meuapp;
-    nome_usuario = sessionStorage.nome_usuario_meuapp;
     
-    if (login_usuario == undefined)  {
+function verificar_autenticacao(){
+
+    razaoSocial = sessionStorage.RazaoSocial_meuapp;
+    IdEmpresa = sessionStorage.IdEmpresa_meuapp;   
+    nivelAcesso = sessionStorage.nivelAcesso_meuapp;
+    
+    if (razaoSocial == undefined)  {
+
         redirecionar_home();
-    } else {
-        NomeUsuario.innerHTML = Amanda;
+
+    } 
+    
+    else {
+        
+        nomeUsuario.innerHTML = razaoSocial;
+        fkEmpresa.value = IdEmpresa;
+
         validar_sessao();
     }
+    
+    
+}
+
+function verificarAutenticacaoUsuario(){
+
+    razaoSocial = sessionStorage.RazaoSocial_meuapp;
+    IdEmpresa = sessionStorage.IdEmpresa_meuapp;   
+    
+    if (razaoSocial == undefined)  {
+
+        redirecionar_home();
+
+    } 
+    
+    else {
+
+        fkEmpresa.value = IdEmpresa;
+
+        validar_sessao();
+    }
+    
     
 }
 
@@ -25,19 +58,19 @@ function sair() {
 }
 
 function validar_sessao() {
-    fetch(`/usuarios/sessao/${login_usuario}`, {cache:'no-store'})
+    fetch(`/empresas/sessao/${razaoSocial}`, {cache:'no-store'})
     .then(resposta => {
         if (resposta.ok) {
             resposta.text().then(texto => {
                 console.log('Sessão :) ', texto);    
             });
         } else {
-            console.error('Sessão :.( ');
+            console.log('Sessão :.( ', texto);
             sair();
         } 
     });    
 }
 
 function finalizar_sessao() {
-    fetch(`/usuarios/sair/${login_usuario}`, {cache:'no-store'}); 
+    fetch(`/empresas/sair/${razaoSocial}`, {cache:'no-store'}); 
 }

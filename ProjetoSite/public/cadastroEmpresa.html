@@ -14,7 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://www.geradorcnpj.com/assets/js/jquery-1.2.6.pack.js" type="text/javascript"></script>
 	<script src="https://www.geradorcnpj.com/assets/js/jquery.maskedinput-1.1.4.pack.js" type="text/javascript"></script>
@@ -25,9 +25,6 @@
 		$("#cnpj").mask("99.999.999/9999-99");
 		$("#cep").mask("99999-999");
 		});
-
-
-
 	</script>
 </head>
 
@@ -47,7 +44,7 @@
 					</ul>
 				</li>
 				
-				<li><a href="./login.html" class="button primary">Login</a></li>
+				<li><a href="./loginEmpresa.html" class="button primary">Login</a></li>
 			</ul>
 		</nav>
     </header>
@@ -78,7 +75,15 @@
 						<p>CNPJ</p>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16" data-validate="campo cnpj é obrigatorio">
-						<input class="input100" id="cnpj" type="text" name="cnpj" placeholder="000.000.000.00" maxlength="18">
+						<input class="input100" id="cnpj" type="text" name="cnpj" placeholder="00.000.000/0000-00" maxlength="18">
+						<span class="focus-input100"></span>
+                    </div>
+
+                    <div class="labels-form">
+						<p>Email</p>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Campo email é obrigatorio">
+						<input class="input100" id="email" type="text" name="email" placeholder="exemplo@exemplo.com" maxlength="45">
 						<span class="focus-input100"></span>
                     </div>
 
@@ -118,7 +123,7 @@
 						<p>Cidade</p>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16" data-validate="Cidade é necessária">
-						<input class="input100" type="text" name="cepEmpresa" placeholder="Cidade">
+						<input class="input100" type="text" name="cidadeEmpresa" placeholder="Cidade">
                         <span class="focus-input100"></span>
                     </div>    
                         
@@ -183,8 +188,8 @@
                             <p>CONFIRMAR SENHA</p>
                         </div>
                         <div class="wrap-input100 validate-input m-b-16" data-validate="Digite uma senha">
-                            <input class="input100" type="password" name="cSenhaEmpresa" onchange="validarSenha()"
-                            placeholder="Confirma senha" >
+                            <input class="input100" type="password" name="cSenhaEmpresa" placeholder="Confirma senha"> 
+                            <!-- onchange="validarSenha()"  -->
                             <span class="focus-input100"></span>
                         </div>
 
@@ -193,7 +198,7 @@
                         <div class="flex-sb-m w-full p-t-3 p-b-24">
 						
 
-                            <div><span style="color: white;"> Já tem Cadastro?  <a href="#" class="txt1">
+                            <div><span style="color: white;" class="txt1"> Já tem Cadastro?  <a href="#" class="txt1">
                                       Clique aqui.
                                 </a>
                                 
@@ -202,7 +207,7 @@
     
     
                         <div class="container-login100-form-btn m-t-17">
-                            <button class="login100-form-btn button primary">
+                            <button onclick="tirarMascara()" class="login100-form-btn button primary">
                                 Cadastrar
                             </button>
                         </div>
@@ -211,7 +216,50 @@
                 </div>
             </div>
         </div>
-                        
+                 
+        
+ <script>
+
+function tirarMascara(){
+	
+	var cnpjTeste = cnpj.value;
+    var cepTeste = cep.value;
+	
+	var cnpjConcreto = cnpjTeste.replace(/[^\d]+/g,'');
+	var cepConcreto = cepTeste.replace(/[^\d]+/g,'');
+	
+    cnpj.value = cnpjConcreto;
+    cep.value = cepConcreto;
+}
+
+function cadastrar() {
+
+//tirarMascara();
+
+var formulario = new URLSearchParams(new FormData(cadastro));
+fetch("/empresas/cadastrar", {
+    method: "POST",
+    body: formulario
+}).then(function (response) {
+    
+    if (response.ok) {
+
+        window.location.href='./loginEmpresa.html';
+
+    } else {
+
+        console.log('Erro de cadastro!');
+        response.text().then(function (resposta) {
+            alert("Não foi possivel cadastrar");
+        });
+        
+    }
+});
+
+return false;
+}
+
+</script>
                     
                     
 
