@@ -11,10 +11,15 @@ import org.apache.commons.dbcp2.BasicDataSource;
 
 public class ConexaoDados {
     
-    private static final String DRIVE = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/teste?useTimezone=true&serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASS = "Leonardo@123";
+    private static final String DRIVE = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    private static final String URL = "jdbc:sqlserver://svrtotenstech.database.windows.net:1433";
+    private static final String USER = "localadmin@svrtotenstech";
+    private static final String PASS = "#Gfgrupo5b";
+    
+    //private static final String DRIVE = "com.mysql.cj.jdbc.Driver";
+    //private static final String URL = "jdbc:mysql://localhost:3306/totenstech?useTimezone=true&serverTimezone=UTC";
+    //private static final String USER = "root";
+    //private static final String PASS = "Leonardo@123";
     
     
     public static Connection getConnection(){

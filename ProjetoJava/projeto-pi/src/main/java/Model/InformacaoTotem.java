@@ -7,6 +7,8 @@ package Model;
 
 
 
+import DAO.LeituraDAO;
+import DAO.TotenDAO;
 import oshi.SystemInfo;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.software.os.OperatingSystem;
@@ -166,15 +168,25 @@ public class InformacaoTotem {
         return String.format("%s",abstraHard.getProcessor().getProcessorIdentifier().getName());
     }
    
-   
-     public Integer getTemperatura(){
+   public String getSerialToten() {
+        return String.format("%s",abstraHard.getComputerSystem().getSerialNumber());
+    }
+    
+     public Double getTemperatura(){
          Double td= abstraHard.getSensors().getCpuTemperature();
-         Integer temperatura=td.intValue();
-        return temperatura;
+         return td;
      }
+     
+     
+     
 
     public static void main(String[] args) {
+        
         InformacaoTotem totem = new InformacaoTotem();
+        
+        TotenDAO dao =  new TotenDAO();
+        LeituraDAO leiDAO = new LeituraDAO();
+        
         System.out.println("Uso cpu: " + totem.getCpu().intValue() + "%");
         System.out.println("total de memoria: " + totem.memoriaTotalS());
         System.out.println("uso memoria: " + totem.getMemoria().intValue() + "%");
@@ -192,11 +204,14 @@ public class InformacaoTotem {
         System.out.println("Tipo do formato do disco: "+totem.getTipoDeDisco());
         System.out.println("Porcentagem usada no disco: "+totem.getPorcentagemUsadaDisco()+"%");
         System.out.println("Porcentagem livre no disco: "+totem.getPorcentagemDisponivelDisco()+"%");
-         System.out.println("Temperatura cpu: "+totem.getTemperatura());
-         System.out.println("Nome da cpu: "+totem.getNomeCpu());
-        
+        System.out.println("Temperatura cpu: "+totem.getTemperatura());
+        System.out.println("Nome da cpu: "+totem.getNomeCpu());
+         
+        System.out.println("Serial Number: "+totem.getSerialToten());
 
-  
+        //dao.novoTotem(totem);
+        //leiDAO.lerDados(totem);
+        
         
 
     }

@@ -6,24 +6,19 @@ package Model;
 public class Totens{
     
     //Atributos do totem
-    protected Integer codigoTotem;
-    protected String fabricante, modelo, sistemaOperacional;
+    protected Integer idTotens;
+    protected String fabricante, modelo, memoria, cpuTotem, espacoEmDisco, serialNumber, fkEmpresa;
+
+
+
     
-    
-    
-    
-    InformacaoTotem i = new InformacaoTotem();
-    
-    //Construtor dfa classe totens
-    
-    
-    //Getters e Setters da classe totens
-    public Integer getCodigoTotem() {
-        return codigoTotem;
+    //Getters e Setters
+    public Integer getIdTotens() {
+        return idTotens;
     }
 
-    public void setCodigoTotem(Integer codigo) {
-        this.codigoTotem = codigo;
+    public void setIdTotens(Integer idTotens) {
+        this.idTotens = idTotens;
     }
 
     public String getFabricante() {
@@ -41,16 +36,51 @@ public class Totens{
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
-    
-    public String getSistemaOperacional() {
-        return sistemaOperacional;
+
+    public String getMemoria() {
+        return memoria;
     }
 
-    public void setSistemaOperacional(String sistemaOperacional) {
-        this.sistemaOperacional = sistemaOperacional;
+    public void setMemoria(String memoria) {
+        this.memoria = memoria;
+    }
+
+    public String getCpuTotem() {
+        return cpuTotem;
+    }
+
+    public void setCpuTotem(String cpuTotem) {
+        this.cpuTotem = cpuTotem;
+    }
+
+    public String getEspacoEmDisco() {
+        return espacoEmDisco;
+    }
+
+    public void setEspacoEmDisco(String espacoEmDisco) {
+        this.espacoEmDisco = espacoEmDisco;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public String getFkEmpresa() {
+        return fkEmpresa;
+    }
+
+    public void setFkEmpresa(String fkEmpresa) {
+        this.fkEmpresa = fkEmpresa;
     }
     
-   
+    
+    
+    
+    
    
 
     

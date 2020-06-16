@@ -22,6 +22,7 @@ DAO\TotenDAO.class
 Model\Usuario.class
 view\InfoSistema$2.class
 view\InfoSistema$4.class
+DAO\LeituraDAO.class
 view\InfoSistema.class
 view\Monitoramento$2.class
 view\TelaLogin$4.class
@@ -32,6 +33,7 @@ view\Monitoramento.class
 view\TelaLogin$1.class
 Conexao\ConexaoDados.class
 com\mycompany\projeto\pi\MostrarTudo.class
+DAO\TesteDAO.class
 view\Monitoramento$4.class
 view\InfoSistema$5.class
 view\TelaLogin$6.class
