@@ -178,7 +178,7 @@
                 <li class="nav-item">
                   <a href="#" class="nav-link active">
                     <i class="nav-icon far fa-circle text-info"></i>
-                    <p>Totem 01</p>
+                    <p id="totem1">Totem 01</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -509,12 +509,18 @@
   <!-- AdminLTE for demo purposes -->
   <script src="dist/js/demo.js"></script>
 
-  <script>verificar_autenticacao()</script>
+  <script>
+  verificar_autenticacao();
+  escreverTotens();
+  </script>
+
+  <!-- <script>taca aqui</script> -->
 
   <!-- Script Sophie -->
 
   <script>
     $(document).ready(function () {
+     
 
       var _chatterURL = 'https://assistant.sophie.chat/techzin/ChatterWeb/index?login=visitante';
 

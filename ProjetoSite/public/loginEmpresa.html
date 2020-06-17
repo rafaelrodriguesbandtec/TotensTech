@@ -45,8 +45,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
-				<form id='login' class="login100-form validate-form flex-sb flex-w" method="POST"
-					onsubmit="return entrar_()">
+				<form id='login' class="login100-form validate-form flex-sb flex-w" method="POST" onsubmit="return entrar_()">
 					<img src="./images/logos.png" class="img-logo" alt="">
 					<span class="login100-form-title p-b-51">
 						Login
@@ -84,7 +83,7 @@
 					</div>
 
 					<div class="container-login100-form-btn m-t-17">
-						<button onclick="tirarMascara()" class="login100-form-btn" id='entrar'>
+						<button class="login100-form-btn">
 							Login
 						</button>
 					</div>
@@ -117,7 +116,6 @@
 	<script src='./js/funcoes.js'></script>
 
 </body>
-
 </html>
 <script>
 
@@ -132,11 +130,24 @@
 			if (resposta.ok) {
 
 				resposta.json().then(json => {
-					
-					sessionStorage.RazaoSocial_meuapp = json.RazaoSocial;
-					sessionStorage.cnpj_meuapp = json.Cnpj;
-					sessionStorage.email_meuapp = json.Email;
+
+					//Campos Empresa
+					//localStorage.setItem('Cnpj', json.Cnpj);
+					//localStorage.setItem('RazaoSocial', json.RazaoSocial);
+					sessionStorage.razaoSocialApp = json.RazaoSocial;
+					localStorage.email_meuapp = json.Email;
 					sessionStorage.IdEmpresa_meuapp = json.idEmpresa;
+
+					// //Campos Totens
+					localStorage.IdTotens_meuapp = json.idTotens;
+					localStorage.Fabricante_meuapp = json.Fabricante;
+					localStorage.Modelo_meuapp = json.Modelo;
+					localStorage.Memoria_meuapp = json.Memoria
+					localStorage.CpuToten_meuapp = json.CpuToten;
+					localStorage.EspacoEmDisco_meuapp = json.EspacoEmDisco;
+
+				
+
 
 					window.location.href = '././dashboardcomsophie/dashboard.html';
 				});
@@ -152,7 +163,8 @@
 			}
 		});
 
-		return false;
+		 return false;
+
 	}
 
 

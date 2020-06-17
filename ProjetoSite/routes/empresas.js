@@ -5,36 +5,56 @@ var Empresa = require('../models').Empresa;
 var Endereco = require('../models').Endereco;
 
 let sessoes = [];
+let totens = [];
 
 // Recuperar usuário por login e senha
 router.post('/autenticar', function(req, res, next){
-            console.log('Recuperando empresa por email e senha');
+    console.log('Recuperando empresa por email e senha');
 
-            var email = req.body.email;
-            var senhaEmpresa = req.body.senha;
+    var email = req.body.email;
+    var senhaEmpresa = req.body.senha;
 
-            var  instrucaoSql = `select * from Empresa where Email='${email}' and Senha='${senhaEmpresa}'`;
-            console.log(instrucaoSql);
+    var  instrucaoSql = `select * from Empresa where Email='${email}' and Senha='${senhaEmpresa}'`;
+    console.log(instrucaoSql);
 
-            sequelize.query(instrucaoSql,{
-                model: Empresa
-            }).then(resultado => {
-                console.log(`Encontrados: ${resultado.length}`);
+    sequelize.query(instrucaoSql,{
+        model: Empresa
+    }).then(resultado => {
+        console.log(`Encontrados: ${resultado.length}`);
 
-                if (resultado.length == 1){
-                    sessoes.push(resultado[0].dataValues.loggin);
-                    console.log('sessoes: ', sessoes);;
-                    res.json(resultado[0]);                    
-                } else if (resultado.length == 0){
-                    res.status(403).send('Cnpj e/ou senha inváliddo(s)');
-                } else{
-                    res.status(403).send('Mais de um usuário com o mesmo login e senha! ');
-                }
-            }).catch(erro => {
-                console.error(erro);
-                res.status(500).send(erro.message);
-            });
-        });
+        if (resultado.length == 1){
+            sessoes.push(email);//resultado[0].dataValues.email
+            console.log('sessoes: ', sessoes[0]);
+            //res.json(resultado[0]);                  
+        } else if (resultado.length == 0){
+            res.status(403).send('Email e/ou senha inváliddo(s)');
+        } else{
+            res.status(403).send('Mais de um usuário com o mesmo login e senha! ');
+        }
+    }).catch(erro => {
+        console.error(erro);
+        res.status(500).send(erro.message);
+    });
+
+
+    console.log('Verificando totens cadastrados');
+    var selectTotens = `SELECT * FROM totens join empresa on empresa.idEmpresa = totens.fkEmpresa where Email='${email}' and Senha='${senhaEmpresa}'`
+
+    console.log(selectTotens);
+
+    sequelize.query(selectTotens,{
+    model: Empresa
+    }).then(qtdRegistros => {
+    console.log(`Encontrados: ${qtdRegistros.length}`);
+
+  
+
+    res.status(200).json(qtdRegistros[0]);
+    });
+});
+
+             
+
 
         /*Cadastrar Empresa*/
 
@@ -109,4 +129,3 @@ router.post('/autenticar', function(req, res, next){
             
 
 module.exports = router;
-
