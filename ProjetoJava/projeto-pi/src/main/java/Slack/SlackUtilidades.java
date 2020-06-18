@@ -6,6 +6,7 @@
  package Slack;
   
 
+import Conexao.Logs;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.gpedro.integrations.slack.SlackApi;
@@ -13,22 +14,19 @@ import net.gpedro.integrations.slack.SlackMessage;
   
   public class SlackUtilidades {
      
-    private SlackApi api = new SlackApi("https://hooks.slack.com/services/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");
-
-      SlackUtilidades() {
-          
-      }
+    private SlackApi api = new SlackApi("https://hooks.slack.com/services/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");
     
-      
-      
       void sendMessage(String message){
+           Logs log = new Logs();
+          
         try {
             api.call(new SlackMessage("TotensTech avisa: "+message));
-        } catch (Exception e) {
-            Logger.getAnonymousLogger().log(
-                    Level.SEVERE,
-                    "Erro ao enviar mensagem para Slack: {}",
-                    e);
+            
+        }catch (Exception Err){
+            
+            log.gravarLog(Err.toString() , "Erro ao enviar mensagem para Slack:");
+            
         }
+        
     }}
   
