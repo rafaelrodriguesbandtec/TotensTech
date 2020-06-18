@@ -5,35 +5,30 @@
  */
  package Slack;
   
-import Slack.SlackMessagem;
-  import com.fasterxml.jackson.databind.ObjectMapper;
-  import org.apache.http.client.methods.HttpPost;
-  import org.apache.http.entity.StringEntity;
-  import org.apache.http.impl.client.CloseableHttpClient;
-  import org.apache.http.impl.client.HttpClients;
-  
-  import java.io.IOException;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.gpedro.integrations.slack.SlackApi;
+import net.gpedro.integrations.slack.SlackMessage;
   
   public class SlackUtilidades {
-      private static String slackWebhookUrl = "https://hooks.slack.com/services/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";
-  
-      public static void sendMessage(SlackMessagem message) {
-          CloseableHttpClient client = HttpClients.createDefault();
-          HttpPost httpPost = new HttpPost(slackWebhookUrl);
-  
-          try {
-              ObjectMapper objectMapper = new ObjectMapper();
-              String json = objectMapper.writeValueAsString(message);
-  
-              StringEntity entity = new StringEntity(json);
-              httpPost.setEntity(entity);
-              httpPost.setHeader("Accept", "application/json");
-              httpPost.setHeader("Content-type", "application/json");
-  
-              client.execute(httpPost);
-              client.close();
-          } catch (IOException e) {
-             e.printStackTrace();
-          }
+     
+    private SlackApi api = new SlackApi("https://hooks.slack.com/services/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");
+
+      SlackUtilidades() {
+          
       }
-  }
+    
+      
+      
+      void sendMessage(String message){
+        try {
+            api.call(new SlackMessage("TotensTech avisa: "+message));
+        } catch (Exception e) {
+            Logger.getAnonymousLogger().log(
+                    Level.SEVERE,
+                    "Erro ao enviar mensagem para Slack: {}",
+                    e);
+        }
+    }}
+  

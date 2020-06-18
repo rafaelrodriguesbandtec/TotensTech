@@ -5,15 +5,14 @@
  */
 package Slack;
 
+import Model.InformacaoTotem;
+
   
   public class SlackMain {
-    public static void main(String[] args) {
-      SlackMessagem slackMessage = SlackMessagem.builder()
-        .channel("#avisos")
-        .username("TotensTech")
-        .text("Teste meu lindo")
-        .icon_emoji(":twice:")
-        .build();
-      SlackUtilidades.sendMessage(slackMessage);
-    }
+      public static void main(String[] args) {
+          SlackUtilidades s=new SlackUtilidades();
+          InformacaoTotem t= new InformacaoTotem();
+          Double cpu= t.getCpu();
+          s.sendMessage("cpu com uso elevado"+cpu.intValue()+"%");
+      }
   }
