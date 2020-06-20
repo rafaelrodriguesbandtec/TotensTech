@@ -115,7 +115,12 @@
 			<!-- ou versão 7.2.2.jre11, se sua JDK for a 11 -->
 			<!-- ou versão que já existir na .m2 local -->
 		</dependency>
-
+        <dependency>
+            <groupId>net.gpedro.integrations.slack</groupId>
+            <artifactId>slack-webhook</artifactId>
+            <version>1.4.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

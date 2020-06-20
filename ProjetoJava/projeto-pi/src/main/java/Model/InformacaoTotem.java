@@ -7,8 +7,6 @@ package Model;
 
 
 
-import DAO.LeituraDAO;
-import DAO.TotenDAO;
 import oshi.SystemInfo;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.software.os.OperatingSystem;
@@ -23,7 +21,7 @@ import oshi.software.os.OSFileStore;
 import oshi.util.FormatUtil;
 import oshi.util.Util;
 
-/
+
 public class InformacaoTotem {
 
     private final SystemInfo informacaoSistema = new SystemInfo();

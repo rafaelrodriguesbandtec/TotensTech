@@ -7,8 +7,6 @@
   
 
 import Conexao.Logs;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import net.gpedro.integrations.slack.SlackApi;
 import net.gpedro.integrations.slack.SlackMessage;
   
