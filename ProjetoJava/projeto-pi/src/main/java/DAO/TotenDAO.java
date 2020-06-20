@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 public class TotenDAO {
 
-    public void cadastrarTotem(InformacaoTotem t){
+    public void cadastrarTotem(InformacaoTotem t, String fk){
         
         Connection con = ConexaoDados.getConnection();
         PreparedStatement stmt = null;
@@ -36,7 +36,7 @@ public class TotenDAO {
             
             stmt.setString(6,t.getSerialToten());
             
-            stmt.setString(7,null);
+            stmt.setString(7,fk);
             
             stmt.executeUpdate();
             
@@ -47,7 +47,7 @@ public class TotenDAO {
             
         }finally{
             ConexaoDados.closeConnection(con, stmt);
-            JOptionPane.showMessageDialog(null, "Salvo com sucesso");
+            JOptionPane.showMessageDialog(null, "Vimos que você entrou em um totem novo, já cadastramos ele automaticamente!");
             
         }
     }

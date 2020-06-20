@@ -27,7 +27,7 @@ public class Logs {
         File acesso = new File(home + File.separator + "Desktop" + File.separator + "Logs" + File.separator).getCanonicalFile();
         String caminho = acesso + File.separator + nomearArquivo.format(date)+"TotensTech_Logs.txt";
         acesso.mkdir();
-          
+        
         FileWriter arquivo = new FileWriter(caminho);
         
         acesso.setReadable(true);

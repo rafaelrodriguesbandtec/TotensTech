@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package view;
-import Conexao.ConexaoDados;
+import Controller.Conexao;
 import Conexao.Logs;
 import DAO.UsuarioDAO;
 import Model.Usuario;
@@ -249,20 +249,26 @@ public class TelaLogin extends javax.swing.JFrame{
 
     private void btnAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessoActionPerformed
         
-        UsuarioDAO dao = new UsuarioDAO();         
-               
-            if(dao.ChecarLogin(txtLogin.getText(), txtSenha.getText())){
+        try {
+            UsuarioDAO userDao = new UsuarioDAO();
             
-                new Monitoramento().setVisible(true);
+            
+            if(userDao.ChecarLogin(txtLogin.getText(), txtSenha.getText())){
+                
+                Monitoramento tela = new Monitoramento();
+                tela.abrirTela(txtLogin.getText(), txtSenha.getText(), logs);
+                this.dispose();
                 
             }else{
             
-                JOptionPane.showMessageDialog(null, "Erro");
-                
-            }
-               
-               
-        
+                JOptionPane.showMessageDialog(null, "Usuário ou Senha incorretos");
+                logs.gravarLog("Login ou senha invalidos", "Sistema de login");
+                               
+            }    
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro desconhecido, entre em contato com a central de atendimentos.");
+            logs.gravarLog(e.toString(),"Sistema de Login");
+        }      
             
     }//GEN-LAST:event_btnAcessoActionPerformed
 

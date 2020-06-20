@@ -6,11 +6,8 @@ package Model;
 public class Totens{
     
     //Atributos do totem
-    protected Integer idTotens;
-    protected String fabricante, modelo, memoria, cpuTotem, espacoEmDisco, serialNumber, fkEmpresa;
-
-
-
+    protected Integer idTotens, fkEmpresa;
+    protected String fabricante, modelo, memoria, cpuTotem, espacoEmDisco, serialNumber;
     
     //Getters e Setters
     public Integer getIdTotens() {
@@ -69,11 +66,11 @@ public class Totens{
         this.serialNumber = serialNumber;
     }
 
-    public String getFkEmpresa() {
+    public Integer getFkEmpresa() {
         return fkEmpresa;
     }
 
-    public void setFkEmpresa(String fkEmpresa) {
+    public void setFkEmpresa(Integer fkEmpresa) {
         this.fkEmpresa = fkEmpresa;
     }
     

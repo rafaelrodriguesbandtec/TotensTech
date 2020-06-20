@@ -3,27 +3,13 @@ package Model;
  *
  * @author Italo
  */
-public class Usuario extends Empresa{
+public class Usuario{
     //Atributos da classe Usuario 
-    protected Integer codigoUsuario, nivelAcesso;
-    protected String nome, cpf, login, senha;
+    protected Integer codigoUsuario, nivelAcesso, fkEmpresa;
+    protected String nome, cpf, email, senha, token;
 
-    //Construtor da classe Usuario
-
-    public Usuario(Integer codigoUsuario, Integer nivelAcesso, String nome, String cpf, String login, String senha, Integer codigoEmpresa, String nomeEmpresa, String razaoSocial, String cnpj, String cep, String rua, String numero, String bairro, String cidade, String estado, String complemento) {
-        super(codigoEmpresa, nomeEmpresa, razaoSocial, cnpj, cep, rua, numero, bairro, cidade, estado, complemento);
-        this.codigoUsuario = codigoUsuario;
-        this.nivelAcesso = nivelAcesso;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.login = login;
-        this.senha = senha;
-    }
     
-    
-
     //Getters e Setters da Empresa
-
     public Integer getCodigoUsuario() {
         return codigoUsuario;
     }
@@ -56,12 +42,12 @@ public class Usuario extends Empresa{
         this.cpf = cpf;
     }
 
-    public String getLogin() {
-        return login;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSenha() {
@@ -70,6 +56,22 @@ public class Usuario extends Empresa{
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public Integer getFkEmpresa() {
+        return fkEmpresa;
+    }
+
+    public void setFkEmpresa(Integer fkEmpresa) {
+        this.fkEmpresa = fkEmpresa;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
        
 }

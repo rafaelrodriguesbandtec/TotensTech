@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.dbcp2.BasicDataSource;
 
-public class ConexaoDados {
+public class ConexaoDados {    
     
     private static final String DRIVE = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static final String HOSTNAME =  "svrtotenstech.database.windows.net";
@@ -17,11 +17,6 @@ public class ConexaoDados {
     private static final String USER = "localadmin";
     private static final String PASS = "#Gfgrupo5b";
     private static final String URL = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30", HOSTNAME, DBNAME, USER, PASS);
-
-    //private static final String DRIVE = "com.mysql.cj.jdbc.Driver";
-    //private static final String URL = "jdbc:mysql://localhost:3306/totenstech?useTimezone=true&serverTimezone=UTC";
-    //private static final String USER = "root";
-    //private static final String PASS = "Leonardo@123";
     
     
     public static Connection getConnection(){

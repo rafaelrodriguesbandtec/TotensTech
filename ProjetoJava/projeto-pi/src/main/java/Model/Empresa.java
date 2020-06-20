@@ -3,35 +3,26 @@ package Model;
  *
  * @author Italo
  */
-public class Empresa extends Endereco {
+public class Empresa{
     //Atributos da empresa
-    protected Integer codigoEmpresa;
-    protected String nomeEmpresa,razaoSocial, cnpj;
-
-    //Contrutor da empresa
-    public Empresa(Integer codigoEmpresa, String nomeEmpresa, String razaoSocial, String cnpj, String cep, String rua, String numero, String bairro, String cidade, String estado, String complemento) {
-        super(cep, rua, numero, bairro, cidade, estado, complemento);
-        this.codigoEmpresa = codigoEmpresa;
-        this.nomeEmpresa = nomeEmpresa;
-        this.razaoSocial = razaoSocial;
-        this.cnpj = cnpj;
-    }
+    private Integer idEmpresa, fkEndereco;
+    private String razaoSocial, cnpj, email, senha;
  
     //Getters e Setters
-    public Integer getCodigoEmpresa() {
-        return codigoEmpresa;
+    public Integer getIdEmpresa() {
+        return idEmpresa;
     }
 
-    public void setCodigoEmpresa(Integer codigoEmpresa) {
-        this.codigoEmpresa = codigoEmpresa;
+    public void setIdEmpresa(Integer idEmpresa) {
+        this.idEmpresa = idEmpresa;
     }
 
-    public String getNomeEmpresa() {
-        return nomeEmpresa;
+    public Integer getFkEndereco() {
+        return fkEndereco;
     }
 
-    public void setNomeEmpresa(String nomeEmpresa) {
-        this.nomeEmpresa = nomeEmpresa;
+    public void setFkEndereco(Integer fkEndereco) {
+        this.fkEndereco = fkEndereco;
     }
 
     public String getRazaoSocial() {
@@ -49,4 +40,26 @@ public class Empresa extends Endereco {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    @Override
+    public String toString() {
+        return "Empresa{" + "idEmpresa=" + idEmpresa + ", fkEndereco=" + fkEndereco + ", razaoSocial=" + razaoSocial + ", cnpj=" + cnpj + ", email=" + email + ", senha=" + senha + '}';
+    }
+      
 }

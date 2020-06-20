@@ -23,10 +23,7 @@ import oshi.software.os.OSFileStore;
 import oshi.util.FormatUtil;
 import oshi.util.Util;
 
-/**
- *
- * @author Rafael
- */
+/
 public class InformacaoTotem {
 
     private final SystemInfo informacaoSistema = new SystemInfo();
@@ -178,43 +175,5 @@ public class InformacaoTotem {
          return i;
      }
      
-     
-     
-
-    public static void main(String[] args) {
-        
-        InformacaoTotem totem = new InformacaoTotem();
-        
-        TotenDAO dao =  new TotenDAO();
-        LeituraDAO leiDAO = new LeituraDAO();
-        
-        System.out.println("Uso cpu: " + totem.getCpu().intValue() + "%");
-        System.out.println("total de memoria: " + totem.memoriaTotalS());
-        System.out.println("uso memoria: " + totem.getMemoria().intValue() + "%");
-        System.out.println("resto de memoria: " + totem.memoriaDisponivelS());
-        System.out.println("Modelo do HD: "+totem.getDiscoModelo());
-        System.out.println("Nome pc: " + totem.getProprietario());
-        System.out.println("Sistema operacional: " + totem.getSistemaOperacional());
-        
-
-        System.out.println("Fabricante do totem: "+totem.getMarcaTotem());
-        System.out.println("Modelo do totem: "+totem.getModeloTotem());
-        System.out.println("Espaço livre no disco: "+totem.getDiscoEspacoLivreString());
-        System.out.println("Espaço total no disco: "+totem.getDiscoEspacoTotalString());
-        System.out.println("Espaço usado no disco: "+totem.getDiscoEspacoUsado());
-        System.out.println("Tipo do formato do disco: "+totem.getTipoDeDisco());
-        System.out.println("Porcentagem usada no disco: "+totem.getPorcentagemUsadaDisco()+"%");
-        System.out.println("Porcentagem livre no disco: "+totem.getPorcentagemDisponivelDisco()+"%");
-        System.out.println("Temperatura cpu: "+totem.getTemperatura());
-        System.out.println("Nome da cpu: "+totem.getNomeCpu());
-         
-        System.out.println("Serial Number: "+totem.getSerialToten());
-
-        //dao.novoTotem(totem);
-        //leiDAO.lerDados(totem);
-        
-        
-
-    }
 
 }

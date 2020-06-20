@@ -2,6 +2,7 @@ package DAO;
 
 import Conexao.ConexaoDados;
 import Model.InformacaoTotem;
+import Model.Totens;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -11,13 +12,13 @@ import javax.swing.JOptionPane;
 
 public class LeituraDAO {
     
-    public void lerDados(InformacaoTotem t){
+    public void lerDados(InformacaoTotem t, Integer fk){
         
         Connection con = ConexaoDados.getConnection();
         PreparedStatement stmt = null;
         
                 Date data = new Date();
-                SimpleDateFormat formatar = new SimpleDateFormat("yyyy/MM/dd");
+                SimpleDateFormat formatar = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 String dataFormatada = formatar.format(data);
         
         try {
@@ -36,7 +37,7 @@ public class LeituraDAO {
             
             stmt.setInt(5,t.getTemperatura());
             
-            stmt.setInt(6,2);
+            stmt.setInt(6,fk);
            
             stmt.executeUpdate();
             
@@ -44,10 +45,6 @@ public class LeituraDAO {
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar" + ex);
-            
-        }finally{
-            ConexaoDados.closeConnection(con, stmt);
-            JOptionPane.showMessageDialog(null, "Salvo com sucesso");
             
         }
     }

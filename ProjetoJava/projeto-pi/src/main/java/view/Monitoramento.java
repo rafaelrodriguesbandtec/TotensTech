@@ -1,20 +1,41 @@
 
 package view;
 
+import Conexao.Logs;
+import Controller.Conexao;
+import Controller.EmpresaRowMapper;
+import Controller.TotensRowMapper;
+import Controller.UsuarioRowMapper;
+import DAO.LeituraDAO;
+import DAO.TotenDAO;
+import Model.Empresa;
+import Model.InformacaoTotem;
+import Model.Totens;
+import Model.Usuario;
 import com.mycompany.projeto.pi.MostrarTudo;
 import java.awt.Color;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import org.springframework.jdbc.core.JdbcTemplate;
+import java.sql.PreparedStatement;
+import java.util.Map;
 
 
 
 public class Monitoramento extends javax.swing.JFrame {
    MostrarTudo leitura = new MostrarTudo();
-
+   InformacaoTotem totem = new InformacaoTotem();
+   Conexao con = new Conexao();          
+   JdbcTemplate template = new JdbcTemplate(con.getDataSource());
+   LeituraDAO cadastrarTotem = new LeituraDAO();
+   PreparedStatement pstm = null;
+   String fkEmpresa = null;
+   Integer fkToten = null;
+   
     public Monitoramento() {
         initComponents();
-        this.setLocationRelativeTo(null);
-        long TEMPO = (2000 * 1);
+        long TEMPO = (30000 * 1);
         
         Timer timer = null;
         
@@ -31,16 +52,70 @@ public class Monitoramento extends javax.swing.JFrame {
         }
         
     }
+    public void abrirTela(String email, String senha, Logs log){
+             
+        try {          
+            List<Empresa> empresas = template.query("select * from Empresa where Email = ? and Senha = ?", new EmpresaRowMapper(), email, senha);
+            if(empresas.isEmpty()){
+                List<Usuario> usuario = template.query("select * from Usuario where Email = ? and Senha = ?", new UsuarioRowMapper(), email, senha);
+                for(Usuario listaUsuarios : usuario){
+                    fkEmpresa = String.format("%s", listaUsuarios.getFkEmpresa());
+                }  
+            }else{
+               for(Empresa listaEmpresas : empresas){
+                    fkEmpresa = String.format("%s", listaEmpresas.getIdEmpresa());
+                }                 
+            }
+            //System.out.println(empresas.toString());
+            
+            
+            List<Totens> totens = template.query("select * from Totens where fkEmpresa = ? and SerialNumber = ?", new TotensRowMapper(), fkEmpresa, totem.getSerialToten());
+            
+            if(totens.isEmpty()){
+                TotenDAO novoTotem = new TotenDAO();
+                novoTotem.cadastrarTotem(totem, fkEmpresa);
+                totens = template.query("select * from Totens where fkEmpresa = ? and SerialNumber = ?", new TotensRowMapper(), fkEmpresa, totem.getSerialToten());
+            }
+            
+            for(Totens listaTotens : totens){
+                fkToten = listaTotens.getIdTotens();  
+            }
+            
+        } catch (Exception e) {
+            log.gravarLog(e.toString(), "Erro de conexão");
+        }
+        
+        new Monitoramento().setVisible(true);
+        this.setLocationRelativeTo(null);
+        exibirRAM();
+              
+    }
     
     public void exibirRAM(){
+    long TEMPO = (10000 * 1);
+    Timer timer = null;
+    
     leitura.registrarInfoCpu();
     leitura.registrarInfoMemoria();
-    
-    //System.out.println(leitura.getFreqCpu());
-    lblValorMemoria.setText(String.format("%.2f GB", leitura.getMemoriaDisponivel()));
-    lblMemoriaTotal.setText(String.format("%.2f GB", leitura.getMemoriaTotal()));
-    lblCpuTemp.setText(String.format("%.2f °C", leitura.getTemperaturaCpu()));
-    //lblValorCpu.setText(String.format("%.2f ", leitura.getFreqCpu()) + "%");
+        
+        if(timer == null){
+            timer = new Timer();
+            
+            TimerTask tarefa = new TimerTask(){
+                public void run(){
+                    lblValorCpu.setText(String.format("%.2f %s", totem.getCpu(), "%"));
+                    lblValorDisco.setText(String.format("%s", totem.getDiscoEspacoLivreString()));
+                    lblValorMemoria.setText(String.format("%.2f", totem.getMemoria()));
+                    lblCpuTemp.setText(String.format("%.2f ºC", leitura.getTemperaturaCpu()));
+                    lblMemoriaTotal.setText(String.format("%.2f GB",leitura.getMemoriaTotal()));
+                    lvlValorDiscoTotal.setText(String.format("%s", totem.getDiscoEspacoTotalString()));
+                    
+                    cadastrarTotem.lerDados(totem, fkToten);
+                }
+            };
+                    
+           timer.scheduleAtFixedRate(tarefa, TEMPO, TEMPO);
+        }
     }
     
 
@@ -65,12 +140,11 @@ public class Monitoramento extends javax.swing.JFrame {
         lblCpuTempTexto = new javax.swing.JLabel();
         lblMemoriaTotal = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lvlValorDiscoTotal = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lblCpuTemp1 = new javax.swing.JLabel();
         lblCpuTemp2 = new javax.swing.JLabel();
         lblCpuTemp3 = new javax.swing.JLabel();
-        lblTotensTech = new javax.swing.JLabel();
         btnFechar = new javax.swing.JButton();
         lblTotensTech1 = new javax.swing.JLabel();
 
@@ -95,7 +169,7 @@ public class Monitoramento extends javax.swing.JFrame {
 
         lblValorCpu.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         lblValorCpu.setForeground(new java.awt.Color(255, 255, 255));
-        lblValorCpu.setText("50,00 %");
+        lblValorCpu.setText("0,0 %");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -155,7 +229,7 @@ public class Monitoramento extends javax.swing.JFrame {
 
         lblValorDisco.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         lblValorDisco.setForeground(new java.awt.Color(255, 255, 255));
-        lblValorDisco.setText("10,00 %");
+        lblValorDisco.setText("0,0 %");
 
         lblDisco.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         lblDisco.setForeground(new java.awt.Color(255, 255, 255));
@@ -201,8 +275,8 @@ public class Monitoramento extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-ram-de-smartphone-16.png"))); // NOI18N
         jLabel1.setText("Ram:");
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("900GB");
+        lvlValorDiscoTotal.setForeground(new java.awt.Color(255, 255, 255));
+        lvlValorDiscoTotal.setText("0GB");
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -237,7 +311,7 @@ public class Monitoramento extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3))
+                                .addComponent(lvlValorDiscoTotal))
                             .addComponent(lblCpuTemp1)
                             .addComponent(lblCpuTemp3)
                             .addComponent(lblCpuTemp2))
@@ -267,25 +341,10 @@ public class Monitoramento extends javax.swing.JFrame {
                 .addComponent(lblCpuTemp2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(lvlValorDiscoTotal)
                     .addComponent(jLabel4))
                 .addContainerGap())
         );
-
-        lblTotensTech.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTotensTech.setForeground(new java.awt.Color(255, 255, 255));
-        lblTotensTech.setText("Informações do sistema");
-        lblTotensTech.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblTotensTechMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblTotensTechMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblTotensTechMouseExited(evt);
-            }
-        });
 
         javax.swing.GroupLayout fundo02Layout = new javax.swing.GroupLayout(fundo02);
         fundo02.setLayout(fundo02Layout);
@@ -297,15 +356,12 @@ public class Monitoramento extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fundo02Layout.createSequentialGroup()
                 .addContainerGap(49, Short.MAX_VALUE)
-                .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblTotensTech)
-                    .addGroup(fundo02Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(fundo02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(34, 34, 34))
         );
         fundo02Layout.setVerticalGroup(
@@ -322,9 +378,7 @@ public class Monitoramento extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(lblTotensTech, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         btnFechar.setBackground(new java.awt.Color(228, 76, 101));
@@ -413,23 +467,6 @@ public class Monitoramento extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnFecharActionPerformed
 
-    private void lblTotensTechMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTotensTechMouseClicked
-       InfoSistema infoSystem = new InfoSistema();
-       
-       
-       infoSystem.setVisible(true);
-       this.setVisible(false);
-       
-    }//GEN-LAST:event_lblTotensTechMouseClicked
-
-    private void lblTotensTechMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTotensTechMouseEntered
-         lblTotensTech.setForeground(new Color(228,76,101));
-    }//GEN-LAST:event_lblTotensTechMouseEntered
-
-    private void lblTotensTechMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTotensTechMouseExited
-         lblTotensTech.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_lblTotensTechMouseExited
-
     private void lblTotensTech1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTotensTech1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_lblTotensTech1MouseClicked
@@ -484,7 +521,6 @@ public class Monitoramento extends javax.swing.JFrame {
     private javax.swing.JPanel fundo01;
     private javax.swing.JPanel fundo02;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -500,10 +536,10 @@ public class Monitoramento extends javax.swing.JFrame {
     private javax.swing.JLabel lblMemoria;
     private javax.swing.JLabel lblMemoriaTotal;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel lblTotensTech;
     private javax.swing.JLabel lblTotensTech1;
     private javax.swing.JLabel lblValorCpu;
     private javax.swing.JLabel lblValorDisco;
     private javax.swing.JLabel lblValorMemoria;
+    private javax.swing.JLabel lvlValorDiscoTotal;
     // End of variables declaration//GEN-END:variables
 }
