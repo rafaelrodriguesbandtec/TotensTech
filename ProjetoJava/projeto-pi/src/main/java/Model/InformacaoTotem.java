@@ -79,7 +79,7 @@ public class InformacaoTotem {
     
     public String getTipoDeDisco(){
          FileSystem file = informacaoSistema.getOperatingSystem().getFileSystem();
-        String tipoDisco = "";
+         String tipoDisco = "";
         for (OSFileStore s : file.getFileStores()) {
             tipoDisco = s.getType();
         }
