@@ -30,9 +30,9 @@ public class Monitoramento extends javax.swing.JFrame {
    Conexao con = new Conexao();          
    JdbcTemplate template = new JdbcTemplate(con.getDataSource());
    LeituraDAO cadastrarTotem = new LeituraDAO();
-   PreparedStatement pstm = null;
-   String fkEmpresa = null;
-   Integer fkToten = null;
+    PreparedStatement pstm = null;
+    String fkEmpresa = null;
+    Integer fkToten = null;
    
    
     public Monitoramento() {
