@@ -54,15 +54,16 @@ public class TotenDAO {
     
     Totens toten = new Totens();
     
-    public void carregarTotem(){
+    public void alterarStatus(String status, String fkEmpresa, String serialNumber){
     
         Connection con = ConexaoDados.getConnection();
         PreparedStatement stmt = null;
         
         try {
-            
-            stmt = con.prepareStatement("SELECT * FROM  ");
-            
+            stmt = con.prepareStatement("UPDATE Totens SET Estado = ? WHERE fkEmpresa = ? and SerialNumber = ?");
+            stmt.setString(1, status);
+            stmt.setString(2, fkEmpresa);
+            stmt.setString(3, serialNumber);
             
             stmt.executeUpdate();
             
@@ -71,22 +72,7 @@ public class TotenDAO {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar" + ex);
             
-        }finally{
-            ConexaoDados.closeConnection(con, stmt);
-            JOptionPane.showMessageDialog(null, "Salvo com sucesso");
-            
         }
-    
-        
-        InformacaoTotem t = new InformacaoTotem();
-        toten.setModelo(t.getModeloTotem());
-        toten.setFabricante(t.getMarcaTotem());
-        toten.setCpuTotem(t.getNomeCpu());
-        toten.setEspacoEmDisco(t.getDiscoEspacoTotalString());
-        toten.setMemoria(t.memoriaTotalS());
-        toten.setSerialNumber(t.getSerialToten());
-        
-        
     
     }
     

@@ -14,8 +14,7 @@ import java.util.TimerTask;
       
      
       
-      public static void main(String[] args) {
-        Logs log = new Logs();
+      public static void registrarSlack(Logs log) {
           
           SlackUtilidades s=new SlackUtilidades();
           

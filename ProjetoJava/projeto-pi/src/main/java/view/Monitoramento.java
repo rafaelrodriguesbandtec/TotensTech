@@ -12,6 +12,7 @@ import Model.Empresa;
 import Model.InformacaoTotem;
 import Model.Totens;
 import Model.Usuario;
+import Slack.SlackMain;
 import com.mycompany.projeto.pi.MostrarTudo;
 import java.awt.Color;
 import java.util.List;
@@ -33,30 +34,16 @@ public class Monitoramento extends javax.swing.JFrame {
     PreparedStatement pstm = null;
     String fkEmpresa = null;
     Integer fkToten = null;
-   
+    Logs log = new Logs();
+    TotenDAO novoTotem = new TotenDAO();
    
     public Monitoramento() {
         initComponents();
-        long TEMPO = (10000 * 1);
-        
-        Timer timer = null;
         this.setLocationRelativeTo(null);
-        
-        if(timer == null){
-            timer = new Timer();
-            
-            TimerTask tarefa = new TimerTask(){
-                public void run(){
-                   exibirRAM();
-                }
-            };
-                    
-           timer.scheduleAtFixedRate(tarefa, TEMPO, TEMPO);
-        }
-        
+        this.setVisible(true);
     }
     public void abrirTela(String email, String senha, Logs log){
-        
+        this.log = log;
         JOptionPane.showMessageDialog(null, "Estamos carregando suas informações, isso pode levar alguns segundos");     
         try {          
             List<Empresa> empresas = template.query("select * from Empresa where Email = ? and Senha = ?", new EmpresaRowMapper(), email, senha);
@@ -74,7 +61,7 @@ public class Monitoramento extends javax.swing.JFrame {
             List<Totens> totens = template.query("select * from Totens where fkEmpresa = ? and SerialNumber = ?", new TotensRowMapper(), fkEmpresa, totem.getSerialToten());
             
             if(totens.isEmpty()){
-                TotenDAO novoTotem = new TotenDAO();
+                
                 novoTotem.cadastrarTotem(totem, fkEmpresa);
                 totens = template.query("select * from Totens where fkEmpresa = ? and SerialNumber = ?", new TotensRowMapper(), fkEmpresa, totem.getSerialToten());
             }
@@ -84,12 +71,10 @@ public class Monitoramento extends javax.swing.JFrame {
             }
             
         } catch (Exception e) {
-            log.gravarLog(e.toString(), "Erro de conexão");
+            this.log.gravarLog(e.toString(), "Erro de conexão");
         }
-        
-        new Monitoramento().setVisible(true);
-        this.setLocationRelativeTo(null);
-        exibirRAM();
+        novoTotem.alterarStatus("A", this.fkEmpresa, totem.getSerialToten());
+        this.exibirRAM();
               
     }
     
@@ -105,6 +90,7 @@ public class Monitoramento extends javax.swing.JFrame {
             
             TimerTask tarefa = new TimerTask(){
                 public void run(){
+                    SlackMain.registrarSlack(log);
                     lblValorCpu.setText(String.format("%.2f %s", totem.getCpu(), "%"));
                     lblValorDisco.setText(String.format("%s", totem.getDiscoEspacoLivreString()));
                     lblValorMemoria.setText(String.format("%.2f %s", totem.getMemoria(), "%"));
@@ -557,6 +543,8 @@ public class Monitoramento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void btnFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharMouseClicked
+        JOptionPane.showMessageDialog(null, "Fechando o aplicativo!");  
+        novoTotem.alterarStatus("I", this.fkEmpresa, totem.getSerialToten());
         System.exit(0);
     }//GEN-LAST:event_btnFecharMouseClicked
 
@@ -625,4 +613,5 @@ public class Monitoramento extends javax.swing.JFrame {
     private javax.swing.JLabel lblValorMemoria;
     private javax.swing.JLabel lvlValorDiscoTotal;
     // End of variables declaration//GEN-END:variables
+
 }

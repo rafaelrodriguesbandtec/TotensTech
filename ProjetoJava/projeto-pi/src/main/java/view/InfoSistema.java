@@ -461,7 +461,8 @@ public class InfoSistema extends javax.swing.JFrame {
     }//GEN-LAST:event_lblTotensTechMouseExited
 
     private void btnFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharMouseClicked
-        System.exit(0);
+        this.setVisible(false);
+        //System.exit(0);
     }//GEN-LAST:event_btnFecharMouseClicked
 
     private void lblMonitoramentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMonitoramentoMouseClicked
