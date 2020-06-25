@@ -20,6 +20,7 @@ import java.util.TimerTask;
 import org.springframework.jdbc.core.JdbcTemplate;
 import java.sql.PreparedStatement;
 import java.util.Map;
+import javax.swing.JOptionPane;
 
 
 
@@ -55,7 +56,8 @@ public class Monitoramento extends javax.swing.JFrame {
         
     }
     public void abrirTela(String email, String senha, Logs log){
-             
+        
+        JOptionPane.showMessageDialog(null, "Estamos carregando suas informações, isso pode levar alguns segundos");     
         try {          
             List<Empresa> empresas = template.query("select * from Empresa where Email = ? and Senha = ?", new EmpresaRowMapper(), email, senha);
             if(empresas.isEmpty()){
@@ -67,9 +69,7 @@ public class Monitoramento extends javax.swing.JFrame {
                for(Empresa listaEmpresas : empresas){
                     fkEmpresa = String.format("%s", listaEmpresas.getIdEmpresa());
                 }                 
-            }
-            //System.out.println(empresas.toString());
-            
+            }           
             
             List<Totens> totens = template.query("select * from Totens where fkEmpresa = ? and SerialNumber = ?", new TotensRowMapper(), fkEmpresa, totem.getSerialToten());
             
@@ -107,7 +107,7 @@ public class Monitoramento extends javax.swing.JFrame {
                 public void run(){
                     lblValorCpu.setText(String.format("%.2f %s", totem.getCpu(), "%"));
                     lblValorDisco.setText(String.format("%s", totem.getDiscoEspacoLivreString()));
-                    lblValorMemoria.setText(String.format("%.2f", totem.getMemoria()));
+                    lblValorMemoria.setText(String.format("%.2f %s", totem.getMemoria(), "%"));
                     lblCpuTemp.setText(String.format("%.2f ºC", leitura.getTemperaturaCpu()));
                     lblMemoriaTotal.setText(String.format("%.2f GB",leitura.getMemoriaTotal()));
                     lvlValorDiscoTotal.setText(String.format("%s", totem.getDiscoEspacoTotalString()));
@@ -206,7 +206,7 @@ public class Monitoramento extends javax.swing.JFrame {
 
         lblValorMemoria.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         lblValorMemoria.setForeground(new java.awt.Color(255, 255, 255));
-        lblValorMemoria.setText("0,0 GB");
+        lblValorMemoria.setText("0,0 %");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -530,7 +530,6 @@ public class Monitoramento extends javax.swing.JFrame {
         InfoSistema is = new InfoSistema();
 
         is.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_lblInformacaoSistemaMouseClicked
 
     private void lblInformacaoSistemaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInformacaoSistemaMouseEntered
