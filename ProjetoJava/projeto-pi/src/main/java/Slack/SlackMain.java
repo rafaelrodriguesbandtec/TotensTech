@@ -32,24 +32,25 @@ import java.util.TimerTask;
           
           
           
-          if (cpu >= 80.0) {
-                s.sendMessage(":heavy_exclamation_mark: Seu cpu está com o uso bem alto, "+cpu.intValue()+"%, :heavy_exclamation_mark: ");
+          if (cpu >= 70.0 && cpu < 90) {
+              
+                s.sendMessage(":heavy_exclamation_mark: O cpu da maquina "+ c.getModeloTotem() +" está com o uso bem alto, "+cpu.intValue()+"%, :heavy_exclamation_mark: ");
           } if (cpu >= 90) {
-                s.sendMessage(":fire: :fire: ATENÇÃO, uso muito alto da sua cpu mano, "+cpu.intValue()+"%, :fire: :fire: ");
+                s.sendMessage(":fire: :fire: ATENÇÃO, uso muito alto da sua cpu, modelo: "+ c.getModeloTotem() +"  está, "+cpu.intValue()+"%, :fire: :fire: ");
           }
            
           
-          if (ram >= 80.00) {
-               s.sendMessage(":heavy_exclamation_mark: Sua RAM está com o uso bem alto, "+ram.intValue()+"%, :heavy_exclamation_mark: ");
+          if (ram >= 70.00 && ram < 90) {
+               s.sendMessage(":heavy_exclamation_mark: A Ram da maquina "+ c.getModeloTotem() +" está com o uso bem alto, "+ram.intValue()+"%, :heavy_exclamation_mark: ");
           } if (ram >= 90) {
-               s.sendMessage(":fire: :fire:  ATENÇÃO, uso muito alto da sua RAM mano, "+ram.intValue()+"%, :fire: :fire: ");
+               s.sendMessage(":fire: :fire:  ATENÇÃO, uso muito alto da sua RAM modelo: "+ c.getModeloTotem() +"  está, "+ram.intValue()+"%, :fire: :fire: ");
               
           }
           
-           if (disco >= 80.00) {
-               s.sendMessage(":heavy_exclamation_mark: Sua RAM está com o uso bem alto, "+disco.intValue()+"%, :heavy_exclamation_mark: ");
+           if (disco >= 70.00 && disco <90) {
+               s.sendMessage(":heavy_exclamation_mark: O disco da maquina "+ c.getModeloTotem() +" está com o uso bem alto, "+disco.intValue()+"%, :heavy_exclamation_mark: ");
            } if (disco >= 90) {
-               s.sendMessage(":fire: :fire:  ATENÇÃO, uso muito alto da sua RAM mano, "+disco.intValue()+"%, :fire: :fire: ");
+               s.sendMessage(":fire: :fire:  ATENÇÃO, uso muito alto do seu Disco modelo: "+ c.getModeloTotem() +"  está, "+disco.intValue()+"%, :fire: :fire: ");
             
           }
      
