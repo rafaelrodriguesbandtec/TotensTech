@@ -128,25 +128,31 @@ function carregarDados(param) {
             chart3.data.datasets[0].data.push(registro.LeituraCpu.toFixed(2));
             chart3.data.datasets[1].data.push(registro.LeituraMemoria.toFixed(2));
             chart3.data.datasets[2].data.push(registro.TemperaturaCpu.toFixed(2));
+            cpuDiv.innerHTML = `${registro.LeituraCpu.toFixed(0)}%`;
+            memoriaDiv.innerHTML = `${registro.LeituraMemoria.toFixed(0)}%`;
+            discoDiv.innerHTML = `${registro.LeituraDisco.toFixed(0)}%`;
+            tempDiv.innerHTML = `${registro.TemperaturaCpu.toFixed(0)}%`;
+            if (registro.TemperaturaCpu > 75) {
+              document.getElementById(`tempDiv`).style = "color: red !important;";
+            }
+            if (registro.LeituraMemoria > 75) {
+              document.getElementById(`memoriaDiv`).style = "color: red !important;";
+            }
             controle++;
             if (controle == 5) {
              
               var calcResto = (100 - registro.LeituraDisco).toFixed(2);
               chart2.data.datasets[0].data.push(registro.LeituraDisco.toFixed(2));
               chart2.data.datasets[0].data.push(calcResto);
-              cpuDiv.innerHTML = `${registro.LeituraCpu.toFixed(0)}%`;
-              memoriaDiv.innerHTML = `${registro.LeituraMemoria.toFixed(0)}%`;
-              discoDiv.innerHTML = `${registro.LeituraDisco.toFixed(0)}%`;
-              tempDiv.innerHTML = `${registro.TemperaturaCpu.toFixed(0)}%`;
-              if (registro.LeituraMemoria > 75) {
-                document.getElementById(`memoriaDiv`).style = "color: red !important;";
-              }
+              // if (registro.LeituraMemoria > 75) {
+              //   document.getElementById(`memoriaDiv`).style = "color: red !important;";
+              // }
               if (registro.LeituraDisco > 75) {
                 document.getElementById(`discoDiv`).style = "color: red !important;";
               }
-              if (registro.TemperaturaCpu > 75) {
-                document.getElementById(`tempDiv`).style = "color: red !important;";
-              }
+              // if (registro.TemperaturaCpu > 75) {
+              //   document.getElementById(`tempDiv`).style = "color: red !important;";
+              // }
               break;
             }
           }
