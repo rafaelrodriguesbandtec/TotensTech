@@ -163,13 +163,20 @@ iframe {
   position: relative;
   margin-left: -61vw;
 }
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 767px) {
 	.wrap-login100 {
   width: 390px;
   background: #272833;
   border-radius: 10px;
  position: relative;
     margin-left: 0px;
+	
+}
+.img-logo {
+    margin-top: 11vw !important;
+    width: 24vw !important;
+    position: absolute;
+    margin-left: 60vw !important;
 }
 
 #header {
@@ -248,7 +255,7 @@ iframe {
 }
 
 .img-logo {
-  margin-top: 17vw;
+  margin-top: 7vw;
   width: 46vw;
   position: absolute;
   margin-left: 39vw;

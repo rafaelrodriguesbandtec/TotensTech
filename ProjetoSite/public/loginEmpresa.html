@@ -37,7 +37,7 @@
 					</ul>
 				</li>
 
-				<li><a href="./Cadastro.html" class="button primary">Cadastro</a></li>
+			<li><a href="./cadastroEmpresa.html" class="button primary">Cadastro empresa</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -137,6 +137,7 @@
 					sessionStorage.razaoSocialApp = json.RazaoSocial;
 					localStorage.email_meuapp = json.Email;
 					sessionStorage.IdEmpresa_meuapp = json.idEmpresa;
+					localStorage.IdEmpresa_meuapp=json.idEmpresa;
 
 					// //Campos Totens
 					localStorage.IdTotens_meuapp = json.idTotens;
@@ -149,7 +150,7 @@
 				
 
 
-					window.location.href = '././dashboardcomsophie/dashboard.html';
+					window.location.href = `././dashboardcomsophie/dashboard.html`;
 				});
 
 			} else {

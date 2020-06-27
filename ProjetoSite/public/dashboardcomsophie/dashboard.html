@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dashboard</title>
+  <title>Totens</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -31,11 +31,10 @@
 
   <!-- imports da sophie-->
   <link rel="shortcut icon" href="Content/images/favicon.png" type="image/x-icon">
-  <link href="Content/css/opensans.css" rel="stylesheet" />
-  <link href="Content/css/fontawesome/css/font-awesome.css" rel="stylesheet" />
-  <link rel="stylesheet" href="Content/css/custom.css">
-  <script src="Scripts/jquery-1.10.2.min.js"></script>
-      <script type="text/javascript"></script>
+  <link href="Content/css/opensans.css" rel="stylesheet"/>
+  <link href="Content/css/fontawesome/css/font-awesome.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="Content/css/custom.css">   
+  <script src="Scripts/jquery-1.10.2.min.js"></script>       
 
 
   <!-- imports do chart-->
@@ -53,7 +52,43 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
+    <style>
+      .graficoLinha {
+        width: 680px;
+        height: 300px;
+        float: left;
+        margin-left: -3%;
 
+      }
+
+      .graficoPie {
+        width: 680px;
+        height: 300px;
+        float: right;
+        margin-right: -6%;
+        margin-top: -23%;
+      }
+
+      @media screen and (max-width: 768px) {
+
+        .graficoLinha {
+          width: 430px;
+          height: 300px;
+          float: left;
+          margin-left: -15%;
+
+        }
+
+        .graficoPie {
+          width: 450px;
+          height: 300px;
+          float: left;
+          margin-left: -15%;
+
+        }
+
+      }
+    </style>
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <!-- Left navbar links -->
@@ -63,7 +98,7 @@
       <div class="container-fluid conteudo-tela">
         <div class="janela-modal popup-box chat-popup" id="qnimate" style="display: none;">
           <iframe frameborder="0" width="100%" height="100%" style="overflow: hidden; 
-						border-radius: 0.5em;">
+                border-radius: 0.5em;">
           </iframe>
         </div>
 
@@ -75,24 +110,23 @@
 
         <div class="btn-modal">
           <p class="text-center" style="color: white; 
-				   font-size: 14px; 
-				   padding-top: 8px;">
+               font-size: 14px; 
+               padding-top: 8px;">
             <i class="fa fa-comment" aria-hidden="true" style="font-size: 25px; 
-					   padding: 12px; 
-					   background-color: navy; 
-					   border-radius:50%">
+                 padding: 12px; 
+                 background-color: navy; 
+                 border-radius:50%">
             </i>
             <i class="fa fa-times-circle" aria-hidden="true" style="display: none; 
-					   position: fixed; 
-					   right: 32px; 
-					   bottom: 570px;
-                       color: blue">
+                 position: fixed; 
+                 right: 32px; 
+                 bottom: 570px;
+                           color: blue">
             </i>
           </p>
         </div>
       </div>
-
-      <!-- encerra corpo sophie -->
+      <!--fim corpo-->
 
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -157,7 +191,7 @@
             <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a id="nomeUsuario" href="#" class="d-block">Amanda</a>
+            <a id="nomeRazao" href="#" class="d-block"></a>
           </div>
         </div>
 
@@ -170,45 +204,26 @@
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
-                  Dashboard
+                  Informaçoes Totem
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
-              <ul id='new' class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link active">
-                    <i class="nav-icon far fa-circle text-info"></i>
-                    <p id="totem1">Totem 01</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="nav-icon far fa-circle text-info"></i>
-                    <p>Totem 02</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="nav-icon far fa-circle text-danger"></i>
-                    <p>Totem 03</p>
-                  </a>
-                </li>
+
+              <ul id='newMaquina' class="nav nav-treeview ">
+
+
+
               </ul>
+
             </li>
-            <li class="nav-header" style="display: none">Cadastro de Maquinas</li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" style="display: block">
-                <i class="#"></i>
-                <p id='abrir'>Cadastro de Máquina</p>
-              </a>
-            </li>
-            <li class="nav-header" style="display: none">Cadastro de Usuário</li>
+
+            <!-- <li class="nav-header" style="display: none">Cadastro de Usuário</li>
             <li class="nav-item">
               <a href="../cadastroUsuario.html" class="nav-link" style="display: block">
                 <i class="#"></i>
                 <p id='abrirCadastroUsuario'>Cadastro de Usuário</p>
               </a>
-            </li>
+            </li> -->
             <li class="nav-header">Legenda</li>
             <li class="nav-item">
               <a href="#" class="nav-link" style="display: block">
@@ -230,11 +245,13 @@
             </li>
 
             <li class="nav-item">
-              <a onclick="sair()" class="nav-link" style="display: block"> 
+              <a onclick="sair()" class="nav-link" style="display: block">
                 <!-- <i class="#"></i> -->
                 <p id='sair'>Sair</p>
               </a>
             </li>
+
+
 
           </ul>
         </nav>
@@ -254,7 +271,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Dashboard</h1>
+              <h1 class="m-0 text-dark">Totens</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -268,136 +285,14 @@
       <section class="content">
         <div class="container-fluid">
           <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>30%</h3>
+          <div id='cardsM' class="row">
 
-                  <p>Desempenho Geral</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-
-              </div>
-
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-success">
-                <div class="inner">
-                  <h3>53%</h3>
-
-                  <p>Memória</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-warning">
-                <div class="inner">
-                  <h3>44%</h3>
-
-                  <p>Disco</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-danger">
-                <div class="inner">
-                  <h3>30ºC</h3>
-
-                  <p>Temperatura CPU</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-
-              </div>
-            </div>
             <!-- ./col -->
           </div>
           <!-- /.row -->
           <!-- Main row -->
           <div class="row">
             <!-- Left col -->
-
-
-
-            <div style="width: 1080px; height: 400px;">
-              <canvas id="myChart3" width="1080" height="400"></canvas>
-              <script>
-
-                let chart3 = new Chart(document.getElementById("myChart3"), {
-                  type: 'line',
-                  data: {
-
-                    labels: ["10:00", "11:00", "12:00", "13:00", "14:00"],
-                    datasets: [
-
-                      {
-                        label: "Memória em uso",
-                        data: [60, 60, 70, 65, 80],
-                        backgroundColor: ['rgba(54,162,235, 0.2)']
-                      },
-
-                      {
-                        label: "CPU em uso",
-                        data: [10, 10, 15, 13, 20],
-                        backgroundColor: ['rgba(52,333,333, 0.2)']
-                      },
-
-                      {
-                        label: "Disco em uso",
-                        data: [5, 5, 10, 11, 15],
-                        backgroundColor: ['rgba(52,444,111, 0.2)']
-                      }
-
-                    ]
-
-                  },
-
-                  options: {
-
-                    scales: {
-
-                      yAxes: [{
-
-
-                        ticks: {
-
-                          beginAtZero: true,
-                          suggestedMax: 50,
-                          max: 100,
-                          stepSize: 10
-
-                        }
-                      }
-
-                      ]
-
-                    }
-
-                  }
-                })
-
-              </script>
-
-            </div>
 
 
             <!-- right col -->
@@ -419,38 +314,144 @@
         .modal-footer {
           background-color: #f9f9f9;
         }
+
+        .modal-dialog {
+          max-width: fit-content !important;
+        }
       </style>
-      <!-- Modal-Totem inicio -->
+      <!--modal-totem-grafico-->
+      <div class="modal fade" id="totemGrafico" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal conteudo-->
+          <div class="modal-content">
+            <div class="modal-header" style="padding:35px 50px;">
+              <h3><span class="glyphicon glyphicon-lock"></span>Grafico Totem</h3>
+              <button class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="row">
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                  <div class="inner">
+                    <h3 id='cpuDiv'>0</h3>
+
+                    <p>Cpu</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                  </div>
+
+                </div>
+
+              </div>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                  <div class="inner">
+                    <h3 id='memoriaDiv'>0</h3>
+
+                    <p>Memória</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                  </div>
+
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                  <div class="inner">
+                    <h3 id='discoDiv' style='color:white'>0</h3>
+
+                    <p style='color:white'>Disco</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                  </div>
+
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                  <div class="inner">
+                    <h3 id='tempDiv'>0</h3>
+
+                    <p>Temperatura CPU</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="modal-body" style="padding:40px 50px;">
+              <div class='graficoLinha'>
+                <canvas id="myChart3" width="520" height="190"></canvas>
+
+
+
+              </div>
+              <div class='graficoPie'>
+                <canvas id="myChart2" width="520" height="190"></canvas>
+
+              </div>
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <!-- Modal-Totem-info inicio -->
       <div class="modal fade" id="cadastroMaquina" role="dialog">
         <div class="modal-dialog">
 
           <!-- Modal conteudo-->
           <div class="modal-content">
             <div class="modal-header" style="padding:35px 50px;">
-              <h4><span class="glyphicon glyphicon-lock"></span>Cadastro Totem</h4>
+              <h4><span class="glyphicon glyphicon-lock"></span>Especificações do Totem</h4>
               <button class="close" data-dismiss="modal">&times;</button>
-              
+
             </div>
             <div class="modal-body" style="padding:40px 50px;">
               <form role="form">
                 <div class="form-group">
-                  <label><span class="glyphicon-user"></span> Fabricante</label>
-                  <input type="text" class="form-control" id="fabricante" placeholder="Fabricante">
+                  <label><span class="glyphicon-user"></span> Fabricante: </label>
+                  <span id='fabricanteTotem'></span>
                 </div>
                 <div class="form-group">
-                  <label><span class="glyphicon-eye-open"></span>Modelo</label>
-                  <input type="text" class="form-control" id="modelo" placeholder="Modelo">
+                  <label><span class="glyphicon-eye-open"></span>Modelo: </label>
+                  <span id='modTotem'></span>
                 </div>
+                <div class="form-group">
+                  <label><span class="glyphicon-eye-open"></span>Processador: </label>
+                  <span id='processadorTotem'></span>
+                </div>
+                <div class="form-group">
+                  <label><span class="glyphicon-eye-open"></span>Memoria: </label>
+                  <span id='memoriaTotem'></span>
+                </div>
+                <div class="form-group">
+                  <label><span class="glyphicon-eye-open"></span>Espaço total em disco: </label>
+                  <span id='hdTotem'></span>
+                </div>
+               
 
-                <button id='cadastro'type="submit" class="btn btn-success btn-block" style="background: #343a40 !important;
-                border: none !important;"><span class="glyphicon glyphicon-off"></span>Cadastrar Totem</button>
+
+
               </form>
             </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span
-                  class="glyphicon glyphicon-remove" style="background: red;"></span>Cancelar</button>
 
-            </div>
           </div>
 
         </div>
@@ -510,8 +511,8 @@
   <script src="dist/js/demo.js"></script>
 
   <script>
-  verificar_autenticacao();
-  escreverTotens();
+
+
   </script>
 
   <!-- <script>taca aqui</script> -->
@@ -520,8 +521,8 @@
 
   <script>
     $(document).ready(function () {
-     
-
+      carregarMaquinas();
+      verificar_autenticacao();
       var _chatterURL = 'https://assistant.sophie.chat/techzin/ChatterWeb/index?login=visitante';
 
       //Open Modal
@@ -564,20 +565,18 @@
   <!--Jquery do modal de cadastro de token-->
   <script>
     $(document).ready(function () {
-      $("#abrir").click(function () {
+
+      $("#newMaquina").click(function () {
         $("#cadastroMaquina").modal();
+
       });
+      $("#cardsM").click(function () {
+        $("#totemGrafico").modal();
+      })
     });
-      $(document).ready(function (){
-        var novaMaquina='';
-      $("#cadastro").click(function (){
-        novaMaquina= ` <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon far fa-circle text-info"></i> <p>Totem novo</p></a></li>`
-        $( "#new" ).append( $( novaMaquina) );
-        console.log(true)
-      })
-      })
-     
-    
+
+
+
   </script>
 
 

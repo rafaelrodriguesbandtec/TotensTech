@@ -35,7 +35,7 @@
 					</ul>
 				</li>
 				
-				<li><a href="./Cadastro.html" class="button primary">Cadastro</a></li>
+				<li><a href="./cadastroEmpresa.html" class="button primary">Cadastro Empresa</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -46,14 +46,14 @@
 				<form id='recuperacao' class="login100-form validate-form flex-sb flex-w"method="post" onsubmit="return recuperarF()">
 					<img src="./images/logos.png" class="img-logo" alt="">
 					<span class="login100-form-title p-b-51" style='margin-top:5%'>
-						Recuperação de Senha
+						Recuperação de Senha Empresa
 					</span>
 
 					<div class="labels-form">
-						<p>E-MAIL</p>
+						<p>CNPJ</p>
 					</div>
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "E-mail é obrigatório">
-						<input class="input100" type="text" name="login" placeholder="Email">
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "CNPJ é obrigatório">
+						<input class="input100" type="text" name="cnpj" placeholder="CNPJ">
 						<span class="focus-input100"></span>
 					</div>
 					
@@ -68,7 +68,7 @@
 						<p>Nova senha</p>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Senha é obrigatório">
-						<input class="input100" type="password" name="confirmarSenha" placeholder="Nova senha">
+						<input class="input100" type="password" name="cSenhaEmpresa" placeholder="Nova senha">
 						<span class="focus-input100"></span>
 					</div>
 					
@@ -122,7 +122,7 @@
 	function recuperarF() {
         
         var formulario = new URLSearchParams(new FormData(recuperacao));
-        fetch("/usuarios/recuperacao", {
+        fetch("/empresas/recuperacao", {
             method: "POST",
             body: formulario
         }).then(resposta => {
@@ -131,7 +131,7 @@
 
                
                     alert("senha alterada com sucesso");
-                    window.location.href = './Login.html';
+                    window.location.href = './loginEmpresa.html';
                 
 
             } else {
