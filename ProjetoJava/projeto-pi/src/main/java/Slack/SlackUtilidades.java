@@ -12,7 +12,8 @@ import net.gpedro.integrations.slack.SlackMessage;
   
   public class SlackUtilidades {
      
-    private SlackApi api = new SlackApi("https://hooks.slack.com/services/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");
+    private SlackApi api = new SlackApi("https://hooks.slack.com/services/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");
+                                        
     
       void sendMessage(String message){
            Logs log = new Logs();
