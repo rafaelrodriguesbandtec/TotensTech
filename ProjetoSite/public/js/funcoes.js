@@ -131,31 +131,28 @@ function carregarDados(param) {
             chart3.data.datasets[2].data.push(registro.TemperaturaCpu.toFixed(2));
             cpuDiv.innerHTML = `${registro.LeituraCpu.toFixed(0)}%`;
             memoriaDiv.innerHTML = `${registro.LeituraMemoria.toFixed(0)}%`;
-            discoDiv.innerHTML = `${registro.LeituraDisco.toFixed(0)}%`;
-            tempDiv.innerHTML = `${registro.TemperaturaCpu.toFixed(0)}%`;
+           
+            tempDiv.innerHTML = `${registro.TemperaturaCpu.toFixed(0)}°C`;
             if (registro.TemperaturaCpu > 75) {
               document.getElementById(`tempDiv`).style = "color: red !important;";
             }
             if (registro.LeituraMemoria > 75) {
               document.getElementById(`memoriaDiv`).style = "color: red !important;";
             }
-            controle++;
-            if (controle == 5) {
+            if (controle == 0) {
              
               var calcResto = (100 - registro.LeituraDisco).toFixed(2);
               chart2.data.datasets[0].data.push(registro.LeituraDisco.toFixed(2));
               chart2.data.datasets[0].data.push(calcResto);
-              // if (registro.LeituraMemoria > 75) {
-              //   document.getElementById(`memoriaDiv`).style = "color: red !important;";
-              // }
+              discoDiv.innerHTML = `${registro.LeituraDisco.toFixed(0)}%`;
+           
               if (registro.LeituraDisco > 75) {
                 document.getElementById(`discoDiv`).style = "color: red !important;";
               }
-              // if (registro.TemperaturaCpu > 75) {
-              //   document.getElementById(`tempDiv`).style = "color: red !important;";
-              // }
-              break;
+             
+             
             }
+            controle++;
           }
 
         }
@@ -203,10 +200,9 @@ function plotarCards(parametro) {
               document.getElementById(`${parametro}Card`).style = "background-color: red !important";
 
             }
-            else if (registro.LeituraDisco < 65 && registro.TemperaturaCpu < 40 && registro.LeituraMemoria < 40) {
+            else if (registro.LeituraDisco < 65 && registro.TemperaturaCpu < 40 && registro.LeituraMemoria < 55) {
               document.getElementById(`${parametro}Card`).style = "background-color: green !important";
-            }
-            else {
+            }else {
               document.getElementById(`${parametro}Card`).style = "background-color: #ffc107 !important";
             }
 
@@ -374,7 +370,7 @@ function verificarAutenticacaoUsuario(){
 
 function verificar_autenticacao() {
   razaoSocial = sessionStorage.razaoSocialApp; //localStorage.getItem('RazaoSocial');
-  console.log(razaoSocial);
+  
   IdEmpresa = sessionStorage.IdEmpresa_meuapp;
 
 

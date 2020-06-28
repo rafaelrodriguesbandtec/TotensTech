@@ -41,12 +41,6 @@ router.get('/ultimas', function (req, res, next) {
 
 router.get('/totens', function (req, res, next) {
 
-
-
-
-
-
-
     const instrucaoSql = `SELECT * FROM totens join empresa on empresa.idEmpresa = totens.fkEmpresa where idEmpresa = '${idEmpresa}'`;
 
 
