@@ -288,7 +288,7 @@ function carregarMaquinas() {
           var registro = resposta[i];
           if (registro.Estado == "M") {
             document.getElementById(`${registro.idTotens}`).style = "color: #ffc107 !important";
-          } else if (registro.Estado == "D") {
+          } else if (registro.Estado == "I") {
             document.getElementById(`${registro.idTotens}`).style = "color: #dc3545 !important";
           } else {
             document.getElementById(`${registro.idTotens}`).style = "color: #17a2b8 !important";
