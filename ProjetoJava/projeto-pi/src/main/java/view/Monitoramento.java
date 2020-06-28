@@ -58,12 +58,12 @@ public class Monitoramento extends javax.swing.JFrame {
                 }                 
             }           
             
-            List<Totens> totens = template.query("select * from Totens where fkEmpresa = ? and SerialNumber = ?", new TotensRowMapper(), fkEmpresa, totem.getSerialToten());
+            List<Totens> totens = template.query("select * from Totens where fkEmpresa = ? and SerialNumber = ? and Modelo = ? and CpuToten = ? and Fabricante = ?", new TotensRowMapper(), fkEmpresa, totem.getSerialToten(), totem.getModeloTotem(), totem.getNomeCpu(), totem.getMarcaTotem());
             
             if(totens.isEmpty()){
                 
                 novoTotem.cadastrarTotem(totem, fkEmpresa);
-                totens = template.query("select * from Totens where fkEmpresa = ? and SerialNumber = ?", new TotensRowMapper(), fkEmpresa, totem.getSerialToten());
+                totens = template.query("select * from Totens where fkEmpresa = ? and SerialNumber = ? and Modelo = ? and CpuToten = ? and Fabricante = ?", new TotensRowMapper(), fkEmpresa, totem.getSerialToten(), totem.getModeloTotem(), totem.getNomeCpu(), totem.getMarcaTotem());
             }
             
             for(Totens listaTotens : totens){
