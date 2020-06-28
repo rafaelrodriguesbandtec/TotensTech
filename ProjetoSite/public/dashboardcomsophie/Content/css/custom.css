@@ -20,7 +20,7 @@
     right: 2%;
     width: 32%;
     min-width: 460px;
-    height: 550px;
+    height: 500px;
     background-color: lightgray;
     border-radius: 0.4em;
     /* overflow: auto; */
@@ -36,7 +36,7 @@
   .popup-box {
      bottom: 0;
      display: none;
-     height: 570px;
+     height: 500px;
      position: fixed;
      right: 15px;
      width: 465px;
