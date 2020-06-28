@@ -138,7 +138,7 @@ router.post('/cadastrar', function (req, res, next) {
         req.body.senhaEmpresa == '' || req.body.senhaEmpresa.length < 8) {
         console.log("Erro");
     } else {
-        if (cadastroEndereco == false) {
+        
             Endereco.create({
                 //Informações de cadastro da tabela Endereco
                 Cep: req.body.cepEmpresa,
@@ -147,7 +147,8 @@ router.post('/cadastrar', function (req, res, next) {
                 Bairro: req.body.bairroEmpresa,
                 Cidade: req.body.cidadeEmpresa,
                 Estado: req.body.estadoEmpresa,
-                Complemento: req.body.complementoEmpresa
+                Complemento: req.body.complementoEmpresa,
+				
 
 
             })
@@ -166,7 +167,8 @@ router.post('/cadastrar', function (req, res, next) {
                 Cnpj: req.body.cnpj,
                 Email: req.body.email,
                 SenhaEmpresa: req.body.senhaEmpresa,
-                FkEndereco: 1
+                FkEndereco: 1,
+				Token: req.body.token
 
             })
 
@@ -180,21 +182,20 @@ router.post('/cadastrar', function (req, res, next) {
             });*/
 
             
-        }
+        
         }
         
     })
 
 /*Recuperando Senha*/
-router.get('/recuperacao', function (req, res, next) {
-    var sqlTroca = `select * from Empresa where Cnpj='${req.body.cnpj}' and token '${req.body.token}'`;
-    sequelize.query(sqlTroca, { model: Empresa }).then((resultado) => {
-        if (resultado.length == 1) {
-            if (resultado[0].dataValues.cnpj == req.body.cnpj &&
-                resultado[0].dataValues.token == req.body.token &&
-                req.body.senha == req.body.cSenhaEmpresa) {
-                var atualizarSenha = `update Empresa set senhaEmpresa = '${req.body.senha}' where IdEmpresa = '${resultado[0].dataValues.IdEmpresa}'`
-                sequelize.query(atualizarSenha, { model: Usuario }).then((sucesso) => {
+router.post('/recuperarsenha', function (req, res, next) {
+var sqlTroca = `select * from Empresa WHERE Cnpj='${req.body.cnpj}' and Token='${req.body.token}';`;
+	sequelize.query(sqlTroca, { model: Empresa }).then((resultado) => {
+		console.log("results", resultado.length);
+		if (resultado.length == 1) {
+			if ((resultado[0].dataValues.Cnpj == req.body.cnpj) && (resultado[0].dataValues.Token == req.body.token)) {
+				var atualizarSenha = `update Empresa set Senha='${req.body.senha}' where idEmpresa='${resultado[0].dataValues.idEmpresa}'`;
+				sequelize.query(atualizarSenha, { model: Empresa }).then((sucesso) => {
 					if(sucesso){
 						console.log("Senha atualizada com sucesso");
 						res.json(sucesso[0]);
@@ -203,10 +204,26 @@ router.get('/recuperacao', function (req, res, next) {
 				}).catch((err)=>{
 					res.status(500).send(err);
 				})
-            }
-        }
-    })
-})
+
+			}else{
+				res.status(500).send("Informações incorretas");
+
+			}
+
+
+		}else if(resultado.length==0){
+			res.status(500).send("Não foi possivel achar o usuario");
+		}else{
+			res.status(500).send("erro");
+		}
+
+	}).catch((err)=>{
+		res.status(500).send(err);
+	})
+
+
+
+});
 
 
 

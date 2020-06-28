@@ -2,6 +2,7 @@
 
 
 var razaoSocial;
+var IdEmpresa;
 
   //está função coleta os dados para a dashboard
 
@@ -360,6 +361,11 @@ function puxarMaquina(params) {
 
 function redirecionar_home() {
   window.location.href = '../index.html';
+}
+function verificarAutenticacaoUsuario(){
+  IdEmpresa = sessionStorage.IdEmpresa_meuapp;
+
+  fkEmpresa.value = IdEmpresa;
 }
 
 

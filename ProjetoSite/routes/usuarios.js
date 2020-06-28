@@ -52,6 +52,7 @@ router.post('/cadastrar', function (req, res, next) {
 			LoginUsuario: req.body.email,
 			Senha: req.body.senha,
 			NivelAcesso:  req.body.nivelAcesso,
+			Token: req.body.token,
 			FkEmpresa: req.body.fkEmpresa	
 
 		}).then(resultado => {
@@ -66,15 +67,14 @@ router.post('/cadastrar', function (req, res, next) {
 
 
 /* Recuperação de senha */
-router.get('/recuperacao', function (req, res, next) {
+router.post('/recuperacao', function (req, res, next) {
 	var sqlTroca = `select*from Usuario
-	 where email='${req.body.email}' and token='${req.body.token}'`;
+	 where Email='${req.body.login}' and Token='${req.body.token}'`;
 	sequelize.query(sqlTroca, { model: Usuario }).then((resultado) => {
 		console.log("results", resultado.length);
 		if (resultado.length == 1) {
-			if (resultado[0].dataValues.email == req.body.email && resultado[0].dataValues.token == req.body.token
-				&& req.body.senha == req.body.confirmarSenha) {
-				var atualizarSenha = `update cliente set SenhaUsuario='${req.body.senha}' where IdCliente='${resultado[0].dataValues.IdCliente}'`;
+			if (resultado[0].dataValues.Email == req.body.login && resultado[0].dataValues.Token == req.body.token) {
+				var atualizarSenha = `update Usuario set Senha='${req.body.senha}' where idUsuario='${resultado[0].dataValues.idUsuario}'`;
 				sequelize.query(atualizarSenha, { model: Usuario }).then((sucesso) => {
 					if(sucesso){
 						console.log("Senha atualizada com sucesso");

@@ -43,7 +43,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
-				<form id='recuperacao' class="login100-form validate-form flex-sb flex-w"method="post" onsubmit="return recuperarF()">
+				<form id='recuperacao' class="login100-form validate-form flex-sb flex-w"method="post">
 					<img src="./images/logos.png" class="img-logo" alt="">
 					<span class="login100-form-title p-b-51" style='margin-top:5%'>
 						Recuperação de Senha Usuário
@@ -61,14 +61,14 @@
 						<p>Token</p>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Senha é obrigatório">
-						<input class="input100" type="password" name="senha" placeholder="Token">
+						<input class="input100" type="text" name="token" placeholder="Token">
 						<span class="focus-input100"></span>
 					</div>
 					<div class="labels-form">
 						<p>Nova senha</p>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Senha é obrigatório">
-						<input class="input100" type="password" name="confirmarSenha" placeholder="Nova senha">
+						<input class="input100" type="password" name="senha" placeholder="Nova senha">
 						<span class="focus-input100"></span>
 					</div>
 					
@@ -84,7 +84,7 @@
 					</div>
 
 					<div class="container-login100-form-btn m-t-17">
-						<button class="login100-form-btn">
+						<button onclick="return recuperarF()" class="login100-form-btn">
 							Login
 						</button>
 					</div>
@@ -131,7 +131,7 @@
 
                
                     alert("senha alterada com sucesso");
-                    window.location.href = './Login.html';
+                    window.location.href = './LoginUsuario.html';
                 
 
             } else {

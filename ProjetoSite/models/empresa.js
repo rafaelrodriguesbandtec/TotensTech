@@ -36,7 +36,12 @@ module.exports = (sequelize, DataTypes) => {
             field: 'FkEndereco',
             type: DataTypes.INTEGER,
             allowNull: false
-        }
+        },
+		 Token: {
+            field: 'Token',
+            type: DataTypes.STRING,
+            allowNull: false
+        },
     },
     {
         tableName:'Empresa',
