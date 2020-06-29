@@ -201,11 +201,14 @@ function plotarCards(parametro) {
 
               if (registro.LeituraDisco > 75 || registro.LeituraMemoria > 75 || registro.TemperaturaCpu > 75) {
                 document.getElementById(`${parametro}Card`).style = "background-color: red !important";
+                document.getElementById(`${parametro}status`).innerHTML="Totem em estado crítico";
               }
-              else if (registro.LeituraDisco < 65 && registro.TemperaturaCpu < 40 && registro.LeituraMemoria < 45) {
+              else if (registro.LeituraDisco < 65 && registro.TemperaturaCpu < 40 && registro.LeituraMemoria < 67) {
                 document.getElementById(`${parametro}Card`).style = "background-color: green !important";
+                document.getElementById(`${parametro}status`).innerHTML="Totem em estado ótimo";
               } else {
                 document.getElementById(`${parametro}Card`).style = "background-color: #ffc107 !important";
+                document.getElementById(`${parametro}status`).innerHTML="Totem em estado de alerta";
               }
 
             }
@@ -268,7 +271,7 @@ function carregarMaquinas() {
             <div class="inner">
               <p>${registro.Modelo}</p>
 
-              <small>${registro.Fabricante}</small>
+              <small id="${registro.idTotens}status">Totem sem dados</small>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
