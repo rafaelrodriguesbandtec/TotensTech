@@ -1,10 +1,9 @@
 {
-  "name": "totens-tech-raiz",
-  "version": "0.0.1",
+  "name": "pi-ads-2019-2",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./projeto-site/bin/www",
-    "postinstall": "cd projeto-site && npm install"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "chart.js": "^2.9.3",
