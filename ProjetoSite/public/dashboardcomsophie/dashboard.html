@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Totens</title>
+
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -31,10 +32,10 @@
 
   <!-- imports da sophie-->
   <link rel="shortcut icon" href="Content/images/favicon.png" type="image/x-icon">
-  <link href="Content/css/opensans.css" rel="stylesheet"/>
-  <link href="Content/css/fontawesome/css/font-awesome.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="Content/css/custom.css">   
-  <script src="Scripts/jquery-1.10.2.min.js"></script>       
+  <link href="Content/css/opensans.css" rel="stylesheet" />
+  <link href="Content/css/fontawesome/css/font-awesome.css" rel="stylesheet" />
+  <link rel="stylesheet" href="Content/css/custom.css">
+  <script src="Scripts/jquery-1.10.2.min.js"></script>
 
 
   <!-- imports do chart-->
@@ -87,6 +88,7 @@
 
         }
 
+
       }
     </style>
     <!-- Navbar -->
@@ -133,7 +135,7 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="https://totenstechsuporteassist.freshdesk.com/support/home" class="nav-link"
+          <a href="https://totenstechsuporteservice.freshdesk.com/support/home" class="nav-link"
             target="_blank">Helpdesk</a>
         </li>
       </ul>
@@ -259,6 +261,77 @@
       </div>
       <!-- /.sidebar -->
     </aside>
+    <style>
+      .legendaVerdeW {
+        float: right;
+        margin-top: -2.2%;
+        margin-right: 59%;
+      }
+
+      .legendaVerde {
+        width: 2.6%;
+        height: 12px;
+        background: green;
+        float: right;
+        margin-top: -1.5%;
+        margin-right: 56%;
+      }
+
+      .legendaVermelha {
+        width: 15%;
+        height: 12px;
+        background-color: red;
+        float: right;
+        margin-top: 3.6%;
+      }
+
+      .legendaVermelhaW {
+        width: 18%;
+      }
+
+      .legendaAmarela {
+        float: right;
+        width: 2.6%;
+        height: 12px;
+        background: rgb(255, 193, 7);
+        margin-top: -1.5%;
+        margin-right: 27%;
+      }
+
+      .legendaAmarelaW {
+        float: right;
+        margin-top: -2.2%;
+        margin-right: 30%;
+      }
+
+      @media screen and (max-width: 768px) {
+
+        .legendaVerdeW {
+          display: none;
+        }
+
+        .legendaVerde {
+          display: none;
+        }
+
+        .legendaVermelha {
+          display: none;
+        }
+
+        .legendaVermelhaW {
+          display: none;
+        }
+
+        .legendaAmarela {
+          display: none;
+        }
+
+        .legendaAmarelaW {
+          display: none;
+
+        }
+      }
+    </style>
 
 
     <!-- daqui pra cima tudo referente ao menu esquerdo cinza-->
@@ -283,6 +356,14 @@
       <!-- /.content-header -->
       <!-- Main content -->
       <section class="content">
+        <div style="width: 100%;    margin: 0px 7px 15px;">
+          <div class='legendaVermelhaW'>Totem em estado crítico:<div class='legendaVermelha'></div>
+          </div>
+          <div class='legendaVerdeW'>Totem em estado ótimo:</div>
+          <div class='legendaVerde'></div>
+          <div class='legendaAmarelaW'>Totem em estado de atenção:</div>
+          <div class='legendaAmarela'></div>
+        </div>
         <div class="container-fluid">
           <!-- Small boxes (Stat box) -->
           <div id='cardsM' class="row">
@@ -445,7 +526,7 @@
                   <label><span class="glyphicon-eye-open"></span>Espaço total em disco: </label>
                   <span id='hdTotem'></span>
                 </div>
-               
+
 
 
 
@@ -518,14 +599,14 @@
   <!-- <script>taca aqui</script> -->
 
   <!-- Script Sophie -->
-<script>
-     carregarMaquinas();
-      verificar_autenticacao();
-</script>
   <script>
-  
+    carregarMaquinas();
+    verificar_autenticacao();
+  </script>
+  <script>
+
     $(document).ready(function () {
-    
+
       var _chatterURL = 'https://assistant.sophie.chat/techzin/ChatterWeb/index?login=visitante';
 
       //Open Modal

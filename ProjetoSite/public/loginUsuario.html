@@ -143,6 +143,7 @@
 			} else {
 
 				console.log('Erro de login!');
+				alert("Email ou Senha incorretos!");
 
 				response.text().then(texto => {
 					console.error(texto);
