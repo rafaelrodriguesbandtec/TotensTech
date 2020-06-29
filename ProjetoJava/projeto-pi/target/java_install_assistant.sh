@@ -25,7 +25,7 @@ if [ $? -eq 0 ]
 			then
 			clear
 			#clear limpa o console
-			java -jar projeto-pi-1.0-SNAPSHOT-jar-with-dependencies
+			java -jar projeto-pi-1.0-SNAPSHOT-jar-with-dependencies.jar
 			#comando: "java -jar nomeArquivo.jar" inicia um executável java.
 			else 
 			echo "Fechando assitente... Até a próxima!"
@@ -62,7 +62,7 @@ if [ $? -eq 0 ]
 					read inst
 					if [ \"$inst\" == \"s\" ]
 					then
-					java -jar projeto-pi-1.0-SNAPSHOT-jar-with-dependencies
+					java -jar projeto-pi-1.0-SNAPSHOT-jar-with-dependencies.jar
 					else 
 					echo "$(tput setaf 6)[Assistente TotensTech]:$(tput setaf 7) : Fechando assitente... Até a próxima!"
 					fi
