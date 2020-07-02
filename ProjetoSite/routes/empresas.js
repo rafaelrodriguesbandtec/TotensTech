@@ -22,7 +22,7 @@ router.get('/ultimas', function (req, res, next) {
                         DataHora,
                         fkToten,
 	    				FORMAT(DataHora,'HH:mm:ss') as momento_grafico 
-						from Leitura order by idLeitura desc
+						from Leitura order by idLeitura asc
 						`;
     
 
